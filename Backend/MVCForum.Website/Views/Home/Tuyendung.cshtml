@@ -1,0 +1,71 @@
+﻿@model MVCForum.Website.ViewModels.RecruitmentPageViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    var totalCount = Convert.ToInt32(Model.TotalCount);
+    int i = 1;
+}
+
+<section class="recruitment pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Tuyển Dụng</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Trangchu","Home")"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Tuyển dụng - Đào tạo</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Tuyển dụng</li>
+                        </ol>
+                    </nav>
+                </div>
+             
+                <div class="medicine-news__items category-news__items">
+                    <div class="recruitment-slider mb-4">
+                        @if (Model.Recruitments.Any())
+                        {
+                            foreach (var item in Model.Recruitments)
+                             {
+                                 <div class="px-2">
+                                     <div class="medicine-news__item category-news__item">
+                                         <a href="@Url.Action("RecruitmentDetail", "Home", new {id = item.Id})" class="medicine-news__item-img category-news__item-img">
+                                             <img class="img-fluid" src="/Content/assets/img/recruitment/recruitment.jpg" alt="">
+                                         </a>
+                                         <div class="medicine-news__item-text category-news__item-text">
+                                             <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                 <a href="@Url.Action("RecruitmentDetail", "Home", new {id = item.Id})">@item.Name</a>
+                                             </div>
+                                             <i class="fa fa-calendar" aria-hidden="true"></i>
+                                             <span>@DatesUI.GetPrettyDate(item.DateCreated.ToString())</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                             }
+                            
+                        }else{
+                            <div class="news__article-content">
+                                <p>
+                                    Hiện tại chưa có thông tin tuyển dụng nào
+                                </p>
+                            </div>
+                        }
+                       
+
+                    </div>
+                </div>
+
+
+                  
+
+            </div>
+        </div>
+    </div>
+</section>

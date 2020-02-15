@@ -1,0 +1,529 @@
+﻿@model List<MVCForum.Domain.DomainModel.Department>
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    int i = 1;
+}
+<section class="intro pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Giới Thiệu</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            @*<li class="breadcrumb-item  breadcrumb-custom-item"><a href="#">Đường dẫn 1</a></li>*@
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Giới thiệu</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-3 pr-lg-0">
+                        <div class="tab__nav nav flex-lg-column nav-pills float-panel" data-top="0" data-scroll="200" id="intro-tab"
+                             role="tablist" aria-orientation="vertical">
+                            <a href="#history" class="tab__nav-item nav-link active">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Lịch sử hình thành
+                            </a>
+                            <a href="#overview" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Tổng quan
+                            </a>
+                            <a href="#vision" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Tầm nhìn
+                            </a>
+                            <a href="#mission" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Sứ mệnh
+                            </a>
+                            <a href="#core-value" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Giá trị cốt lõi
+                            </a>
+                            <a href="#org-chart" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Sơ đồ tổ chức
+                            </a>
+                            <a href="#leadership" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Ban giám đốc
+                            </a>
+                            @*<a href="#advisor" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Cố vấn chuyên môn
+                            </a>*@
+                            <a href="#department" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Phòng chức năng
+                            </a>
+
+                            <div class="tab__indicator">
+                                <div class="tab__indicator-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <!-- Intro content -->
+                        <div class="tab__content" id="intro-tabContent">
+                            <div class="tab__content-item">
+                                <!-- History -->
+                                <div id="history" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Lịch sử hình thành</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="intro__content">
+                                            <p class="text">
+                                                <i class="fa fa-square" aria-hidden="true"></i>Bệnh viện được hình thành năm 1978
+                                                trên cơ sở tiếp quản tu viện nằm trên địa bàn xã Tân Phú huyện Thủ Đức (nay là phường Linh
+                                                Trung, quận Thủ Đức). Năm 1994, trở thành Trung tâm Y tế huyện Thủ Đức quy mô 250 giường nội
+                                                trú theo Quyết định số 725/QĐ-UB-NC của UBND TP. Hồ Chí Minh.
+                                            </p>
+                                            <p class="text">
+                                                <i class="fa fa-square" aria-hidden="true"></i>Đến năm 1999, Trung tâm y tế huyện
+                                                Thủ Đức được nâng cấp thành bệnh viện đa khoa khu vực Thủ Đức trực thuộc Sở Y tế TP. Hồ Chí
+                                                Minh theo Quyết định số 6784/QĐ-UB.
+                                            </p>
+                                            <p class="text">
+                                                <i class="fa fa-square" aria-hidden="true"></i>Năm 2008, Bệnh viện được Ủy ban
+                                                nhân dân thành phố quy hoạch là Bệnh viện cửa ngõ quy mô 1000 giường nằm trong cụm y tế cửa ngõ
+                                                Đông Bắc thành phố.
+                                            </p>
+                                        </div>
+                                        @*<div class="intro__content-timeline">
+                    <h5 class="mb-3">Giám đốc qua các thời kỳ</h5>
+                    <div class="fullwidth">
+
+                        <div class="timeline group">
+
+                            <div class="item text-md-right scrollLeft">
+                                <div class="item__container">
+                                    <h4>1999 - 2004</h4>
+                                    <div class="offset-md-7 col-md-5 p-0 border">
+                                        <img class="img-fluid" src="/Content/assets/img/about/timeline/timeline.jpg" alt="">
+                                    </div>
+                                    <h5 class="pt-2">BS. Nguyễn Thái Phiên</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                        dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="item scrollRight">
+                                <div class="item__container item__container--invert">
+                                    <h4>1999 - 2004</h4>
+                                    <div class="col-md-5 p-0 border">
+                                        <img class="img-fluid" src="/Content/assets/img/about/timeline/timeline.jpg" alt="">
+                                    </div>
+                                    <h5 class="pt-2">BS. Nguyễn Thái Phiên</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                        dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="item text-md-right scrollLeft">
+                                <div class="item__container">
+                                    <h4>1999 - 2004</h4>
+                                    <div class="offset-md-7 col-md-5 p-0 border">
+                                        <img class="img-fluid" src="/Content/assets/img/about/timeline/timeline.jpg" alt="">
+                                    </div>
+                                    <h5 class="pt-2">BS. Nguyễn Thái Phiên</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                        dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="item scrollRight">
+                                <div class="item__container item__container--invert">
+                                    <h4>1999 - 2004</h4>
+                                    <div class="col-md-5 p-0 border">
+                                        <img class="img-fluid" src="/Content/assets/img/about/timeline/timeline.jpg" alt="">
+                                    </div>
+                                    <h5 class="pt-2">BS. Nguyễn Thái Phiên</h5>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                        dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>*@
+                                    </div>
+                                </div>
+                                
+                                <!-- OverView -->
+                                                <div id="overview" class="scrollRight">
+                                                    <div class="tab__content-title item__title">
+                                                        <p>Tổng quan</p>
+                                                    </div>
+                                                    <div class="tab__content-detail">
+                                                        <div class="row">
+                                                            <div class="timeline col-md-7">
+                                                                <p>
+                                                                    <i class="fa fa-square" aria-hidden="true"></i>
+                                                                    Bệnh viện đa khoa khu vực Thủ Đức là bệnh viện hạng 2 thuộc Sở Y tế TP. Hồ Chí Minh, tọa lạc
+                                                                    tại cửa ngõ Đông Bắc thành phố. Hàng ngày, Bệnh viện khám và điều trị ngoại trú trên 2000
+                                                                    lượt người, điều trị nội trú trên 700 giường bệnh.
+                                                                </p>
+                                                                <p>
+                                                                    <i class="fa fa-square" aria-hidden="true"></i>
+                                                                    Bệnh viện có các máy móc, trang thiết bị hiện đại đáp ứng tốt nhu cầu khám chữa bệnh của
+                                                                    người dân như: MRI, CT-Scanner, X-quang kỹ thuật số, siêu âm Doppler màu tim và mạch máu,
+                                                                    siêu âm 3D, 4D; điện tim gắng sức, đo ECG Holter; nội soi dạ dày; xét nghiệm sinh hóa, huyết
+                                                                    học, định lượng HBV-DNA, tầm soát ung thư…
+                                                                </p>
+                                                                <p>
+                                                                    <i class="fa fa-square" aria-hidden="true"></i>
+                                                                    Ngoài ra, Bệnh viện có trên 600 nhân sự với đội ngũ y bác sĩ giỏi, tận tâm, luôn đặt sự an
+                                                                    toàn, hài lòng của người bệnh lên hàng đầu và xem đó là tôn chỉ cho mọi hoạt động của Bệnh
+                                                                    viện. Bệnh viện hợp tác với các bệnh viện đầu ngành trong thành phố, đồng thời là nơi thực
+                                                                    tập của sinh viên các trường Y, Dược.
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-5 d-flex justify-content-center align-items-center">
+                                                                <div class="tab__content-slider">
+                                                                    <div class="tab__content-slider-item">
+                                                                        <img class="img-fluid" src="/Content/assets/img/about/overview_1.jpg" alt="">
+                                                                    </div>
+                                                                    <div class="tab__content-slider-item">
+                                                                        <img class="img-fluid" src="/Content/assets/img/about/overview_2.jpg" alt="">
+                                                                    </div>
+                                                                    <div class="tab__content-slider-item">
+                                                                        <img class="img-fluid" src="/Content/assets/img/about/overview_3.jpg" alt="">
+                                                                    </div>
+                                                                    <!-- <div class="tab__content-slider-item">
+                                          <img src="/Content/assets/img/about/circle-3.jpg" alt="">
+                                        </div>
+                                        <div class="tab__content-slider-item">
+                                          <img src="/Content/assets/img/about/circle-4.jpg" alt="">
+                                        </div> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <p class="d-block"><b><u>Thành tích của đơn vị</u></b></p>
+                                                        <ul>
+                                                            <li>- Huân chương Lao động hạng 2.</li>
+                                                            <li>- Cờ đơn vị xuất sắc của Ủy ban nhân dân thành phố. </li>
+                                                            <li>- Bằng khen của Ủy ban nhân dân thành phố và Bộ Y tế. </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                <!-- Vision -->
+                                <div id="vision" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Tầm nhìn</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5 offset-sm-0 col-12 d-flex justify-content-center align-items-start">
+                                                <div class="intro__img">
+                                                    <div class="intro__img-item">
+                                                        <img class="img-fluid" src="/Content/assets/img/about/vision_1.jpg" alt="">
+                                                    </div>
+                                                    <div class="intro__img-item">
+                                                        <img class="img-fluid" src="/Content/assets/img/about/vision_2.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7 col-12">
+                                                <div class="intro__content">
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Trở thành bệnh viện đa khoa uy
+                                                        tín
+                                                        trong khu vực,
+                                                        có chất lượng chuyên môn và phục vụ tốt, toàn
+                                                        diện.
+                                                    </p>
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Cung cấp dịch vụ y tế chuyên
+                                                        sâu
+                                                        đa
+                                                        dạng.
+                                                    </p>
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Có đội ngũ nhân viên giỏi,
+                                                        nhiều
+                                                        kinh nghiệm, đáp
+                                                        ứng tốt nhất nhu cầu tầm soát, điều trị và
+                                                        chăm sóc sức khỏe của tất cả mọi người.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mission -->
+                                <div id="mission" class="scrollRight">
+                                    <div class="tab__content-title item__title">
+                                        <p>Sứ mệnh</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5 offset-sm-0 col-12 d-flex justify-content-center align-items-start order-sm-2 order-0">
+                                                <div class="intro__img intro__img--reverse">
+                                                    <img class="img-fluid" src="/Content/assets/img/about/mission.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7 col-12">
+                                                <div class="intro__content">
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Bệnh viện phát triển theo từng
+                                                        giai
+                                                        đoạn đầu tư,
+                                                        mở rộng dần phạm vi hoạt động, trở thành
+                                                        trung
+                                                        tâm đào tạo và nghiên cứu khoa học, nâng cao chất lương khám chữa bệnh, là nơi cung ứng
+                                                        dịch vụ
+                                                        chăm sóc y tế chất lượng tốt và chuyên nghiệp; luôn đổi mới để hướng đến sự hoàn thiện
+                                                        trong
+                                                        mọi hoạt động nhằm phát triển bền vững thương hiệu bệnh viện.
+                                                    </p>
+
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Chúng tôi luôn luôn tạo môi
+                                                        trường
+                                                        và điều kiện
+                                                        làm việc tốt nhất cho mọi nhân viên của bệnh
+                                                        viện; bệnh viện luôn là nơi tập hợp của những nhân viên tài năng, cầu tiến và nhiều kinh
+                                                        nghiệm;
+                                                        tích cực đầu tư, ứng dụng các trang thiết bị chẩn đoán và điều trị hiện đại. Tất cả nhằm
+                                                        mục
+                                                        đích mang đến cho bệnh nhân chất lượng khám bệnh, chữa bệnh và dịch vụ chăm sóc sức khỏe
+                                                        tốt
+                                                        nhất.
+                                                    </p>
+
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Chúng tôi luôn nêu cao tinh
+                                                        thần
+                                                        trách nhiệm với
+                                                        cộng đồng; lấy lợi ích và sức khỏe của bệnh
+                                                        nhân làm mục tiêu trong mọi hoạt động; luôn lắng nghe và chia sẻ để đạt được sự hài lòng và
+                                                        tin
+                                                        tưởng của người bệnh và thân nhân. Sự hài lòng và tin tưởng của người bệnh và thân nhân
+                                                        chính
+                                                        là thước đo thành công của Bệnh viện Đa khoa Khu Vực Thủ Đức.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Core value -->
+                                <div id="core-value" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Giá trị cốt lõi</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row justify-content-sm-center">
+
+                                            <div class="col-sm-5 offset-sm-0 col-12 d-flex justify-content-center align-items-start">
+                                                <div class="intro__img">
+                                                    <div class="intro__img-item">
+                                                        <img class="img-fluid" src="/Content/assets/img/about/core-value_1.jpg" alt="">
+                                                    </div>
+                                                    <div class="intro__img-item">
+                                                        <img class="img-fluid" src="/Content/assets/img/about/core-value_2.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7 col-12">
+                                                <div class="intro__content">
+                                                    <h4 class="slogan">Tận tâm - Trách nhiệm - Chia sẻ</h4>
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Tận tâm: Bệnh viện chúng tôi
+                                                        luôn
+                                                        hết
+                                                        lòng vì
+                                                        người
+                                                        bệnh, Những dịch vụ chăm sóc sức khỏe mà chúng tôi hướng tới cộng đồng luôn đảm bảo chất
+                                                        lượng và
+                                                        an toàn.
+                                                    </p>
+
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Trách nhiệm: Bệnh viện chúng
+                                                        tôi
+                                                        luôn
+                                                        có trách
+                                                        nhiệm với cộng đồng và xã hội, Mỗi nhân viên của chúng tôi luôn có trách nhiệm với nghề
+                                                        nghiệp
+                                                        của chính mình.
+                                                    </p>
+
+                                                    <p class="text">
+                                                        <i class="fa fa-square" aria-hidden="true"></i>Chia sẻ: Mỗi nhân viên của
+                                                        Bệnh
+                                                        viện
+                                                        chúng tôi sẽ
+                                                        luôn cố gắng tìm hiểu, lắng nghe để đáp ứng nhu cầu của khách hàng, đồng cảm và chia sẻ
+                                                        những
+                                                        khó
+                                                        khăn với người bệnh, với đồng nghiệp.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Organization chart -->
+                                <div id="org-chart" class="scrollRight">
+                                    <div class="tab__content-title item__title">
+                                        <p>Sơ đồ tổ chức</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <img src="~/Content/assets/img/about/org-chart.svg?v=3.1" class="img-fluid" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- Leadership -->
+                                <div id="leadership" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Ban giám đốc</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        @foreach (var item in Model.Where(x => x.Slug == "ban-giam-doc"))
+                                        {
+                                            foreach (var doctor in item.ListDoctor)
+                                            {
+                                                var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                                <div class="row intro__member" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new {Department = doctor.Specicality, PositionName = doctor.PositionName, Name = string.Format("{0}",  doctor.Name), BoardCertifications = doctor.BoardCertifications, DescriptionHistory = doctor.DescriptionHistory, Img = img})">
+                                                    <div class="col-sm-4 d-sm-block d-flex justify-content-center align-items-center">
+                                                        <div class="intro__member-avatar">
+                                                            <img class="img-fluid" src="@img" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="intro__member-detail">
+                                                            <div class="title">
+                                                                <span class="text">@doctor.PositionName</span>
+                                                            </div>
+                                                            <div class="name">
+                                                                <h4 class="text"> @doctor.Name</h4>
+                                                            </div>
+                                                            <div class="info">
+                                                                <p>
+                                                                    <span class="text__stress text__stress--green">Học vị: &nbsp;</span> @doctor.BoardCertifications
+                                                                </p>
+                                                                <p>
+                                                                    <span class="text__stress text__stress--green">Chuyên khoa:  &nbsp;</span> @doctor.Specicality
+                                                                </p>
+                                                                @*<p>
+                                                                    @Html.Raw(doctor.DescriptionHistory)
+                                                                </p>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                </div>
+
+                                <!-- Advisor -->
+                                @*<div id="advisor" class="scrollRight">
+            <div class="tab__content-title item__title">
+                <p>Cố vấn chuyên môn</p>
+            </div>
+            <div class="tab__content-detail">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        @foreach (var item in Model.Where(x => x.Slug == "co-van-chuyen-mon"))
+                        {
+                            foreach (var doctor in item.ListDoctor)
+                            {
+                                var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                <div class="col-sm-6" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new {Department = doctor.Specicality, PositionName = doctor.PositionName, Name = string.Format("{0}.{1}", doctor.BoardCertifications ?? "", doctor.Name), BoardCertifications = doctor.BoardCertifications, DescriptionHistory = doctor.DescriptionHistory, Img = img})">
+                                    <div class="row intro__member">
+                                        <div class="col-sm-4 d-sm-block d-flex justify-content-center align-items-center">
+                                            <div class="intro__member-avatar">
+                                                <img class="img-fluid" src="@img" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="intro__member-detail">
+                                                <div class="name">
+                                                    <h6 class="text">@doctor.BoardCertifications. @doctor.Name</h6>
+                                                </div>
+                                                <div class="info">
+                                                    <ul>
+                                                        @if (doctor.DescriptionHistory != null)
+                                                        {
+                                                            var liststr = doctor.DescriptionHistory.Split(';').ToList();
+                                                            foreach (var str in liststr)
+                                                            {
+                                                                <li><i class="fa fa-square" aria-hidden="true"></i>@str.</li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+                                <!-- Department -->
+                                <div id="department" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Phòng chức năng</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                @foreach (var item in Model.Where(x => x.ParentDepartment != null && x.ParentDepartment.Slug == "phong-chuc-nang").OrderBy(x=>x.OrderNumber))
+                                                {
+                                                    <div class="col-xl-4 col-md-6">
+                                                        @*<a class="intro__department" href="@Url.Action("PhongChucNang", "Home", new {tag = i})">*@
+                                                        <a class="intro__department" href="/phong-chuc-nang#@i">
+                                                            <div class="intro__department-img">
+                                                                <img class="img-fluid" src="~/Content/uploads/Department/@item.Id/@item.ImageUrl" alt="">
+                                                                <p>Xem chi tiết</p>
+                                                            </div>
+                                                            <div class="intro__department-content">
+                                                                <h5>@item.Name</h5>
+                                                                @Html.Raw(item.Slogan)
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    i++;
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

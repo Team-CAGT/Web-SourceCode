@@ -1,0 +1,232 @@
+﻿
+@using MVCForum.Domain.DomainModel
+@using MVCForum.Utilities
+@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model TopicViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    ViewBag.Title = Html.Raw(AppHelpers.CreatePageTitle(Model.Topic, Html.LanguageString("Topic.TitleFallBack")));
+    ViewBag.MetaDesc = StringUtils.ReturnAmountWordsFromString(string.Concat(StringUtils.StripHtmlFromString(Model.StarterPost.Post.PostContent), "..."), 20);
+
+    if (Request.QueryString.AllKeys.Any())
+    {
+        ViewBag.Canonical = Html.Raw(string.Format("<link rel=\"canonical\" href=\"{0}\"/>", Model.Topic.NiceUrl));
+    }
+
+    // Email subscription
+    var subScribe = string.Empty;
+    var unSubscribe = string.Empty;
+    const string displayNone = "style='display:none;'";
+    if (Model.IsSubscribed)
+    {
+        subScribe = displayNone;
+    }
+    else
+    {
+        unSubscribe = displayNone;
+    }
+    var loggedOnUserId = Html.CurrentMember() != null ? Html.CurrentMember().Id : Guid.Empty;
+    // Set a ViewBag for the category
+    //TempData[AppConstants.DefaultCategoryViewBagName] = Model.Topic.Category.Id;
+    var qs = Request.QueryString[AppConstants.PostOrderBy] ?? string.Empty;
+}
+@section SocialMeta {
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="@ViewBag.Title" />
+    <meta name="twitter:description" content="@ViewBag.MetaDesc" />
+}
+@section Header
+{
+    <script>
+        var topicId = '@(Model.Topic.Id)';
+    </script>
+}
+
+
+
+
+<!--Main Content start-->
+<div class="main-content">
+
+
+
+    @*<section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 page-title-content">
+                        <h2 class="title line-bottom line-center">Tin tức</h2>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+
+    <div class="box-layout" style="margin-top:30px">
+
+        <ol class="breadcrumb">
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Tin tức</a></li>
+            <li class="active">@Html.Raw(Model.Topic.Name)</li>
+        </ol>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-8 team-member-details">
+                    <div class="row">
+
+                        <div class="widgetright">
+                            @if (Html.CurrentMember() != null && Html.Settings().EnableEmailSubscriptions)
+                            {
+                                if (((Model.StarterPost.Post.User.Id == loggedOnUserId
+                              || Model.Permissions[SiteConstants.Instance.PermissionEditPosts].IsTicked))
+                              || Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+                                {
+
+                                    <a class="" href="@Url.Action("EditPostTopic", "Topic", new { id = Model.StarterPost.Post.Id })">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                }
+                                //  if ((Model.StarterPost.Post.User.Id == loggedOnUserId && !Model.Topic.Status.Equals("D")) || Model.Permissions[SiteConstants.Instance.PermissionDeletePosts].IsTicked)
+                                if ((Model.StarterPost.Post.User.Id == loggedOnUserId) || Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+
+                                {
+                                    <a class="" onclick="return confirm('@(Html.LanguageString("Post.DeleteConfirmation"))')" href="@Url.Action("DeletePost", "Post", new { id = Model.StarterPost.Post.Id })">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+
+                                }
+                                <a @Html.Raw(subScribe) href="#" class="emailsubscription" data-id="@Model.Topic.Id" data-type="topic">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    @Html.LanguageString("Topic.Subscribe")
+                                </a>
+                                <a @Html.Raw(unSubscribe) href="#" class="emailunsubscription" data-id="@Model.Topic.Id" data-type="topic">
+                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    @Html.LanguageString("Topic.UnSubscribe")
+                                </a>
+                            }
+                        </div>
+                        <div class="col-md-12">
+                            <div class="blog-post2">
+
+                                <div class="content">
+                                    <h5 class="title fz-24 ttc">@Html.Raw(Model.Topic.Name) </h5>
+
+                                    <div class="post-info">
+
+                                        <div class="info">
+                                            Bởi <strong class="author">@Model.Topic.User.UserName</strong> - <span class="date"><i class="fa fa-clock-o"></i> @DatesUI.GetPrettyDate(Model.Topic.LastPost.DateCreated.ToString())</span>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="sub-title">
+                                        @Html.Raw(Model.Topic.Description)
+                                    </h4>
+
+                                    @*<ul class="rss-links">
+                                            <li><a href="#">10 điều làn da “mách” về sức khỏe của bạn</a></li>
+                                            <li><a href="#">Da mụn, có cần "né" mỹ phẩm?</a></li>
+                                            <li><a href="#">Tai họa khôn lường khi tiêm chất làm trắng da vào cơ thể</a></li>
+                                        </ul>*@
+                                    @*<br>*@
+                                    <p><a width="100%" href="/Content/uploads/60ff69f8-116c-43ab-83a4-a7c200eaf1a6/4393bdac-a660-4ecd-9dd1-a8390097e986_bao-cao-website-clbv-2017-(1).pdf"> aa</a></p>
+                                    @if (Model.StarterPost.Post.Files.Count() > 0)
+                                    {
+                                        @*foreach (var file in Model.StarterPost.Post.Files.OrderByDescending(o => o.DateCreated))
+                                        {
+                                            <li>
+                                                <a class="fileupload" href="@Url.Action("Download", "File", new { id = file.Id})">
+                                                    Tài liệu
+                                                    @if (AppHelpers.FileIsImage(file.FilePath))
+                                                    {
+                                                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                                    }
+                                                </a>
+
+                                            </li>
+                                        }*@
+                                        UploadedFile first = null;
+                                        foreach (var file in Model.StarterPost.Post.Files)
+                                        {
+                                            first = file;
+                                            break;
+                                        }
+                                        if (first != null && first.Filename.Contains(".pdf"))
+                                        {
+                                            <object data="/Content/uploads/60ff69f8-116c-43ab-83a4-a7c200eaf1a6/4393bdac-a660-4ecd-9dd1-a8390097e986_bao-cao-website-clbv-2017-(1).pdf"></object>
+
+
+                                        }
+                                    }
+                                 
+                                    <div class="clearfix">
+                                        @if (Model.Topic.Tags != null && Model.Topic.Tags.Count() > 0)
+                                        {
+                                            <ul class="tag-category">
+                                                <li>Tag:</li>
+                                                @foreach (var tag in Model.Topic.Tags)
+                                                {
+                                                    <li><a href="#"> @tag.Tag</a></li>
+                                                }
+
+
+                                            </ul>
+                                        }
+
+                                        <ul class="blog-social-share">
+                                            <li>Share:</li>
+                                            <li><a href="#"><i class="fa fa-facebook icon"></i></a></li>
+
+                                            <li><a href="#"><i class="fa fa-google-plus icon"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4">
+
+
+
+                    @Html.Action("Baivietnoibac", "Topic")
+                    @Html.Action("SearchDoctorForm", "Doctor")
+
+
+                    @Html.Action("Video", "Topic")
+
+                    @*@Html.Action("Images", "Topic")*@
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <!--Main Content end-->
+</div>
+
+

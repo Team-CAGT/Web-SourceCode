@@ -1,0 +1,101 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Website.Application
+@model MVCForum.Website.Areas.Admin.ViewModels.ContactFormViewModel
+@{
+    ViewBag.Title = "Quản lý danh sách liên hệ";
+}
+<div class="topadminsubnav">
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("XuatExcelLienhe")" role="button" class="btn-mvc-green">Xuất Excel</a>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("Index", "Common", FormMethod.Post))
+        {
+            <div class="input-group membersadminsearch">
+                @Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Tìm Kiếm</button>
+                </span>
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    @*<th>Edit</th>*@
+                    <th>Tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Nội dung</th>
+                    <th>Ngày</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in Model.ContactForms)
+                {
+
+
+                    <tr>
+
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => contact.Name)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => contact.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => contact.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => contact.Content)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => contact.CreateDate)
+                        </td>
+                        <td>
+                            @if (contact.Status == "NEW")
+                            {
+                                <p>Mới</p>
+                            }
+                            else
+                            {
+                                <p>Đã liên hệ</p>
+                            }
+                        </td>
+                        <td>
+                            @if (contact.Status == "NEW")
+                            {
+                                <a href="@Url.Action("UpdateContactStatus", new { contact.Id, keyWord = "UPDATED", search = Model.Search})" class="btn-mvc">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UpdateContactStatus", new { contact.Id, keyWord = "NEW", search = Model.Search})" class="btn-mvc">
+                                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), SiteConstants.Instance.AdminListPageSize, Convert.ToInt32(Model.TotalCount), new { search = Model.Search })
+        }
+
+    </div>
+</div>
+
+

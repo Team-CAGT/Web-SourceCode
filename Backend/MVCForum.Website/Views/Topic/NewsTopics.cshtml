@@ -1,0 +1,125 @@
+﻿@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model ActiveTopicsViewModel
+@{
+    Layout = null;
+    var totalCount = Convert.ToInt32(Model.TotalCount);
+    ViewBag.Canonical = Html.Raw(AppHelpers.CanonicalPagingTag(totalCount, Html.Settings().TopicsPerPage, Html));
+    var first = Model.Topics.OrderByDescending(x => x.Topic.CreateDate).FirstOrDefault();
+
+}
+@if (Model.Topics.Any())
+{
+    <div class="col-lg-8 col-12">
+        <div class="category-news__container">
+            <div class="medicine-news__items category-news__items">
+                <div class="row">
+                    @if (first != null)
+                    {
+                        <div class="col-lg-12 mx-auto drop-1">
+                            <div class="medicine-news__item category-news__item">
+                                <a href="@Url.Action("Article","Topic", new { slug = first.Topic.Slug})" class="medicine-news__item-img category-news__item-img-large">
+                                    <img class="img-fluid w-100" src="@AppHelpers.TopicImage(first.Topic.LinkImage,first.Topic.User.Id,717,476)" alt="">
+                                </a>
+                                <div class="medicine-news__item-text category-news__item-text">
+                                    <div class="medicine-news__item-text-title category-news__item-text-title">
+                                        <a href="@Url.Action("Article","Topic", new { slug = first.Topic.Slug})">
+                                            @first.Topic.Name
+                                        </a>
+                                    </div>
+                                    <div class="medicine-news__item-text-tag">
+                                        <strong>@first.Topic.Category.Name</strong>
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <span>@DatesUI.GetPrettyDate(first.Topic.CreateDate.ToString())</span>
+                                    </div>
+                                    <div class="medicine-news__item-text-summary">
+                                        @if (!string.IsNullOrEmpty(first.Topic.Description))
+                                        {
+                                            if (first.Topic.Description.Length < 145)
+                                            {
+                                                <p>@first.Topic.Description</p>
+                                            }
+                                            else
+                                            {
+                                                var format = string.Format("{0}...", @first.Topic.Description.Substring(0, first.Topic.Description.Substring(0, 145).LastIndexOf(" ", StringComparison.Ordinal)));
+                                                <p>@format</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @foreach (var topic in Model.Topics.OrderByDescending(x => x.Topic.CreateDate).Skip(1).Take(4))
+                    {
+                        <div class="col-md-6 drop-1">
+                            <div class="medicine-news__item category-news__item">
+                                <a href="@Url.Action("Article","Topic", new { slug = topic.Topic.Slug})" class="medicine-news__item-img category-news__item-img">
+                                    <img class="img-fluid" src="@AppHelpers.TopicImage(topic.Topic.LinkImage,topic.Topic.User.Id,360,250)" alt="">
+                                </a>
+                                <div class="medicine-news__item-text category-news__item-text">
+                                    <div class="medicine-news__item-text-title category-news__item-text-title">
+                                        <a href="@Url.Action("Article","Topic", new { slug = topic.Topic.Slug})">
+                                            @topic.Topic.Name
+                                        </a>
+                                    </div>
+                                    <div class="medicine-news__item-text-tag">
+                                        <strong>@topic.Topic.Category.Name</strong>
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <span>@DatesUI.GetPrettyDate(topic.Topic.CreateDate.ToString())</span>
+                                    </div>
+                                    <div class="medicine-news__item-text-summary">
+                                        @if (!string.IsNullOrEmpty(topic.Topic.Description))
+                                        {
+                                            if (topic.Topic.Description.Length < 145)
+                                            {
+                                                <p>@topic.Topic.Description</p>
+                                            }
+                                            else
+                                            {
+                                                var format = string.Format("{0}...", @topic.Topic.Description.Substring(0, topic.Topic.Description.Substring(0, 145).LastIndexOf(" ", StringComparison.Ordinal)));
+                                                <p>@format</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            @if (Model.TotalPages > 1)
+            {
+                @Html.Pager(Convert.ToInt32(Model.PageIndex), 10, totalCount, null, "News", "Home")
+            }
+
+        </div>
+    </div>
+    if (Model.Topics.Count() > 5)
+    {
+        <div class="col-lg-4 col-12 drop-2">
+            <div class="asside__news border">
+                <div class="asside-news__title">
+                    <p>Tin nổi bật</p>
+                </div>
+                <div class="asside-news__items">
+                @foreach (var topic in Model.Topics.OrderByDescending(x => x.Topic.CreateDate).Skip(5).Take(4))
+                {
+                    <div class="asside-news__item">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <a href="@Url.Action("Article","Topic", new { slug = topic.Topic.Slug})">@topic.Topic.Name</a>
+                        <div class="asside-news__item-calendar">
+                            <div class="medicine-news__item-text-tag medicine-news__item-small-text-tag">
+                                <strong>@topic.Topic.Category.Name</strong>
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <span>@DatesUI.GetPrettyDate(topic.Topic.CreateDate.ToString())</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    }
+
+}

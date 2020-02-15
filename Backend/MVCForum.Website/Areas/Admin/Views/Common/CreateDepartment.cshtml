@@ -1,0 +1,88 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.DepartmentViewModel
+@{
+    ViewBag.Title = "Tạo mới Khoa/ Phòng";
+}
+
+
+@Html.Partial("_DepartmentNavButtons")
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("CreateDepartment", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(false)
+            @Html.AntiForgeryToken()
+
+            @Html.Partial("_DepartmentFields", Model)
+
+            <div class="submit-holder">
+                <input type="submit" class="btn-mvc-green btn-mvc-large" value="Create" />
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        // loading remote data
+        function formatRepo(repo) {
+            if (repo.loading) return repo.text;
+            var markup = "<div class='clearfix align-middle' style='padding:0 10px;'>" +
+                "<div class=' shrink' style='float:left;display:inline-block'><img src='" + repo.ImageLink + "' width='30' height='30' style='-webkit-border-radius:30px;-moz-border-radius:30px;-ms-border-radius:30px;'/></div>" +
+                "<div class='column' style='float:left;margin-left:5px;width:calc(100% - 45px);display:inline-block)'>" +
+                "<div class='select2-result-repository__title'>" + repo.Position + ': ' + repo.Name + "</div>";
+                //"<div class='column' style='float:left;margin-left:5px;width:calc(100% - 45px);display:inline-block)'>" +
+                //    "<div class='select2-result-repository__title'>" + repo.Position + ': ' + repo.Name + "</div>";
+            //" <option value="+repo.Id+">" + repo.Name + "</option>";
+            if (repo.description) {
+                markup += "<div class='select2-result-repository__description'>" + repo.Position + ': ' + repo.Name +repo.Name + "</div>";
+            }
+            return markup;
+        };
+
+        function formatRepoSelection(repo) {
+            return repo.Position + ': ' +  repo.Name || repo.text;
+        };
+
+        $(".selectDoctor").select2({
+            ajax: {
+                width: '100%',
+                allowClear: true,
+                multiple: true,
+                //maximumSelectionSize: 1,
+                url: "/Common/GetKeySearch",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function (data, params) {
+
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.Data,
+                        pagination: {
+                            more: (params.page * 30) < data.TotalItem
+                        }
+                    };
+                },
+                cache: true
+            },
+            escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 2,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection, // omitted for brevity, see the source of this page
+            language: "vi"
+
+        });
+    });
+</script>

@@ -1,0 +1,10 @@
+﻿<div class="topadminsubnav">
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("ManageRecruitment", new { isPending = false })" role="button" class="btn-mvc-green">Quản Lý</a>
+        <a href="@Url.Action("CreateRecruitment")" role="button" class="btn-mvc-green">Tạo Mới</a>
+        @if (User.IsInRole("Admin") || User.IsInRole("TuyenDung"))
+        {
+            <a href="@Url.Action("ManageRecruitment", new { isPending = true })" role="button" class="btn-mvc-green">Danh sách chưa kích hoạt</a>
+        }
+    </div>
+</div>

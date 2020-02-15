@@ -1,0 +1,118 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Website.Application
+@model MVCForum.Website.Areas.Admin.ViewModels.QuestionsViewModel
+@{
+    ViewBag.Title = "Quản lý câu hỏi";
+}
+<div class="topadminsubnav">
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("XuatExcel")" role="button" class="btn-mvc-green">Xuất Excel</a>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("QuestionList", "Common", FormMethod.Post))
+        {
+            <div class="input-group membersadminsearch">
+                @Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Tìm Kiếm</button>
+                </span>
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Độ tuổi</th>
+                    <th>Phone</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung Câu hỏi</th>
+                    <th>Câu trả lời</th>
+                    <th>Ngày</th>
+                    @*<th>File</th>*@
+                    <th>Trạng thái</th>
+                    <th>Edit</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in Model.Questions)
+                {
+
+
+                <tr>
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => contact.Name)</strong>
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => contact.Age)</strong>
+                    </td>
+                    <td style="word-break: break-all">
+                        @Html.DisplayFor(modelItem => contact.Phone)
+                    </td>
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => contact.Address)</strong>
+                    </td>
+                    <td style="word-break: break-all">
+                        @Html.DisplayFor(modelItem => contact.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => contact.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => contact.ContentQuestion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => contact.ReplyContent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => contact.CreateDate)
+                    </td>
+                    @*<td>
+                        @if (!string.IsNullOrEmpty(contact.UrlFile))
+                        {
+                            <div class="blue">
+                                <a href="~/Content/uploads/Questions/@contact.UrlFile" target="_blank">tập tin đính kèm</a>
+                            </div>
+                        }
+
+                    </td>*@
+                    <td>
+                        @if (contact.Status == "NEW")
+                        {
+                            <p>Mới</p>
+                        }
+                        else
+                        {
+                            <p>Đã trả lời</p>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditQuestion", new { contact.Id })" class="btn-mvc">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), SiteConstants.Instance.AdminListPageSize, Convert.ToInt32(Model.TotalCount), new { search = Model.Search })
+        }
+
+    </div>
+</div>
+
+

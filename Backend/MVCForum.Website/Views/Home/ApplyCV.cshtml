@@ -1,0 +1,172 @@
+﻿@model MVCForum.Website.ViewModels.RecruitmentCVViewModel
+@{
+    ViewBag.Title = "Nộp hồ sơ";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+
+<section class="recruitment pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Nộp hồ sơ</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Tuyendung","Home")">Tuyển dụng</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Nộp hồ sơ</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="medicine-news__items category-news__items">
+                    <div class="row">
+                        <div class="col-md-7 scrollRight mx-auto mt-4">
+                            <div class="recruitment__form">
+                                <h4 class="recruitment__form-header">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Nộp hồ sơ ứng tuyển ngay
+                                </h4>
+                                <form id="applyCV" enctype="multipart/form-data" data-abide novalidate>
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(model => model.RecruitmentId)
+                                    <div class="form-group">
+                                        <label for="">Họ và tên</label>
+                                        <input name="FullName" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Địa chỉ</label>
+                                        <input name="Address" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Email</label>
+                                        <input name="Email" type="email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Ngày sinh</label>
+                                        <input name="DateOfBirth" type="text" class="form-control datepicker-birthday">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Điện thoại</label>
+                                        <input name="PhoneNumber" type="email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Trình độ chuyên môn</label>
+                                        <input name="Qualification" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group doctor-searching__selection-department">
+                                        <label for="">Chọn vị trí ứng tuyển</label>
+                                        <select name="PositionName" class="custom-select mb-3" id="inlineFormCustomSelect">
+                                            @if (!string.IsNullOrEmpty(Model.Recruitment.ListPosition))
+                                            {
+                                                var list = Model.Recruitment.ListPosition.Split(';').ToList();
+                                                foreach (var item in list.OrderBy(x => x))
+                                                {
+                                                    <option value="@item">@item</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Hồ sơ</label>
+                                        <div class="custom-file">
+                                            <input name="files" type="file" class="custom-file-input" id="customFile" multiple>
+                                            <label class="custom-file-label" for="customFile"></label>
+                                            <small class="form-text text-danger" style="font-size: 16px;">* Lưu ý: Hồ sơ đúng định dạng(.doc).</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Hình ảnh các chứng chỉ</label>
+                                        <div class="custom-file">
+                                            <input name="images" type="file" class="custom-file-input" id="customImage" multiple>
+                                            <label class="custom-file-label" for="customImage"></label>
+                                            <small class="form-text text-danger" style="font-size: 16px;">* Lưu ý: Hình ảnh dưới 2mb và đúng định dạng(.jgp).</small>
+                                        </div>
+                                    </div>
+
+                                    <button id="bntApplyCV" onclick="AjaxApplyCVForm()" class="btn btn__main" type="button">NỘP HỒ SƠ</button>
+                                    <small class="form-text text-danger" style="font-size: 16px;">* Lưu ý: Giữ nút Ctrl để chọn nhiều tệp.</small>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/assets/js/moment.min.js"></script>
+<script src="~/Content/assets/js/daterangepicker.js"></script>
+<script>
+
+    $('#customFile').on('change', function() {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+    });
+    $('.datepicker-birthday').daterangepicker({
+        singleDatePicker : true,
+        showDropdowns: true,
+        showWeekNumbers: false,
+        timePicker: false,
+        linkedCalendars: true,
+        minDays: 0,
+        maxDays: 0,
+        opens: 'center',
+        buttonClasses: ['btn btn-default'],
+        applyClass: 'btn-sm btn-primary',
+        cancelClass: 'btn-sm',
+        separator: ' to ',
+        locale: {
+            applyLabel: 'Chọn',
+            cancelLabel: 'Hủy',
+            daysOfWeek: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
+            monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            format: 'DD/MM/YYYY'
+        }
+    });
+    function AjaxApplyCVForm() {
+        $("#bntApplyCV").attr("disabled", "disabled");
+        $(".loading-spinner").removeClass("hidden");
+        var formData = new FormData($('#applyCV')[0]);
+        console.log('formData', formData);
+        $.ajax({
+            url: '/Home/ApplyCV',
+            type: 'POST',
+            data: formData, // serializes the form's elements.
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                if (response != null) {
+                    if (!response.Result) {
+                        $('#bntApplyCV').removeAttr("disabled");
+                        swal("Nộp hồ sơ thất bại!", response.Message, "error");
+                        $(".loading-spinner").addClass("hidden");
+                    } else {
+
+                        swal("Thành công!", response.Message, "success");
+                        $(".loading-spinner").addClass("hidden");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+
+                    }
+                }
+            },
+            fail: function () {
+
+            }
+        });
+    }
+</script>

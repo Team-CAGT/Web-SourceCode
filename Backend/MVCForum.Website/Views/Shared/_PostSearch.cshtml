@@ -1,0 +1,34 @@
+﻿@model MVCForum.Website.ViewModels.PostViewModel
+@{
+    var postId = Model.Post.Id;
+    var loggedOnUserId = Html.CurrentMember() != null ? Html.CurrentMember().Id : Guid.Empty;
+    var isAdmin = User.IsInRole(AppConstants.AdminRoleName);
+    var downVotes = Model.Votes.Where(x => x.Amount < 0).ToList();
+    var upVotes = Model.Votes.Where(x => x.Amount > 0).ToList();
+}
+<div class="search-result__list">
+    <div class="search-result__item">
+        <div class="search-result__group">
+            <a href="@Url.Action("News","Home")" class="search-result__category">@Html.Raw(Model.ParentTopic.Category.Name)</a>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            <a href="@Url.Action("Article", "Topic", new {slug = Model.Post.Topic.Slug})" class="search-result__title">@Html.Raw(Model.Post.Topic.Name)</a>
+        </div>
+        <div class="search-result__group">
+            <p class="">Đăng bởi</p>
+            <a href="" class="search-result__author">@Html.Raw(Model.Post.User.UserName)</a>
+            <span class="search-result__date">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                @DatesUI.GetPrettyDate(Model.Post.DateCreated.ToString())
+            </span>
+        </div>
+        <p class="search-result__content">
+            @Html.Raw(AppHelpers.ConvertPostContent(Model.Post.Topic.Description))
+        </p>
+        <div class="search-result__tag-list">
+            @foreach (var tag in Model.ParentTopic.Tags)
+            {
+                <span class="search-result__tag"><span>@Html.Raw(tag.Tag)</span></span>
+            }
+        </div>
+    </div>
+</div>

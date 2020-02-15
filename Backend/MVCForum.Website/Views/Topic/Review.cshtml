@@ -1,0 +1,92 @@
+﻿@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model TopicViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    var loggedOnUserId = Html.CurrentMember() != null ? Html.CurrentMember().Id : Guid.Empty;
+}
+<section class="tutorial pt-0 pb-3">
+    <div class="container-fluid">
+
+        <div class="container mt-3 page-container">
+            <div>
+                <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                    <ol class="breadcrumb breadcrumb-custom-ol">
+                        <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                        <li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Tin tức</a></li>
+                        <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">@Html.Raw(Model.Topic.Name)</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-12 mt-2">
+                    <div class="admin__authorities">
+                        @if (Html.CurrentMember() != null && Html.Settings().EnableEmailSubscriptions)
+                        {
+                            if (Model.StarterPost.Post.User.Id == loggedOnUserId
+                   
+                          || Html.CurrentMember().Roles.Any(x => (x.RoleName.Contains(AppConstants.AdminRoleName) || x.RoleName.Contains("VietBai"))))
+                            {
+
+                                <a href="@Url.Action("EditPostTopic", "Topic", new { id = Model.StarterPost.Post.Id })">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Chỉnh sửa
+                                </a>
+                                <a href="@Url.Action("ChangePendingTopic", "Topic", new { id = Model.Topic.Id})">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                    Duyệt
+                                </a>
+
+                            }
+                            //  if ((Model.StarterPost.Post.User.Id == loggedOnUserId && !Model.Topic.Status.Equals("D")) || Model.Permissions[SiteConstants.Instance.PermissionDeletePosts].IsTicked)
+                            if ((Model.StarterPost.Post.User.Id == loggedOnUserId) || Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+
+                            {
+                                <a onclick="return confirm('@(Html.LanguageString("Post.DeleteConfirmation"))')" href="@Url.Action("DeletePost", "Post", new { id = Model.StarterPost.Post.Id })">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    Xóa bài viết
+                                </a>
+
+                            }
+                        }
+                    </div>
+                    <article class="news__article">
+                        <header>
+                            <h1>@Html.Raw(Model.Topic.Name)</h1>
+                            <span>Bởi <strong>@Model.Topic.User.UserName</strong> - <i>@DatesUI.GetPrettyDate(Model.Topic.LastPost.DateCreated.ToString())</i></span>
+
+                            <h5>
+                                @Html.Raw(Model.Topic.Description)
+                            </h5>
+                        </header>
+                        <div class="news__article-content">
+
+                            <p>
+                                @Html.Raw(AppHelpers.ConvertPostContent(Model.StarterPost.Post.PostContent))
+                            </p>
+                            @if (Model.StarterPost.Post.Files.Count() > 0)
+                            {
+                                foreach (var file in Model.StarterPost.Post.Files.OrderByDescending(o => o.DateCreated))
+                                {
+                                    <div class="news__article-img">
+                                        <img class="img-fluid" src="/@file.FilePath.Replace("~/", "")" alt="">
+                                    </div>
+                                    <span>
+                                        @file.FriendlyFilename
+                                    </span>
+                                }
+
+                            }
+                        </div>
+
+                    </article>
+                </div>
+                <div class="col-lg-4 col-md-12 mt-2">
+                    @Html.Action("Baivietnoibac", "Topic")
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</section>
+

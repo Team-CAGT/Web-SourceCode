@@ -1,0 +1,95 @@
+﻿@model MVCForum.Website.ViewModels.RssViewModel
+
+<section class="doh">
+    <div class="container">
+        <div class="section__title">
+            <h2 class="section__title-text">Thông Tin Từ Sở Y Tế</h2>
+            <div class="section__title-icon"></div>
+        </div>
+
+        <div class="doh__items">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="doh__item scrollLeft">
+                        <div class="doh__title">
+                            <h5>Văn bản</h5>
+                        </div>
+                        <div class="doh__content">
+                            @foreach (var rss in Model.Vanbans.Take(2))
+                            {
+                                <a href="@rss.Link" class="doh__link" target="_blank">
+                                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    @rss.Title
+                                </a>
+                            }
+                        </div>
+                        <a href="" data-toggle="modal" data-target="#vanBanTuSo" class="doh__more">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="doh__item scrollLeft">
+                        <div class="doh__title">
+                            <h5>Thông báo</h5>
+                        </div>
+                        <div class="doh__content">
+                            @foreach (var rss in Model.Thongbaos.Take(2))
+                            {
+                                <a href="@rss.Link" class="doh__link" target="_blank">
+                                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    @rss.Title
+                                </a>
+                            }
+                        </div>
+                        <a href="" data-toggle="modal" data-target="#thongbaoTuSo" class="doh__more">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="doh__item scrollRight">
+                        <div class="doh__title">
+                            <h5>Thư mời</h5>
+                        </div>
+                        <div class="doh__content">
+                            @foreach (var rss in Model.Thumois.Take(2))
+                            {
+                                <a href="@rss.Link" class="doh__link" target="_blank">
+                                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    @rss.Title
+                                </a>
+                            }
+                        </div>
+                        <a href="" data-toggle="modal" data-target="#thumoiTuSo" class="doh__more">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="doh__item scrollRight">
+                        <div class="doh__title">
+                            <h5>Lịch công tác</h5>
+                        </div>
+                        <div class="doh__content">
+                            @foreach (var rss in Model.LichCogtacs.Take(2))
+                            {
+                                <a href="@rss.Link" class="doh__link" target="_blank">
+                                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    @rss.Title
+                                </a>
+                            }
+                        </div>
+                        <a href="" data-toggle="modal" data-target="#lichcongtacTuSo" class="doh__more">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            Xem thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+﻿@model List<MVCForum.Website.ViewModels.DoctorViewModel>
+@{
+    Layout = null;
+   
+   
+}
+@if (Model.Any())
+{
+    <h4 class="m-b-0">Kết quả tìm kiếm : @Model.Count()</h4>
+                        <div class="row team-style2">
+                            @foreach (var doc in Model)
+                            {
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <div class="team-post">
+                                        <div class="thumb">
+                                            <div class="embed-responsive embed-responsive-4by3">
+                                                <div class="embed-responsive-item" style="top:-10%;">
+                                                    <img src="@AppHelpers.DoctorImage(doc.Avatar,"",800,1200)" class="img-responsive" alt="">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title doctor_name">@doc.BoardCertifications. @doc.Name</h4>
+                                            @if (string.IsNullOrEmpty(doc.PositionName))
+                                            {
+                                                <h5 class="sub-title">  Bác sĩ điều trị</h5>
+                                            }
+                                            else
+                                            {
+                                                <h5 class="sub-title">@doc.PositionName</h5>
+                                            }
+                                           
+
+                                            <a href="@Url.Action("ProfileDoctor","Doctor", new { slug= doc.Slug})" class="profile">Xem thông tin Bác sĩ <i class="fa fa-long-arrow-right icon"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                        </div>
+}else{
+    <h4 class="m-b-0">Kết quả tìm kiếm : 0</h4>
+}

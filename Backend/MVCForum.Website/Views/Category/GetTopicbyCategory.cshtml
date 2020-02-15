@@ -1,0 +1,174 @@
+﻿@model MVCForum.Website.ViewModels.CategoryViewModel
+@{
+    ViewBag.Title = "GetTopicbyCategory";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+
+<div class="main-content">
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-left">@Model.Category.Name</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+<!--=============thông báo nội bộ==============-->
+<div class="box-layout">
+    <ol class="breadcrumb">
+        <li><a href="#">Trang chủ</a></li>
+        <li class="active">@Model.Category.Name </li>
+    </ol>
+
+    <section>
+        <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div data-mh="sameHeight-homepage">
+                    <h2 class="des-title">@Model.Category.Name.ToUpper()</h2>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 topp">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <h3 class="titlenoti">Mới nhất</h3>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">Lượt xem</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">Ngày Đăng</div>
+                    </div>
+                </div>
+                @if (Model.Topics.Any() && Model.Topics.Count() > 0)
+                {
+                    foreach (var item in Model.Topics)
+                    {
+                        <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                            <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                                <div class="boxshow-content">
+                                    <div class="content-i"><a href="/article/@item.Topic.Slug">@item.Topic.Name</a></div>
+                                </div>
+                            </div>
+                            <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                                <div class="boxshow-view">@item.Topic.Views.KiloFormat()</div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                                <div class="boxshow-date">@DatesUI.GetPrettyDate(@item.Topic.CreateDate.ToString())</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                        <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                            <div class="boxshow-content">
+                                <div class="content-i">Chưa có bài viết nào</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                }
+
+
+
+                @*<div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Trẻ không tiêm vắc xin viêm gan B, lớn có nguy cơ bị xơ gan</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">11</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-31<br>07:38:41</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Bệnh đái tháo đường tuýt 2 đang trẻ hóa</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">26</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-31<br>07:38:41</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Sống sót sau khi được lấy đi 98 khối u trong não</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">9</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-28<br>07:38:41</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Muối i-ốt, biết một cũng nên biết mười</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">19</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-27<br>07:38:41</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Quả óc chó có thể phòng ngừa bệnh đái tháo đường tuýt 2</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">19</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-26<br>07:38:41</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 boxx">
+                    <div class="col-xs12 col-sm-12 col-md-8 boxshow">
+                        <div class="boxshow-content">
+                            <div class="content-i">Virus Zika tồn tại trong tinh trùng qua 6 tháng</div>
+                        </div>
+                    </div>
+                    <div class="col-xs12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-view">11</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 boxshow">
+                        <div class="boxshow-date">2017-07-31<br>07:38:41</div>
+                    </div>
+                </div>*@
+            </div>
+
+            <!--==========thông báo nội bộ===============-->
+        </div>
+</div>
+ 
+
+
+
+
+
+
+
+
+<!--Main Content end-->
+    </div>

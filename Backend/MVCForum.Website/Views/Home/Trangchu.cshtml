@@ -1,0 +1,383 @@
+﻿@model List<MVCForum.Domain.DomainModel.Entities.Banner>
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+
+}
+
+<!--Main Content start-->
+<main class="page-main">
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner__slider">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <a class="banner__slider-item" href="@item.LinkWeb">
+                        <div class="banner__slider-overlay"></div>
+                        @if (!string.IsNullOrEmpty(item.Title))
+                        {
+                            <div class="banner__slider-caption">
+                                <h1>@Html.Raw(item.Title)</h1>
+                            </div>
+                        }
+                        <img class="img-fluid" src="@item.ImageLink" alt="">
+                    </a>
+                }
+            }
+        </div>
+        <div class="banner__nav">
+            @if (Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <a href="@item.LinkWeb" class="banner__nav-item" style="background: url(@item.ImageLink); background-position: center; background-size: auto 100%; background-repeat: no-repeat;"></a>
+                }
+            }
+        </div>
+    </div>
+
+    <!-- Giờ làm việc + cấp cứu + tìm bác sĩ -->
+    <div class="banner__addon">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm-4 pr-md-0 pr-0 pl-0">
+                    <div class="banner__addon-item banner__addon-item--color-1">
+                        <div class="banner__addon-icon d-sm-block d-none">
+                            <i class="fi flaticon-ambulance"></i>
+                        </div>
+                        <h4 class="banner__addon-title">
+                            Cấp cứu
+                        </h4>
+                        <div class="banner__addon-content">
+                            <p class="emergency">Gọi ngay <b>(028) 38966894</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pl-md-0 pr-0 pl-0">
+                    <div class="banner__addon-item banner__addon-item--center banner__addon-item--color-2">
+                        <div class="banner__addon-icon d-sm-block d-none">
+                            <i class="fi flaticon-clock"></i>
+                        </div>
+                        <h4 class="banner__addon-title">
+                            Giờ làm việc
+                        </h4>
+                        <div class="banner__addon-content">
+                            <h5>Thứ 2 - Thứ 6</h5>
+                            <ul>
+                                <li>
+                                    <p>Sáng:</p>
+                                    <p><b>7 giờ - 12 giờ</b></p>
+                                </li>
+                                <li>
+                                    <p>Chiều:</p>
+                                    <p><b>13 giờ - 16 giờ</b></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 pl-md-0 pr-0 pl-0">
+                    <div class="banner__addon-item banner__addon-item--color-3">
+                        <div class="banner__addon-icon">
+                            <i class="fi flaticon-doctor"></i>
+                        </div>
+                        <h4 class="banner__addon-title">
+                            Bác sĩ
+                        </h4>
+                        <div class="banner__addon-content">
+                            <a href="@Url.Action("DoctorSearch","Home")" class="btn btn__main--outline">
+                                Tìm bác sĩ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Khám chữa bệnh -->
+    <section class="healthcare mt-4">
+        <div class="container">
+            <div class="section__title">
+                <h2 class="section__title-text">Khám Chữa Bệnh</h2>
+                <div class="section__title-icon"></div>
+            </div>
+
+            <div class="healthcare__items">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Department","Home", new { slug = "noi-khoa" })" class="healthcare__item drop-2">
+                            <div class="healthcare__img">
+                                <img class="img-fluid" src="~/Content/assets/img/healthcare/healthcare_1.jpg" alt="">
+                            </div>
+                            <div class="healthcare__content">
+                                <h4 class="healthcare__title">
+                                    Nội khoa
+                                </h4>
+                                <div class="healthcare__icon">
+                                    <i class="fi flaticon-heart"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Department","Home", new { slug = "ngoai-khoa" })" class="healthcare__item drop-2">
+                            <div class="healthcare__img">
+                                <img class="img-fluid" src="~/Content/assets/img/healthcare/healthcare_2.jpg" alt="">
+                            </div>
+                            <div class="healthcare__content">
+                                <h4 class="healthcare__title">
+                                    Ngoại khoa
+                                </h4>
+                                <div class="healthcare__icon">
+                                    <i class="fi flaticon-scalpel"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("Department","Home", new { slug = "can-lam-sang" })" class="healthcare__item drop-2">
+                            <div class="healthcare__img">
+                                <img class="img-fluid" src="~/Content/assets/img/healthcare/healthcare_3.jpg" alt="">
+                            </div>
+                            <div class="healthcare__content">
+                                <h4 class="healthcare__title">
+                                    Cận lâm sàng
+                                </h4>
+                                <div class="healthcare__icon">
+                                    <i class="fi flaticon-skeleton"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dịch vụ khách hàng -->
+    <section class="service">
+        <div class="service__overlay"></div>
+        <div class="container">
+            <div class="section__title">
+                <h2 class="section__title-text">Dịch Vụ Khách Hàng</h2>
+                <div class="section__title-icon"></div>
+            </div>
+
+            <div class="service__items drop-2">
+                <div class="row">
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-1" class="service__item ">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-siren"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Cấp Cứu Ngoại Viện</h4>
+                                </div>
+                            </div>
+
+                            <div class="service__item-intro">
+                                <p>Cấp cứu ngoại viện góp phần mang lại sự sống cho người bệnh, hỗ trợ người bệnh vượt qua nguy hiểm...</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-2" class="service__item ">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-presentation"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Huấn Luyện <br>Sơ Cấp Cứu</h4>
+                                </div>
+                            </div>
+                            <div class="service__item-intro">
+                                <p>
+                                    Huấn luyện sơ cấp cứu là khóa học cung cấp những kiến thức cơ bản về sơ cứu vết thương và hướng dẫn
+                                    những thao tác...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-3" class="service__item ">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-certificate"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Hợp Đồng Phối Hợp<br> Cấp Cứu Tại Chỗ</h4>
+                                </div>
+                            </div>
+                            <div class="service__item-intro">
+                                <p>
+                                    Loại hình dịch vụ này của Chúng tôi nhằm phối hợp hỗ trợ cho các Công ty, Doanh nghiệp, các Cơ
+                                    quan,...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    @*<div class="col-xl-3 col-sm-6">
+                            <a href="/dich-vu#4" class="service__item ">
+                                <div class="text-center">
+                                    <span class="service__item-icon">
+                                        <i class="fi flaticon-heart-1"></i>
+                                    </span>
+                                    <div class="service__item-title">
+                                        <h4>Khám Bệnh Tại Nhà</h4>
+                                    </div>
+                                </div>
+                                <div class="service__item-intro">
+                                    <p>
+                                        Khám bệnh tại nhà là một loại hình dịch vụ nhằm đáp ứng nhu cầu khám chữa bệnh của một số đối
+                                        tượng...
+                                    </p>
+                                </div>
+                            </a>
+                        </div>*@
+
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-4" class="service__item mb-lg-0">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-insurance"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Đại Lý Bảo Hiểm Y Tế</h4>
+                                </div>
+                            </div>
+                            <div class="service__item-intro">
+                                <p>
+                                    Hiện tại Bệnh viện của chúng tôi đã triển khai đại lý bán BHYT nhằm đáp ứng nhu cầu cũng như hỗ
+                                    trợ...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-5" class="service__item mb-lg-0">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-clipboard"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Các Gói Khám<br> Và Tầm Soát Bệnh</h4>
+                                </div>
+                            </div>
+                            <div class="service__item-intro">
+                                <p>Khám, tầm soát sức khoẻ định kỳ giúp chúng ta phát hiện sớm các vấn đề bất thường về sức khỏe... </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 col-sm-6">
+                        <a href="/dich-vu#service-service-6" class="service__item mb-lg-0">
+                            <div class="text-center">
+                                <span class="service__item-icon">
+                                    <i class="fi flaticon-bacteria"></i>
+                                </span>
+                                <div class="service__item-title">
+                                    <h4>Hấp Tiệt Khuẩn Bằng<br /> Máy Tiệt Khuẩn EO</h4>
+                                </div>
+                            </div>
+                            <div class="service__item-intro">
+                                <p>
+                                    Chúng tôi hiện có dịch vụ hấp tiệt khuẩn đối với các vật liệu không chịu nhiệt như: vải sợi, giấy,
+                                    các nguyên vật liệu...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    @*<div class="col-xl-3 col-sm-6">
+                            <div class="service__item service__item-btn d-flex justify-content-center align-items-center mb-0">
+                                <a href="@Url.Action("ServiceDetail","Home")"  class="btn btn__main">Xem thêm</a>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thông tin từ sở Y tế (Department of Health: DOH)-->
+    @Html.Action("RssVanban", "Topic")
+
+    <!-- Tin tức -->
+    @Html.Action("LatestTopics", "Topic")
+
+    <!-- Tổng quan về bệnh viện -->
+    <section class="general-view" id="number-container">
+        <div class="general-view__overlay">
+        </div>
+        <div class="container-fluid ">
+            <div class="general-view__items">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 border-right">
+                        <div class="general-view__item">
+                            <div class="general-view__item-icon">
+                                <i class="fi flaticon-hospital"></i>
+                            </div>
+                            <div class="general-view__item-text">
+                                <h1><span class="number">20</span></h1>
+                                <p>năm hình thành và phát triển</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 border-right">
+                        <div class="general-view__item">
+                            <div class="general-view__item-icon">
+                                <i class="fi flaticon-bed"></i>
+                            </div>
+                            <div class="general-view__item-text">
+                                <h1><span class="number">1000</span>+</h1>
+                                <p>giường cho bệnh nhân</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 border-right">
+                        <div class="general-view__item">
+                            <div class="general-view__item-icon">
+                                <i class="fi flaticon-patient"></i>
+                            </div>
+                            <div class="general-view__item-text">
+                                <h1><span class="number">900000</span>+</h1>
+                                <p>bệnh nhân được điều trị hằng năm</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="general-view__item">
+                            <div class="general-view__item-icon">
+                                <i class="fi flaticon-doctor"></i>
+                            </div>
+                            <div class="general-view__item-text">
+                                <h1><span class="number">600</span>+</h1>
+                                <p>nhân sự với đội ngũ y bác sĩ giỏi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Góc tri ân -->
+    @Html.Action("Goctrian", "Topic")
+</main>
+
+
+@Html.Action("XemthemRssVanban", "Topic")
+@Html.Action("XemthemRssThongbao", "Topic")
+@Html.Action("XemthemRssThumoi", "Topic")
+@Html.Action("XemthemRssLichContac", "Topic")

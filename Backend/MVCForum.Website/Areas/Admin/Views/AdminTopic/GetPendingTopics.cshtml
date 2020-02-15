@@ -1,0 +1,78 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Website.Application
+@model MVCForum.Website.Areas.Admin.ViewModels.TopicPendingViewModel
+@{
+    ViewBag.Title = "Pending Topics";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("GetPendingTopics", "AdminTopic", FormMethod.Post))
+        {
+            <div class="input-group membersadminsearch">
+                @Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Search</button>
+                </span>
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Ngày tạo</th>
+                    <th>Lượt xem</th>
+                    <th>Sửa</th>
+                    <th>Xem trước</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var topic in Model.Topics)
+                {
+
+
+                    <tr>
+
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => topic.Name)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => topic.CreateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => topic.Views)
+                        </td>
+                        <td>
+
+                            <a href="@Url.Action("EditPostTopic", "Topic",new { area = "", id = topic.LastPost.Id })" class="btn-mvc">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                            </a>
+                           
+                        </td>
+                        <td>
+
+                           
+                            <a href="@Url.Action("Review", "Topic",new { area = "", slug = topic.Slug })" class="btn-mvc">
+                                <span class="fa fa-eye" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), SiteConstants.Instance.AdminListPageSize, Convert.ToInt32(Model.TotalCount), new { search = Model.Search })
+        }
+
+    </div>
+</div>
+
+

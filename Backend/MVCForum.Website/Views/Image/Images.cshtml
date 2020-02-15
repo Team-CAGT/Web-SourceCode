@@ -1,0 +1,37 @@
+﻿
+@model MVCForum.Website.ViewModels.ImagesViewModel
+
+
+<h2 class="des-title m-b-0"> HÌNH ẢNH</h2>
+@if (Model != null && Model.Images.Any())
+{
+    <div class="image-gallery owl-column owl-col-1 owlnav-true owl-carousel">
+        @foreach (var img in Model.Images)
+        {
+            <div>
+                <a class="lightbox-gallery" rel="gallery1" href="\Content\uploads\Image\@img.ImageUrl" title="Hình bệnh viện">
+                    <img src="\Content\uploads\Image\@img.ImageUrl" alt="" />
+                </a>
+            </div>
+        }
+      
+
+        @*<div>
+            <a class="lightbox-gallery" rel="gallery1" href="http://bvndgiadinh.com.vn/wp-content/uploads/2017/07/image009-732x423.png"
+               title="Hình bệnh viện">
+                <img src="http://bvndgiadinh.com.vn/wp-content/uploads/2017/07/image009-732x423.png" alt="" />
+            </a>
+        </div>
+        <div>
+
+            <a class="lightbox-gallery" rel="gallery1" href="http://file.medinet.gov.vn/UploadImages/soytehcm/2017/07/08/tdd2/image003.png"
+               title="Hình bệnh viện">
+                <img src="http://file.medinet.gov.vn/UploadImages/soytehcm/2017/07/08/tdd2/image003.png" alt="" />
+            </a>
+        </div>*@
+
+
+    </div>
+
+}
+

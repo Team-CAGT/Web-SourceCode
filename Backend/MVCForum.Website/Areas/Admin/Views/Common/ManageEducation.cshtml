@@ -1,0 +1,117 @@
+﻿@using MVCForum.Domain.DomainModel
+@model PagedList<MVCForum.Domain.DomainModel.Entities.Education>
+@{
+    ViewBag.Title = "Quản Lý Đào tạo";
+}
+@Html.Partial("_EducationNavButtons")
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("ManageEducation", "Common", FormMethod.Get))
+        {
+            <div class="input-group membersadminsearch">
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Tìm Kiếm" value="@ViewBag.Search" name="search" />
+                    </div>
+                    <div class="col-md-2">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+                @*@Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })*@
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Ngày tạo</th>
+                    <th>Sửa</th>
+
+                    @if (User.IsInRole("Admin") && ViewBag.IsPending == false)
+                    {
+                        <th>Xóa</th>
+                    }
+                    else if (User.IsInRole("Admin") && ViewBag.IsPending == true)
+                    {
+                        <th>Người xóa</th>
+                    }
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => item.Name)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("UpdateEducation", new { id = item.Id})" class="btn-mvc">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        @*@if (item.IsPending == false)
+                            {
+                                <td>
+                                    <a href="@Url.Action("DeleteEducation", new { id = item.Id })" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-remove confirmDelete" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="@Url.Action("ResetPendingEducation", new { id = item.Id })" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-remove confirmDelete" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            }*@
+                        @if (User.IsInRole("Admin") && ViewBag.IsPending == false)
+                        {
+                            <td>
+                                <a href="@Url.Action("DeleteEducation", new { id = item.Id })" class="btn-mvc">
+                                    <span class="glyphicon glyphicon-remove confirmDelete" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        }
+                        else if (User.IsInRole("Admin") && ViewBag.IsPending == true)
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.UserDelete)</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), 8, Model.TotalCount, new { search = ViewBag.Search, isPending = ViewBag.IsPending }, "ManageEducation", "Common")
+        }
+
+    </div>
+</div>
+<script>
+    var elems = document.getElementsByClassName('confirmDelete');
+    var confirmIt = function (e) {
+        if (!confirm('Bạn có chắc chắn muốn xóa?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    };
+</script>
+
+
+
+

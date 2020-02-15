@@ -1,0 +1,96 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Website.Application
+@model MVCForum.Website.Areas.Admin.ViewModels.AppointmentsViewModel
+@{
+    ViewBag.Title = "Appointment";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("AppointmentList", "Common", FormMethod.Post))
+        {
+            <div class="input-group membersadminsearch">
+                @Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Search</button>
+                </span>
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    @*<th>Edit</th>*@
+                    <th>Tên người đặt</th>
+                    <th>Tên Công cty</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Số lượng</th>
+                   
+                    <th>Nội dung</th>
+                    <th>Ngày</th>
+                    @*<th>Trạng thái</th>*@
+                    @*<th>Delete</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var apppoint in Model.Appointments)
+                {
+
+
+                    <tr>
+
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => apppoint.Name)</strong>
+                        </td>
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => apppoint.CompanyName)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => apppoint.CreateDate)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => contact.Status)
+                            </td>
+                            <td>
+
+                                    <a href="@Url.Action("Delete", new { user.Id, p = Model.PageIndex, search = Model.Search})" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </a>
+
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), SiteConstants.Instance.AdminListPageSize, Convert.ToInt32(Model.TotalCount), new { search = Model.Search })
+        }
+
+    </div>
+</div>
+
+

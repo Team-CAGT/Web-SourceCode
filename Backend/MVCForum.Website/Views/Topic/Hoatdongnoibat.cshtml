@@ -1,0 +1,73 @@
+﻿@using MVCForum.Website.ViewModels
+@model HotTopicsViewModel
+<h2 class="des-title m-b-0 "> Hoạt động nổi bật</h2>
+<br />
+@*
+        <div class="video-gallery owl-column owl-col-3 owlnav-true owl-nav3">
+           <div class="video-gallery-item">
+                <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+                    <i class="fa fa-youtube-play"></i>
+
+                    <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+                </a>
+            </div>
+            <div class="video-gallery-item">
+                <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+                    <i class="fa fa-youtube-play"></i>
+                    <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+                </a>
+            </div>
+            <div class="video-gallery-item">
+                <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+                    <i class="fa fa-youtube-play"></i>
+                    <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+                </a>
+            </div>
+
+            <div class="video-gallery-item">
+                <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+                    <i class="fa fa-youtube-play"></i>
+                    <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+                </a>
+            </div>
+
+    </div>
+*@
+@if (Model.Topics.Any())
+{
+    <div class="row">
+        <div class="col-sm-12">
+
+
+            <div class="owl-column owl-carousel owl-col-2-stop owlnav-true owl-nav2">
+                @foreach (var topic in Model.Topics)
+                {
+                    <div class="post">
+                        <div class="picture"><img src="@AppHelpers.TopicImage(topic.Topic.LinkImage,topic.Topic.User.Id,360,220)" class="img-responsive" alt=""></div>
+
+                        <a href="@Url.Action("Article","Topic",new { slug = topic.Topic.Slug})" class="absolute-all"></a>
+
+                        <h4 class="post-title">@topic.Topic.Name</h4>
+
+                        <div class="post-info">
+                            <div class="info">
+                                <!-- <span class="category-name"><a href="">Mẹo hay </a> -->
+                                <span class="date"><i class="fa fa-clock-o"></i> @DatesUI.GetPrettyDate(topic.Topic.CreateDate.ToString())</span>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+             
+
+
+           
+              
+
+            </div>
+        </div>
+
+
+
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@using MVCForum.Website.ViewModels
+@model HotTopicsViewModel
+<h2 class="des-title m-b-0 "> Video</h2>
+
+<div class="video-gallery">
+    @foreach (var topic in Model.Topics)
+    {
+        <div class="video-gallery-item">
+            <a class="fancybox-media" href="@topic.Topic.LinkVideo?rel=0&showinfo=0" title="Awsome Title">
+                <i class="fa fa-youtube-play"></i>
+
+                <img alt="" src="@AppHelpers.TopicImage(topic.Topic.LinkImage,topic.Topic.User.Id,160,105)">
+            </a>
+        </div>
+    }
+    @*<div class="video-gallery-item">
+        <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+            <i class="fa fa-youtube-play"></i>
+
+            <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+        </a>
+    </div>
+    <div class="video-gallery-item">
+        <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+            <i class="fa fa-youtube-play"></i>
+            <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+        </a>
+    </div>
+    <div class="video-gallery-item">
+        <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+            <i class="fa fa-youtube-play"></i>
+            <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+        </a>
+    </div>
+
+    <div class="video-gallery-item">
+        <a class="fancybox-media" href="http://www.youtube.com/watch?v=opj24KnzrWo" title="Awsome Title">
+            <i class="fa fa-youtube-play"></i>
+            <img alt="" src="http://bvndgiadinh.com.vn/wp-content/uploads/2016/12/4.png">
+        </a>
+    </div>*@
+
+</div>
+

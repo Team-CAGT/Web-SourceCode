@@ -1,0 +1,44 @@
+﻿@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model ActiveTopicsViewModel
+@{
+    Layout = null;
+    var totalCount = Convert.ToInt32(Model.TotalCount);
+    ViewBag.Canonical = Html.Raw(AppHelpers.CanonicalPagingTag(totalCount, Html.Settings().TopicsPerPage, Html));
+    var first = Model.Topics.OrderByDescending(x => x.Topic.CreateDate).FirstOrDefault();
+
+}
+
+@if (Model.Topics.Any())
+{
+
+    <h2 class="des-title m-b-0"> Truyền thông</h2>
+
+    <div class="widget-news">
+
+        <div class="widget-news-post widget-news-post--big-one">
+            <div class="thumb ">
+                <img alt="@first.Topic.Name" src="@AppHelpers.TopicImage(first.Topic.LinkImage,first.Topic.User.Id,360,250)">
+            </div>
+            <div class="content">
+                <p class="title"><a href="@Url.Action("Article","Topic", new { slug = first.Topic.Slug})">@first.Topic.Name</a></p>
+                <div class="meta-date">@DatesUI.GetPrettyDate(first.Topic.CreateDate.ToString())</div>
+            </div>
+        </div>
+        @foreach (var item in Model.Topics.Skip(1).Take(4))
+        {
+            <div class="widget-news-post">
+                <div class="thumb">
+                    <img alt="@item.Topic.Name" src="@AppHelpers.TopicImage(item.Topic.LinkImage,item.Topic.User.Id,70,70)">
+                </div>
+                <div class="content">
+                    <p class="title"><a href="@Url.Action("Article","Topic", new { slug = item.Topic.Slug})">@item.Topic.Name</a></p>
+                    <div class="meta-date">@DatesUI.GetPrettyDate(item.Topic.CreateDate.ToString())</div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+}

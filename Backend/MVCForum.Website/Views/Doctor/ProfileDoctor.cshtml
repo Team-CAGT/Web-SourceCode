@@ -1,0 +1,124 @@
+﻿@model MVCForum.Website.ViewModels.DoctorViewModel
+@{
+    ViewBag.Title = "ProfileDoctor";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+
+   
+}
+@functions{
+
+    string CheckPossition(string data)
+    {
+        if (!string.IsNullOrEmpty(data))
+        {
+            return data;
+        }
+        return "Bác sĩ điều trị";
+    }
+
+}
+
+<div class="main-content">
+
+
+
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-left">Thông tin Bác sĩ</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="box-layout">
+
+        <ol class="breadcrumb">
+            <li><a href = "/Home/Trangchu" > Trang chủ</a></li>
+            <li><a href = "#" > Bác sĩ</a></li>
+            <li class="active">BS.@Model.Name</li>
+        </ol>
+
+        <div class="container">
+            <div class="row">
+                <div class="widgetright">
+                    @if(Html.CurrentMember() != null)
+                    {
+                        if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+                        {
+
+                            <a class="" href="@Url.Action("EditDoctor", "Doctor", new { slug = Model.Slug })">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+
+
+                        }
+    }
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-8 team-member-details">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="thumb">
+                                <img class="width-full" src="@AppHelpers.DoctorImage(Model.Avatar,"",800,1200)" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="content">
+                                <h3 class="name">BS.@Model.Name</h3>
+                                <h5 class="occupation">Chuyên khoa: @Model.Specicality</h5>
+                                <hr>
+
+                                <ul class="team-member-infos">
+                                    <li><h5  class="text-main d-inline">Học vị</h5>  @Model.BoardCertifications</li>
+                                    <li><h5 class="text-main d-inline">Chuyên khoa </h5> @Model.Specicality</li>
+                                    <li><h5  class="text-main d-inline">Chức vụ </h5>@CheckPossition(Model.PositionName)</li>
+                                </ul>
+
+                                <h5 class="text-main"> Quá trình công tác:</h5>
+                                <ul>
+                                    @if (Model.DescriptionHistorys != null)
+    {
+        foreach (var his in Model.DescriptionHistorys)
+        {
+                                            <li> -@his </li>
+                                            }
+    }
+
+
+                                    @*<li>- Bác sĩ Chuyên khoa I từ năm 1990 – 1993</li>
+                                        <li>- Bác sĩ Chuyên khoa II từ năm 2000 – 2003</li>
+                                        <li>- Làm việc tại BVNDGĐ từ năm 2012 đến nay</li>*@
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    @Html.Action("SearchDoctorForm", "Doctor")
+                    @* @Html.Action("Video","Topic")*@
+
+                    @Html.Action("Baivietnoibac", "Topic")
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <!--Main Content end-->
+</div>
+

@@ -1,0 +1,604 @@
+﻿.user-info.user-info--mobi {
+    display: inline-block;
+}
+
+.user-info__list-action {
+    background: #f1f1f1;
+    position: absolute;
+    top: 80%;
+    z-index: 9999;
+}
+
+.iconbox-widget .icon img {
+    max-width: 45px;
+}
+
+.user-info__name {
+    line-height: 50px;
+    cursor: pointer;
+}
+
+    .user-info__name:hover {
+        color: #2698d6;
+        transition: .3s all;
+    }
+
+.user-info__action {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+    .user-info__action a {
+        display: block;
+        white-space: nowrap;
+        color: black;
+        padding: 10px 15px;
+        font-family: 'UTM Avo', sans-serif;
+    }
+
+        .user-info__action a:hover {
+            color: black;
+        }
+
+.user-info--mobi .user-info__action a {
+    line-height: initial;
+    font-weight: normal;
+}
+
+.user-info--mobi .user-info__list-action {
+    right: 0;
+    top: 100%;
+}
+
+.user-info--mobi .user-info__name {
+    color: white;
+}
+
+.user-mobi {
+    position: absolute;
+    height: 58px;
+    top: 0;
+    right: 0;
+    color: white;
+    line-height: 45px;
+    display: flex;
+    margin-right: 25px;
+    cursor: pointer;
+    max-width: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+    .user-mobi .fa {
+        padding-right: 5px;
+        line-height: 58px;
+        font-size: 25px;
+    }
+
+.menuzord .showhide {
+    margin-right: -15px;
+}
+
+    .menuzord .showhide em {
+        margin: 3.5px 15px 0;
+    }
+
+.menuzord .showhide {
+    width: 50px;
+}
+
+
+
+
+
+
+
+
+/*=====================================
+=            hospitalTypes            =
+=====================================*/
+
+.hospitalTypes {
+}
+
+.hospitalTypes__list {
+    text-align: center;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+}
+
+.hospitalTypes__list--left {
+    text-align: left;
+}
+
+.hospitalTypes__list-item {
+    display: inline-block;
+    padding: 10px 5px;
+    cursor: pointer;
+    position: relative;
+    letter-spacing: initial;
+}
+
+    .hospitalTypes__list-item:hover {
+        background-color: #4AAADE;
+        color: white;
+    }
+
+    .hospitalTypes__list-item:not(:last-of-type):after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -2px;
+        height: 50%;
+        width: 1px;
+        background-color: #4AAADE;
+    }
+
+.hospitalTypes__content {
+}
+
+.hospitalTypes__item {
+    display: flex;
+    background: #4AAADE;
+    margin-bottom: 15px;
+    min-height: 3.75em;
+    /* justify-content: center; */
+    align-items: center;
+    padding-left: 50px;
+    color: white;
+    font-size: 16px;
+    position: relative;
+}
+
+    .hospitalTypes__item i {
+        display: inline-block;
+        font-size: 30px;
+        position: absolute;
+        left: 10px;
+    }
+
+.hospitalTypes__content .mix {
+    display: none;
+}
+
+
+
+
+
+
+
+
+/*=====  End of hospitalTypes  ======*/
+
+
+/*==================================
+=            BanGiamDoc            =
+==================================*/
+
+.team-post.team-post--big-one {
+    padding: 15px;
+}
+
+.team-style4 .team-post .readmore {
+    float: right;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 16px;
+}
+
+.team-style4 .team-post .readmore--left {
+    float: none;
+}
+
+.team-style4 .team-post .readmore:hover {
+    color: #2698d6;
+}
+
+.team-style4 .team-post .readmore:after {
+    content: '';
+    position: absolute;
+    background: #2698d6;
+    height: 2px;
+    width: 100%;
+    bottom: -1px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+}
+
+.team-style4 .team-post .readmore:hover:after {
+    transition: all .3s;
+    transform: scaleX(1);
+}
+
+.team-post__quotes {
+    font-size: 18px;
+    padding: 15px 50px;
+    position: relative;
+}
+
+    .team-post__quotes:before {
+        content: "\f10d";
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: 30px;
+        color: #2698d6;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .team-post__quotes:after {
+        content: "\f10e";
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: 30px;
+        color: #2698d6;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        right: 0;
+    }
+
+.team-section--leader {
+    margin-top: 5px;
+}
+
+.team-post__link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0;
+}
+
+.team-post {
+    position: relative;
+}
+
+
+
+
+/*=====  End of BanGiamDoc  ======*/
+
+/*===================================
+=            Fix hoidap.html            =
+===================================*/
+
+.accordion-style .accordion-box .icon-outer {
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.accordion-style .accordion-box .acc-title.active {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.accordion-style .accordion-box .acc-content.current {
+    padding: 10px 0;
+}
+
+.acc-content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent 50%, #f8f8f8 50%), linear-gradient(to right, #4898d6, #2698d6);
+    /* background: linear-gradient(to right, black, black), linear-gradient(to right, white , white); */
+    background-size: 16px 2px, 100% 2px;
+}
+
+.accordion-style .accordion-box.mix {
+    width: 100%;
+    display: none;
+}
+
+/*=====  End of Fix hoidap.html  ======*/
+
+/*=====================================
+=            phongChucNang            =
+=====================================*/
+
+.service-post__info {
+    position: relative;
+    padding: 15px;
+}
+
+.service-post--page .icon-box {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.service-post--page .thumb {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 64%;
+    overflow: hidden;
+}
+
+.service-post--contact .content {
+    padding-left: 100px;
+    padding-right: 0;
+}
+
+.service-post--page .thumb img {
+    position: absolute;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.text-main {
+    color: #2698D6;
+}
+
+.d-inline {
+    display: inline-block;
+    min-width: 100px
+}
+
+.service-post--page .content {
+    padding: 0;
+    padding-left: 100px;
+}
+
+.service-post--page .title {
+    line-height: 1.3em;
+    min-height: 2.6em;
+}
+
+.post .description {
+    font-size: 16px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+.rss-links li a {
+    font-size: 14.6px;
+}
+
+.hospitalTypes__item .icon-department {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    fill: white;
+    transition: 0.3s fill;
+}
+
+.hospitalTypes__item:hover .icon-department {
+    fill: black;
+}
+
+.inner-content {
+    min-height: 3.714em;
+}
+
+.carousel-caption--flex-start {
+    align-items: flex-start;
+}
+
+.carousel-caption--flex-end {
+    align-items: flex-end;
+}
+
+.service-post__name {
+    min-height: 2.2em;
+}
+
+.service-post .icon-box .icon {
+    fill: white;
+}
+
+.pagination-style > li > a, .pagination-style > li > span, .pagination-style > li > a:hover, .section-title .icon, .section-title .title span, .inner-title .title span, .btn-theme.btn-gray, .home-slider h2, .welcome-content .feature-list a, .iconbox-widget .icon i, .widget-links li:hover a, .widget-links li a:before, .widget-news .widget-news-post .content .meta-date, .social-icons li a:hover i, .service-post .content .btn-link, .service-post:hover .icon-box .icon, .feature-box .content .btn-link, .feature-box:hover .icon-box .icon, .team-post .thumb .overlay a i, .team-post .content .title, .team-style4 .team-post .content .sub-title, .team-member-details .content .name, .team-member-infos li span:first-child, .blog-post .meta-tag .icon, .blog-post .content .btn-link, .tag-category li a, .blog-social-share li:first-child, .blog-authore-box .authore-meta li:first-child a, .blog-authore-box .authore-meta li a:hover, .comment-box .content .reply-btn, .footer-widget .footer-widget-title .widget-title:after, .footer-widget .widget-links li a:before, .footer-widget .widget-contact p span, .footer-widget .widget-news .widget-news-post .content .meta-date, .copy-right a, .accordion-style .accordion-box .acc-title.active, .testimonial-post ul li .icon, .scroll-to-top:hover {
+    fill: #2698D6;
+}
+
+.icon_svg {
+    fill: white;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.service-post:hover .icon-box .icon_svg {
+    fill: #2698D6;
+}
+
+.doctor_name {
+    min-height: 52px;
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.services__item {
+    flex-basis: calc(25% - 15px);
+    margin-bottom: 30px;
+}
+
+.services__holes {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: calc( 100% - 20px);
+}
+
+.services__hole {
+    width: 8px;
+    height: 50px;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #d2d2d2 50%, #b9b9b9 50%);
+    z-index: 1;
+    box-shadow: 0 0 5px #adadad;
+    transition: all 0.5s ease 0s;
+    position: relative;
+}
+
+    .services__hole:before {
+        content: "";
+        width: 16px;
+        height: 16px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        border: 1px solid #d2d2d2;
+        position: absolute;
+        top: -5px;
+        left: 50%;
+    }
+
+    .services__hole:after {
+        content: "";
+        width: 16px;
+        height: 16px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        border: 1px solid #b9b9b9;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+    }
+
+.services__item--big-one {
+    flex-basis: 75%;
+}
+
+.services__title {
+    font-size: 1.25em;
+    padding: 25px;
+    padding-bottom: 25px;
+    background: #2698d6;
+    color: white;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.services__info {
+    padding: 15px;
+    position: relative;
+    background: white;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    padding-top: 25px;
+}
+
+    .services__info:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+        z-index: -1;
+        background: #F2F2F2;
+    }
+
+.services__item-left {
+}
+
+.text-ambulance {
+    color: #FF1313;
+}
+
+.highlight {
+    color: #ff2d2d;
+    text-decoration: underline;
+}
+
+.video-gallery-item.video-gallery-item--sm {
+    -webkit-flex: 0 0 33.333%;
+    -ms-flex: 0 0 33.333%;
+    flex: 0 0 33.333%;
+}
+
+@media (max-width: 1199px) {
+    .services__title {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 991px) {
+    .services__title {
+        font-size: 1.5em;
+    }
+
+    .services__item {
+        flex-basis: calc(50% - 15px);
+        margin-bottom: 30px;
+    }
+
+    .services__item--big-one {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .services__item {
+        flex-basis: 100%;
+        margin-bottom: 30px;
+    }
+}
+/*=====  End of phongChucNang  ======*/
+
+@media (max-width: 992px) {
+    .team-post.team-post--big-one {
+        text-align: center;
+    }
+
+    .team-post__info {
+        padding: 20px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .mega-header {
+        overflow: initial;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .service-post {
+        text-align: initial;
+    }
+
+        .service-post .icon-box {
+            left: initial;
+            margin-bottom: initial;
+            margin-left: initial;
+            margin-right: initial;
+            position: absolute;
+        }
+}
+
+@media (max-width: 991px) {
+    .topp .boxshow-view,
+    .topp .boxshow-date {
+        display: none;
+    }
+
+    .boxshow-date:before {
+        content: "Ngày: ";
+    }
+
+    .boxshow-view:before {
+        content: "Lượt xem: ";
+    }
+}

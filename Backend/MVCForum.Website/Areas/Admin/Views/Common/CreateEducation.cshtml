@@ -1,0 +1,27 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.EducationViewModel
+@{
+    ViewBag.Title = "Tạo mới Đào tạo";
+    ViewBag.ImageUploadType = "forumimageinsert";
+}
+
+
+@Html.Partial("_EducationNavButtons")
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("CreateEducation", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(false)
+            @Html.AntiForgeryToken()
+
+            @Html.Partial("_EducationFields", Model)
+
+            <div class="submit-holder">
+                <input type="submit" class="btn-mvc-green btn-mvc-large" value="Create" />
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,168 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.QuestionsViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    var totalCount = Convert.ToInt32(Model.TotalCount);
+}
+
+@functions{
+    bool FuncNew(DateTime dateUpdate)
+    {
+        TimeSpan check = DateTime.Now - dateUpdate;
+        if (check.TotalDays <= 1)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+<section class="qa pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Hỏi Đáp</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item  breadcrumb-custom-item"><a href="#">Liên hệ - Hỏi đáp</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Hỏi đáp</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-12">
+                        @if (Model != null && Model.Questions.Any())
+                        {
+
+                            <div class="qa__items">
+                                @foreach (var ques in Model.Questions.OrderByDescending(x => x.CreateDate))
+                                {
+                                    <div class="qa__item">
+                                        <div class="qa__item-user">
+                                            <div class="qa__item-user-name">
+                                                <div class="qa__item-user-group">
+                                                    <div class="qa__item-user-name-tag">@ques.Name[0]</div>
+                                                    <div class="qa__item-user-name-full">@ques.Name</div>
+                                                </div>
+                                                <div class="qa__item-user-time"><span>@DatesUI.GetPrettyDate(ques.CreateDate.ToString())</span></div>
+                                            </div>
+                                            <div class="qa__item-user-question">
+                                                <p>@ques.ContentQuestion</p>
+                                            </div>
+                                        </div>
+                                        <u>Trả lời</u>
+                                        <div class="qa__item-admin">
+
+                                            <div class="qa__item-admin-name qa__item-user-name">
+                                                <div class="qa__item-user-group">
+                                                    <div class="qa__item-admin-name-tag qa__item-user-name-tag">
+                                                        <img class="img-fluid" src="/Content/assets/img/logobv.png" alt="">
+                                                    </div>
+                                                    <div class="qa__item-user-name-full">Bệnh Viện Đa Khoa Khu Vực Thủ Đức</div>
+                                                    @*<span class="qa__item-admin-name-position">Bác sĩ</span>*@
+                                                </div>
+                                                <div class="qa__item-user-time"><span>@DatesUI.GetPrettyDate(ques.LastUpdate.ToString())</span></div>
+                                            </div>
+                                            <div class="qa__item-admin-answer">
+                                                <p>@ques.ReplyContent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <p>Chưa có câu hỏi nào</p>
+                        }
+                        @if (Model.TotalPages > 1)
+                        {
+                            @Html.Pager(Convert.ToInt32(Model.PageIndex), 3, totalCount, null, "Hoidap", "Questions")
+                        }
+                    </div>
+                    <div class="col-lg-4 col-md-12 mb-4">
+                        <div class="qa-creation">
+                            <div class="qa-creation__title asside-news__title">
+                                <p>Bạn cần hỏi gì?</p>
+                            </div>
+                            <form id="putQuestion" enctype="multipart/form-data" data-abide novalidate>
+                                @Html.AntiForgeryToken()
+                                <div class="qa-creation__content">
+                                    <div class="form-group">
+                                        <input type="text" name="FullName" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                               placeholder="Họ và tên">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <input type="number" name="Age" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                       placeholder="Tuổi">
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="number" name="Phone" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                       placeholder="Số điện thoại">
+                                            </div>
+                                        </div>
+                                        <input type="text" name="Address" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                               placeholder="Địa chỉ">
+                                        <input type="email" name="Email" class="form-control input__custom" aria-describedby="emailHelp"
+                                               placeholder="Email">
+                                        <textarea name="Content" class="form-control input__custom mb-3" rows="5"
+                                                  placeholder="Câu hỏi"></textarea>
+                                        <button id="bntPutQuestion" onclick="AjaxSubmitQuestionForm()" type="button" class="btn btn__main pull-right">Gửi</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function AjaxSubmitQuestionForm() {
+        $("#bntPutQuestion").attr("disabled", "disabled");
+        $(".loading-spinner").removeClass("hidden");
+        var formData = new FormData($('#putQuestion')[0]);
+        console.log('formData', formData);
+        $.ajax({
+            url: '/Questions/CreateQuestion',
+            type: 'POST',
+            data: formData, // serializes the form's elements.
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                if (response != null) {
+                    if (!response.Result) {
+                        $('#bntPutQuestion').removeAttr("disabled");
+                        swal("Đặt câu hỏi", response.Message, "error");
+                        $(".loading-spinner").addClass("hidden");
+                    } else {
+
+                        swal("Đặt câu hỏi ", response.Message, "success");
+                        $(".loading-spinner").addClass("hidden");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+
+                    }
+                }
+            },
+            fail: function () {
+
+            }
+        });
+    }
+</script>

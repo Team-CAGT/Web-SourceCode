@@ -1,0 +1,64 @@
+﻿@model List<MVCForum.Domain.DomainModel.Entities.BangiaDichvu>
+@{
+    ViewBag.Title = "Quản lý file viện phí";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        <br />
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>Danh Mục</th>
+                    <th>Tên File</th>
+                    <th>Url</th>
+                    <th>Ngày</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("UploadHospitalFee", new {id = item.Id})" class="btn-mvc">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    @if (item.Type.Equals("VIENPHI"))
+                    {
+                        <td><strong>Giá thu viện phí</strong></td>
+                    }
+                    else if (item.Type.Equals("DICHVU"))
+                    {
+                        <td><strong>Giá thu viện phí Dịch vụ</strong></td>
+                    }
+                    else
+                    {
+                        <td><strong>Giá Vật tư - Thuốc</strong></td>
+                    }
+
+
+                    <td>
+                        <strong>@Html.DisplayFor(modelItem => item.FileName)</strong>
+                    </td>
+                    <td>
+                        <a href="@item.FileUrl" target="_blank">Xem File</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                </tr>
+            }
+       
+       
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

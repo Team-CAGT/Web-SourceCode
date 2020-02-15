@@ -1,0 +1,367 @@
+﻿@using MVCForum.Domain.Constants
+@model MVCForum.Website.Areas.Admin.ViewModels.MainDashboardNavViewModel
+@{
+    var currentController = TempData[AppConstants.CurrentController].ToString();
+    var currentAction = TempData[AppConstants.CurrentAction].ToString();
+}
+<ul class="nav navbar-right top-nav">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @User.Identity.Name <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                @if (User.IsInRole("Admin") || User.IsInRole("VietBai"))
+                {
+                    <a href="@Url.Action("Create", "Topic", new {area = ""})"><i class="fa fa-fw fa-pencil-square-o"></i> Viết bài</a>
+                }
+            </li>
+            <li>
+                <a href="@Url.Action("LogOff", "Members", new { area = "" })"><i class="fa fa-fw fa-power-off"></i> Đăng xuất</a>
+            </li>
+        </ul>
+
+    </li>
+</ul>
+<div class="collapse navbar-collapse mvcforum-nav">
+    @if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+    {
+        <ul class="nav navbar-nav side-nav" style="z-index: 10;">
+            <li>
+                <a href="@Url.Content("~/")"><i class="fa fa-fw fa-arrow-left"></i> Trang Chủ</a>
+            </li>
+            @*<li>
+                    <a href="@Url.Action("Index", "Admin", new {area = "Admin"})" class="@(currentController == "admin" && currentAction == "index" ? "active" : "")">
+                        <i class="fa fa-fw fa-dashboard"></i> Dashboard
+                    </a>
+                </li>*@
+            <li>
+                <a href="@Url.Action("Index", "AdminCategory", new {area = "Admin"}, null)" class="@(currentController == "admincategory" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-folder-open-o"></i> Chuyên mục
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-phone-square"></i> Liên hệ
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#topic">
+                    <i class="fa fa-fw fa-newspaper-o"></i> Bài Viết <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="topic" class="collapse">
+                    <li>
+                        <a href="@Url.Action("Index", "AdminTopic", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "index" ? "active" : "")">
+                            Tất Cả Bài Viết
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "AdminTopic", new {area = "Admin", type = "1"}, null)" class="@(currentController == "commonController" && currentAction == "index" ? "active" : "")">
+                            Bài Viết Đang Hoạt Động
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("GetPendingTopics", "AdminTopic", new {area = "Admin", isPending = true}, null)" class="@(currentController == "commonController" && currentAction == "getPendingTopics" ? "active" : "")">
+                            Bài Viết Tạm Đóng
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            @*<li>
+                <a href="@Url.Action("GetPendingTopics", "AdminTopic", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "getPendingTopics" ? "active" : "")">
+                    <i class="fa fa-fw fa-newspaper-o"></i> Bài viết tạm đóng
+                </a>
+            </li>*@
+            <li>
+                <a href="@Url.Action("Index", "Banner", new {area = "Admin"}, null)" class="@(currentController == "bannerController" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-image"></i> Banner
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("QuestionList", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "questionList" ? "active" : "")">
+                    <i class="fa fa-fw fa-question-circle"></i> Câu hỏi
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageDepartment", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageDepartment" ? "active" : "")">
+                    <i class="fa fa-fw fa-th-large"></i> Khoa / Phòng
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageDoctor", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageDoctor" ? "active" : "")">
+                    <i class="fa fa-fw fa-user-md"></i> Bác Sĩ
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#recruitment">
+                    <i class="fa fa-fw fa-tags"></i> Tuyển Dụng <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="recruitment" class="collapse">
+                    <li>
+                        <a href="@Url.Action("ManageRecruitment", "Common", new {area = "Admin", isPending = false}, null)" class="@(currentController == "commonController" && currentAction == "manageRecruitment" ? "active" : "")">
+                            Tin Tuyển Dụng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCv", "Common", new {area = "Admin", isDelete = false}, null)" class="@(currentController == "commonController" && currentAction == "manageCv" ? "active" : "")">
+                            Hồ Sơ Ứng Tuyển
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="@Url.Action("ManageEducation", "Common", new {area = "Admin", isPending = false}, null)" class="@(currentController == "commonController" && currentAction == "manageEducation" ? "active" : "")">
+                    <i class="fa fa-fw fa-book"></i> Đào tạo
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("soytelist", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "questionList" ? "active" : "")">
+                    <i class="fa fa-fw fa-info-circle"></i> Thông tin từ sở y tế
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageHospitalFee", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageHospitalFee" ? "active" : "")">
+                    <i class="fa fa-fw fa-file-pdf-o"></i> Giá viện phí
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageMedicalPackage", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageMedicalPackage" ? "active" : "")">
+                    <i class="fa fa-fw fa-medkit"></i> Gói khám bệnh
+                </a>
+            </li>
+            @*<li>
+                    <a href="#" data-toggle="collapse" data-target="#tags">
+                        <i class="fa fa-fw fa-tags"></i> Tags <i class="fa fa-fw fa-caret-down"></i>
+                    </a>
+                    <ul id="tags" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Index", "AdminTag", new {area = "Admin"})" class="@(currentController == "admintag" && currentAction == "index" ? "active" : "")">
+                                Manage Tags
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("MoveTags", "AdminTag", new {area = "Admin"}, null)" class="@(currentController == "admintag" && currentAction == "movetags" ? "active" : "")">
+                                Change Tags On Topics
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>*@
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#permissions">
+                    <i class="fa fa-fw fa-check-square-o"></i> Phân Quyền Bài Viết <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="permissions" class="collapse">
+                    <li>
+                        <a href="@Url.Action("Index", "Permissions", new {area = "Admin"}, null)" class="@(currentController == "permissions" && currentAction == "index" ? "active" : "")">Quản Lý</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("PermissionTypes", "Permissions", new {area = "Admin"}, null)" class="@(currentController == "permissions" && currentAction == "permissiontypes" ? "active" : "")">Thêm/Xóa Phân Quyền</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#membership">
+                    <i class="fa fa-fw fa-users"></i> Phân Quyền Tài Khoản <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="membership" class="collapse">
+                    <li>
+                        <a href="@Url.Action("Manage", "Account", new {area = "Admin"}, null)" class="@(currentController == "account" && currentAction == "manage" ? "active" : "")">Quản Lý Tài Khoản</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ListAllRoles", "Account", new {area = "Admin"}, null)" class="@(currentController == "account" && currentAction == "listallroles" ? "active" : "")">Quản Lý Quyền</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("AddRole", "Account", new {area = "Admin"}, null)" class="@(currentController == "account" && currentAction == "addrole" ? "active" : "")">Thêm Quyền</a>
+                    </li>
+                    @*<li>
+                            <a href="@Url.Action("Index", "AdminSocial", new {area = "Admin"}, null)" class="@(currentController == "adminsocial" && currentAction == "index" ? "active" : "")">Social Logins</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Members", "ImportExport", new {area = "Admin"}, null)" class="@(currentController == "importexport" && currentAction == "members" ? "active" : "")">Import / Export</a>
+                        </li>*@
+                </ul>
+            </li>
+            @*<li>
+                    <a href="#" data-toggle="collapse" data-target="#spam">
+                        <i class="fa fa-fw fa-frown-o"></i> Spam Prevention <i class="fa fa-fw fa-caret-down"></i>
+                    </a>
+                    <ul id="spam" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Index", "BannedEmail", new {area = "Admin"})" class="@(currentController == "bannedemail" && currentAction == "index" ? "active" : "")">Ban Emails</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "BannedWord", new {area = "Admin"})" class="@(currentController == "bannedword" && currentAction == "index" ? "active" : "")">Banned &amp; Stop Words</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Akismet", "AdminSpam", new {area = "Admin"})" class="@(currentController == "adminspam" && currentAction == "akismet" ? "active" : "")">Akismet</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RegistrationQuestion", "AdminSpam", new {area = "Admin"})" class="@(currentController == "adminspam" && currentAction == "registrationquestion" ? "active" : "")">Registration Question</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("SpamReporting", "AdminSpam", new {area = "Admin"})" class="@(currentController == "adminspam" && currentAction == "spamreporting" ? "active" : "")">Spam Reporting</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#language">
+                        <i class="fa fa-fw fa-language"></i> Ngôn ngữ <i class="fa fa-fw fa-caret-down"></i>
+                    </a>
+                    <ul id="language" class="collapse">
+                        <li>
+                            <a href="@Url.Action("Create", "AdminLanguage", new {area = "Admin"})" class="@(currentController == "adminlanguage" && currentAction == "create" ? "active" : "")">Thêm mới</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "AdminLanguage", new {area = "Admin"})" class="@(currentController == "adminlanguage" && currentAction == "index" ? "active" : "")">Chỉnh sửa</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Languages", "ImportExport", new {area = "Admin"})" class="@(currentController == "importexport" && currentAction == "languages" ? "active" : "")">Import / Export</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#batch">
+                        <i class="fa fa-fw fa-bolt"></i> Batch Tools <i class="fa fa-fw fa-caret-down"></i>
+                    </a>
+                    <ul id="batch" class="collapse">
+                        <li>
+                            <a href="@Url.Action("BatchDeleteMembers", "Batch", new {area = "Admin"}, null)" class="@(currentController == "batch" && currentAction == "batchdeletemembers" ? "active" : "")">Batch Delete Members</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("BatchMoveTopics", "Batch", new {area = "Admin"}, null)" class="@(currentController == "batch" && currentAction == "batchmovetopics" ? "active" : "")">Batch Move Topics</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("BatchDeletePrivateMessages", "Batch", new {area = "Admin"}, null)" class="@(currentController == "batch" && currentAction == "batchdeleteprivatemessages" ? "active" : "")">Batch Delete Private Messages</a>
+                        </li>
+                    </ul>
+                </li>*@
+        </ul>
+    }
+    else if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains("VietBai")))
+    {
+        <ul class="nav navbar-nav side-nav" style="z-index: 10;">
+            <li>
+                <a href="@Url.Content("~/")"><i class="fa fa-fw fa-arrow-left"></i> Trang Chủ</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "AdminCategory", new {area = "Admin"}, null)" class="@(currentController == "admincategory" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-folder-open-o"></i> Chuyên Mục
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-phone-square"></i> Liên hệ
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("GetPendingTopics", "AdminTopic", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "getPendingTopics" ? "active" : "")">
+                    <i class="fa fa-fw fa-newspaper-o"></i> Bài viết tạm đóng
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Banner", new {area = "Admin"}, null)" class="@(currentController == "bannerController" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-image"></i> Banner
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("QuestionList", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "questionList" ? "active" : "")">
+                    <i class="fa fa-fw fa-question-circle"></i> Câu hỏi
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageDepartment", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageDepartment" ? "active" : "")">
+                    <i class="fa fa-fw fa-th-large"></i> Khoa / Phòng
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageDoctor", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageDoctor" ? "active" : "")">
+                    <i class="fa fa-fw fa-user-md"></i> Bác Sĩ
+                </a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#recruitment">
+                    <i class="fa fa-fw fa-tags"></i> Tuyển Dụng <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="recruitment" class="collapse">
+                    <li>
+                        <a href="@Url.Action("ManageRecruitment", "Common", new {area = "Admin", isPending = false}, null)" class="@(currentController == "commonController" && currentAction == "manageRecruitment" ? "active" : "")">
+                            Tin Tuyển Dụng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCv", "Common", new {area = "Admin", isDelete = false}, null)" class="@(currentController == "commonController" && currentAction == "manageCv" ? "active" : "")">
+                            Hồ Sơ Ứng Tuyển
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="@Url.Action("ManageEducation", "Common", new {area = "Admin", isPending = false}, null)" class="@(currentController == "commonController" && currentAction == "manageEducation" ? "active" : "")">
+                    <i class="fa fa-fw fa-book"></i> Đào tạo
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("soytelist", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "questionList" ? "active" : "")">
+                    <i class="fa fa-fw fa-info-circle"></i> Thông tin từ sở y tế
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageHospitalFee", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageHospitalFee" ? "active" : "")">
+                    <i class="fa fa-fw fa-file-pdf-o"></i> Giá viện phí
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("ManageMedicalPackage", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "manageMedicalPackage" ? "active" : "")">
+                    <i class="fa fa-fw fa-medkit"></i> Gói khám bệnh
+                </a>
+            </li>
+        </ul>
+    }
+    else if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains("TuyenDung")))
+    {
+        <ul class="nav navbar-nav side-nav" style="z-index: 10;">
+            <li>
+                <a href="@Url.Content("~/")"><i class="fa fa-fw fa-arrow-left"></i> Trang Chủ</a>
+            </li>
+            <li>
+                <a href="#" data-toggle="collapse" data-target="#recruitment">
+                    <i class="fa fa-fw fa-tags"></i> Tuyển Dụng <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="recruitment" class="collapse">
+                    <li>
+                        <a href="@Url.Action("ManageRecruitment", "Common", new {area = "Admin", isPending = false}, null)" class="@(currentController == "commonController" && currentAction == "manageRecruitment" ? "active" : "")">
+                            Tin Tuyển Dụng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManageCv", "Common", new {area = "Admin", isDelete = false}, null)" class="@(currentController == "commonController" && currentAction == "manageCv" ? "active" : "")">
+                            Hồ Sơ Ứng Tuyển
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav side-nav" style="z-index: 10;">
+            <li>
+                <a href="@Url.Content("~/")"><i class="fa fa-fw fa-arrow-left"></i> Trang Chủ</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "index" ? "active" : "")">
+                    <i class="fa fa-fw fa-phone-square"></i> Liên hệ
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("QuestionList", "Common", new {area = "Admin"}, null)" class="@(currentController == "commonController" && currentAction == "questionList" ? "active" : "")">
+                    <i class="fa fa-fw fa-question-circle"></i> Câu hỏi
+                </a>
+            </li>
+
+        </ul>
+    }
+</div>

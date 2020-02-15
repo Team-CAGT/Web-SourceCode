@@ -1,0 +1,107 @@
+﻿
+
+@model MVCForum.Website.ViewModels.RssViewModel
+@*<h2 class="des-title m-b-0"> Văn bản</h2>
+
+    <div class="appointment-form">
+        @foreach (var rss in Model)
+        {
+            <p class="title"><a href="@rss.Link">@rss.Title</a></p>
+        }
+
+
+
+
+    </div>*@
+<div data-mh="sameHeight-homepage">
+
+
+    <h2 class="des-title m-b-0">
+        THÔNG TIN TỪ SỞ Y TẾ TP.HCM
+    </h2>
+
+    <div class="rss-bg">
+
+        <h5 class="rss-title">
+            VĂN BẢN
+            <div class="xemthem inline">
+                <a href="" data-toggle="modal" data-target="#vanBanTuSo">Xem thêm <i class="fa fa-angle-right"></i></a>
+            </div>
+
+        </h5>
+
+        <ul class="rss-links">
+
+            @foreach (var rss in Model.Vanbans)
+            {
+                <li>
+                    <a href="@rss.Link"
+                       target="_blank">
+                       @rss.Title
+                        @if (rss.Check == true)
+                        {
+                        <span class="label label-danger" style="top: 3px; right: 3px;">Mới</span>
+                        }
+                    </a>
+
+                </li>
+                
+            }
+
+        </ul>
+
+        <h5 class="rss-title">
+            THÔNG BÁO
+            <div class="xemthem inline">
+                <a href="" data-toggle="modal" data-target="#vanBanTuSo">Xem thêm <i class="fa fa-angle-right"></i></a>
+            </div>
+
+        </h5>
+
+        <ul class="rss-links">
+            @foreach (var rss in Model.Thongbaos)
+            {
+                <li>
+                    <a href="@rss.Link"
+                       target="_blank">
+                        @rss.Title
+                        @if (rss.Check == true)
+                        {
+                            <span class="label label-danger" style="top: 3px; right: 3px;">Mới</span>
+                        }
+                    </a>
+
+                </li>
+
+            }
+
+        </ul>
+
+        <h5 class="rss-title">
+            THƯ MỜI
+            <div class="xemthem inline">
+                <a href="" data-toggle="modal" data-target="#vanBanTuSo">Xem thêm <i class="fa fa-angle-right"></i></a>
+            </div>
+        </h5>
+
+
+        <ul class="rss-links">
+            @foreach (var rss in Model.Thumois)
+            {
+                <li>
+                    <a href="@rss.Link"
+                       target="_blank">
+                        @rss.Title
+                        @if (rss.Check == true)
+                        {
+                            <span class="label label-danger" style="top: 3px; right: 3px;">Mới</span>
+                        }
+                    </a>
+
+                </li>
+
+            }
+        </ul>
+    </div>
+
+</div>

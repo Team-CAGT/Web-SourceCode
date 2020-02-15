@@ -1,0 +1,231 @@
+﻿@using MVCForum.Domain.DomainModel
+@model PagedList<MVCForum.Domain.DomainModel.Entities.ApplyCV>
+@{
+    ViewBag.Title = "Quản lý danh sách hồ sơ ứng tuyển";
+}
+@*@if (User.IsInRole("Admin"))
+    {
+        <div class="topadminsubnav">
+            <div class="btn-group" role="group">
+                <a href="@Url.Action("ManageCv")" role="button" class="btn-mvc-green">Danh sách hồ sơ</a>
+                <a href="@Url.Action("ManageCv", new {isDelete = true})" role="button" class="btn-mvc-green">Danh sách đã xóa</a>
+            </div>
+        </div>
+    }*@
+<div class="topadminsubnav">
+
+    <div class="btn-group" role="group">
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("ManageCv", new {isDelete = false})" role="button" class="btn-mvc-green">Danh sách hồ sơ</a>
+            <a href="@Url.Action("ManageCv", new {isDelete = true})" role="button" class="btn-mvc-green">Danh sách đã xóa</a>
+        }
+        <a href="@Url.Action("XuatExcelTuyenDung", new {recruitmentId = ViewBag.RecruitmentId, search = ViewBag.Search, recruitmentName = ViewBag.RecruitmentName})" role="button" class="btn-mvc-green">Xuất Excel</a>
+    </div>
+</div>
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("ManageCv", "Common", FormMethod.Get))
+        {
+           
+            <div class="input-group membersadminsearch">
+                <div class="row" style="align-items: center;display: flex;">
+                    <div class="col-md-3">
+                        <strong>Chọn đợt ứng tuyển: </strong>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="select-input form-control" id="liveSearch" name="RecruitmentId">
+                            @if (ViewBag.ListRecruitment != null)
+                            {
+                                foreach (var item in ViewBag.ListRecruitment)
+                                {
+                                    if (ViewBag.RecruitmentId.ToString() == item.Id.ToString())
+                                    {
+                                        <option value="@item.Id.ToString()" selected="selected">@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id.ToString()">@item.Name</option>
+                                    }
+
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input id="search" class="form-control" placeholder="Tên người nộp hồ sơ" value="@ViewBag.Search" name="Search"/>
+                    </div>
+                    
+                    @if (ViewBag.IsDelete == true)
+                    {
+                        <input checked="checked" name="isDelete" type="checkbox" value="true" hidden/>
+                    }
+                    else
+                    {
+                        <input name="isDelete" type="hidden" value="false" hidden/>
+                    }
+                    <div class="col-md-1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Tìm Kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered table-striped responsive">
+                <thead>
+                    <tr>
+                        <th>Tên người nộp hồ sơ</th>
+                        <th>Địa chỉ</th>
+                        <th>Email</th>
+                        <th>Ngày sinh</th>
+                        <th>Số điện thoại</th>
+                        <th>Trình độ chuyên môn</th>
+                        <th>Vị trí ứng tuyển</th>
+                        <th>Hồ sơ</th>
+                        <th>Hình ảnh chứng chỉ</th>
+                        @*<th>Tin tuyển dụng</th>*@
+                        <th>Ngày nộp hồ sơ</th>
+                        @if (User.IsInRole("Admin") && ViewBag.IsDelete == false)
+                        {
+                            <th>Xóa</th>
+                        }
+                        else if (User.IsInRole("Admin") && ViewBag.IsDelete == true)
+                        {
+                            <th>Người xóa</th>
+                        }
+                       
+                        <th>Phản hồi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@Html.DisplayFor(modelItem => item.FullName)</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td style="word-break: break-all">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @{
+                                    var convert = item.DateOfBirth.ToString("d");
+                                } 
+                                @Html.DisplayFor(modelItem => convert)
+                            </td>
+                            <td style="word-break: break-all">
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Qualification)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PositionName)
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.FileUrl))
+                                {
+                                    var i = 0;
+                                    foreach (var file in item.FileUrl.Split(';'))
+                                    {
+                                        i++;
+                                        <a href="@file" target="_blank">Xem hồ sơ thứ @i</a>
+                                        <br />
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.HinhAnhChungChi))
+                                {
+                                    var j = 0;
+                                    foreach (var img in item.HinhAnhChungChi.Split(';'))
+                                    {
+                                        j++;
+                                        <a href="@img" target="_blank">Xem hình @j</a>
+                                        <br />
+                                    }
+                                }
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Recruitment.Name)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreated)
+                            </td>
+                            @if (User.IsInRole("Admin") && ViewBag.IsDelete == false)
+                            {
+                                <td>
+                                    <a href="@Url.Action("DeleteCv", new { item.Id})" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-trash confirmDelete" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            }
+                            else if (User.IsInRole("Admin") && ViewBag.IsDelete == true)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.UserDelete)</td>
+                            }
+
+
+                            @if (!string.IsNullOrEmpty(item.UserReply))
+                            {
+                                <td>
+                                    <a href="@Url.Action("XemCv", new { item.Id })" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="@Url.Action("EditCv", new { item.Id })" class="btn-mvc">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            }
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            if (Model.TotalPages > 1)
+            {
+                @Html.Pager(Convert.ToInt32(Model.PageIndex), 10, Model.TotalCount, new { recruitmentId = ViewBag.RecruitmentId, search = ViewBag.Search, isDelete = ViewBag.IsDelete }, "ManageCv", "Common")
+            }
+
+        }
+
+    </div>
+</div>
+<script>
+        var elems = document.getElementsByClassName('confirmDelete');
+        var confirmIt = function (e) {
+            if (!confirm('Bạn có chắc chắn ?')) e.preventDefault();
+        };
+        for (var i = 0, l = elems.length; i < l; i++) {
+            elems[i].addEventListener('click', confirmIt, false);
+        };
+
+        $('#liveSearch').on('change',
+            function () {
+                window.location.href = '/admin/common/managecv/?RecruitmentId=' +
+                    $('#liveSearch').val() +
+                    '&Search=' +
+                    $('input[name="Search"]').val() +
+                    '&isDelete=' +
+                    $('input[name="isDelete"]').is(':checked') +
+                    '&PageIndex=1';
+            });
+</script>

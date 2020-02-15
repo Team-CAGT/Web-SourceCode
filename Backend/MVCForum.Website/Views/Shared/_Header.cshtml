@@ -1,0 +1,198 @@
+﻿<header class="page-header">
+    <!-- Header top -->
+    <div class="header__top">
+        <div class="container">
+            <div class="header__top-container">
+                <div class="header__top-group">
+                    <div class="header__top-item">
+                        <div class="header__top-icon">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </div>
+                        <a href="tel:028 3722 3556">
+                            Hotline: (028) 3722 3556</a>
+                    </div>
+                    <div class="header__top-item">
+                        <div class="header__top-icon">
+                            <i class="fa fa-address-book" aria-hidden="true"></i>
+                        </div>
+                        <a href="#">
+                            Đặt lịch khám bệnh theo yêu cầu  qua số: 028.1080
+                        </a>
+                    </div>
+         
+                </div>
+                <div class="header__top-user top--access d-sm-block">
+                    @if (Html.CurrentMember() == null)
+                    {
+                        <a href="" data-toggle="modal" data-target="#loginSiteModal">
+                            <i class="fa fa-sign-in d-md-inline" aria-hidden="true"></i>
+                            Đăng nhập
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" class="header__top-dropdown">
+                            <i class="fa fa-user-circle-o d-md-inline" aria-hidden="true"></i>
+                            Xin chào, @Html.CurrentMember().UserName
+                        </a>
+                        <div class="header__top-submenu">
+                            <a href="@Url.Action("changepassword", "Members")" class="header__top-submenu-item">Đổi mật khẩu</a>
+                            @if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName) || x.RoleName.Contains("VietBai")))
+                            {
+                                <a href="@Url.Action("Index", "Admin", new { area = "Admin" })" class="header__top-submenu-item">Trang quản trị</a>
+                                <a href="@Url.Action("Create","Topic")" class="header__top-submenu-item">Viết bài</a>
+                            }
+                            @if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains("TuyenDung") || x.RoleName.Contains("HoiDap")))
+                            {
+                                <a href="@Url.Action("Index", "Admin", new { area = "Admin" })" class="header__top-submenu-item">Trang quản trị</a>
+                            }
+                            <a href="@Url.Action("Logoff","Members")" class="header__top-submenu-item">Đăng xuất</a>
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Header bottom -->
+    <div class="header__bottom">
+        <div class="header__bottom-container">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg header__bottom-menu">
+                    <a class="navbar-brand header__bottom-brand" href="@Url.Action("Trangchu", "Home")">
+                        <img class="img-fluid" src="~/Content/assets/img/logo.png" alt="">
+                    </a>
+                    <button class="navbar-toggler header__bottom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <!-- <span class="navbar-toggler-icon"></span> -->
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item header__bottom-item active">
+                                <a class="nav-link header__bottom-link header__bottom-link--home active" href="@Url.Action("Trangchu", "Home")">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item header__bottom-item">
+                                <a class="nav-link header__bottom-link" href="@Url.Action("About","Home")">Giới thiệu</a>
+                            </li>
+                            <li class="nav-item header__bottom-item  dropdown">
+                                <a class="nav-link header__bottom-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Khám chữa bệnh
+                                </a>
+                                <div class="dropdown-menu header__bottom-menu header__bottom-menu--sub" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Department","Home", new { slug = "noi-khoa" })">Nội khoa</a>
+                                    <a class="dropdown-item" href="@Url.Action("Department","Home", new { slug = "ngoai-khoa" })">Ngoại khoa</a>
+                                    <a class="dropdown-item" href="@Url.Action("Department","Home", new { slug = "can-lam-sang" })">Cận lâm sàng</a>
+                                </div>
+                            </li>
+                            <li class="nav-item header__bottom-item">
+                                <a class="nav-link header__bottom-link" href="@Url.Action("ServiceDetail","Home")">Dịch vụ</a>
+                            </li>
+                            <li class="nav-item header__bottom-item  dropdown">
+                                <a class="nav-link header__bottom-toggle dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <!-- Thông tin sức khỏe -->
+                                    Tin tức
+                                </a>
+                                <div class="dropdown-menu header__bottom-menu header__bottom-menu--sub" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("News","Home")">Y học - Sự kiện</a>
+                                    <a class="dropdown-item" style="width: 150px" href="@Url.Action("CauLacBoBenhNhan","Home")">Câu lạc bộ bệnh nhân</a>
+                                    <a class="dropdown-item" href="@Url.Action("Huongdan","Home")">Hướng dẫn</a>
+                                    <a class="dropdown-item" href="@Url.Action("GiaVienphi","Home")">Giá viện phí</a>
+                                </div>
+                            </li>
+                            <li class="nav-item header__bottom-item  dropdown">
+                                <a class="nav-link header__bottom-toggle dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tuyển dụng - Đào tạo
+                                </a>
+                                <div class="dropdown-menu header__bottom-menu header__bottom-menu--sub" aria-labelledby="navbarDropdown">
+                                    @*<a class="dropdown-item" href="@Url.Action("Tuyendung","Home")">Tuyển dụng</a>*@
+                                    <div class="header__bottom-item--sub dropdown">
+                                        <a class="dropdown-item header__bottom-toggle dropdown-toggle-2nd" href="#" id="navbarDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Tuyển dụng
+                                        </a>
+                                        <div class="dropdown-menu--sub header__bottom-menu header__bottom-menu--sub header__bottom-menu--sub-2nd" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="@Url.Action("Tuyendung","Home")">Thông báo tuyển dụng</a>
+                                            <a class="dropdown-item" href="@Url.Action("QuyTrinhTuyenDung", "Home")">Quy trình tuyển dụng</a>
+
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="@Url.Action("Daotao","Home")">Đào tạo</a>
+                                </div>
+                            </li>
+                            <li class="nav-item header__bottom-item  dropdown">
+                                <a class="nav-link header__bottom-toggle dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Liên hệ - Hỏi đáp
+                                </a>
+                                <div class="dropdown-menu header__bottom-menu header__bottom-menu--sub" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Lienhe","Questions")">Liên hệ</a>
+                                    <a class="dropdown-item" href="@Url.Action("Hoidap","Questions")">Hỏi đáp</a>
+                                </div>
+                            </li>
+                            @*<li class="nav-item header__bottom-item">
+                                <a class="nav-link header__bottom-link" href="@Url.Action("Lienhe","Questions")">Liên hệ</a>
+                            </li>*@
+                            @if (Html.CurrentMember() == null)
+                            {
+                                <li class="nav-item header__bottom-item d-sm-none d-block">
+                                    <a class="nav-link header__bottom-link" href="" data-toggle="modal" data-target="#loginSiteModal">
+                                        Đăng nhập
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item header__bottom-item d-sm-none d-block dropdown">
+                                    <a class="nav-link header__bottom-toggle dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Xin chào, @Html.CurrentMember().UserName
+                                    </a>
+                                    <div class="dropdown-menu header__bottom-menu header__bottom-menu--sub" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="@Url.Action("changepassword", "Members")">Đổi mật khẩu</a>
+                                        @if (Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+                                        {
+                                            <a class="dropdown-item" href="@Url.Action("Index", "Admin", new { area = "Admin" })">Trang quản trị</a>
+                                        }
+                                        <a class="dropdown-item" href="@Url.Action("Create","Topic")">Viết bài</a>
+                                        <a class="dropdown-item" href="@Url.Action("Logoff","Members")">Đăng xuất</a>
+                                    </div>
+                                </li>
+                            }
+
+                            <li class="nav-item header__bottom-item">
+                                <a class="nav-link header__bottom-search" href="#">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </a>
+                                <div class="header__bottom-form">
+                                    <form action="@Url.Action("Index","Search")">
+                                        <div class="input-group">
+                                            <input type="text" name="tukhoa" class="form-control" placeholder="Tìm kiếm...">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn__main">
+                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="header__indicator">
+        <div class="header__indicator-line"></div>
+    </div>
+</header>
+

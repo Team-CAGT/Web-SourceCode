@@ -1,0 +1,33 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.MedicalPackageViewModel
+@{
+    ViewBag.Title = "Sửa Thông Tin Gói Khám Bệnh";
+}
+
+@Html.Partial("_MedicalPackageNavButtons")
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("UpdateMedicalPackage", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(false)
+            @Html.HiddenFor(model => model.Id)
+            @Html.AntiForgeryToken()
+
+            @Html.Partial("_MedicalPackageFields", Model)
+           
+                 <div class="submit-holder">
+                     <input type="submit" class="btn-mvc-green btn-mvc-large" value="Update" />
+                     @if (User.IsInRole("Admin"))
+                     {
+                         <a href="@Url.Action("DeleteMedicalPackageConfirmation", new {id = Model.Id})" class="btn-mvc btn-mvc-large" role="button">Delete</a>
+                     }
+                 </div>
+           
+            
+        }
+
+    </div>
+</div>

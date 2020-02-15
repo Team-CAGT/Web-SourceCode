@@ -1,0 +1,230 @@
+﻿@model List<MVCForum.Domain.DomainModel.Department>
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    int i = 1;
+}
+<section class="page-listing pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Phòng chức năng</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Đường dẫn 1</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Đường dẫn 2</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pr-0">
+                        <div class="tab__nav nav flex-lg-column nav-pills float-panel" data-top="0" data-scroll="200" id="intro-tab"
+                             role="tablist" aria-orientation="vertical">
+                            @foreach (var item in Model.OrderBy(x=>x.OrderNumber))
+                            {
+                                var id = Model.IndexOf(item) + 1;
+                                <a href="#@i" class="tab__nav-item nav-link @(id == 0 ? "active" : "")">
+                                    <i class="fa fa-circle" aria-hidden="true"></i>@item.Name
+                                </a>
+                                i++;
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab__content" id="intro-tabContent">
+                            <div class="tab__content-item">
+                                @foreach (var item in Model.OrderBy(x => x.OrderNumber))
+                                {
+                                    var id = Model.IndexOf(item) + 1;
+                                    if (id % 2 != 0)
+                                    {
+                                        <div id="@item.OrderNumber" class="scrollLeft">
+                                            <div class="tab__content-title item__title">
+                                                <p>@item.Name</p>
+                                            </div>
+                                            <div class="tab__content-detail">
+                                                <div class="row">
+                                                    <div class="col-sm-5 my-sm-0 my-3">
+                                                        <img src="~/Content/uploads/Department/@item.Id/@item.ImageUrl" alt="" class="img-fluid">
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        @Html.Raw(item.Description)
+                                                    </div>
+                                                    @if (item.ListDoctor.Any())
+                                                    {
+                                                        <h5 class="col-12 page-listing__title mt-4">Nhân sự</h5>
+                                                        <div class="col-sm-5 my-sm-0 my-3 order-sm-1 order-0">
+                                                            @if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng khoa")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng Khoa")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó Trưởng phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó Trưởng phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Tổ trưởng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Tổ trưởng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                        </div>
+                                                        <div class="col-sm-7 order-sm-0 order-1">
+                                                            <ul class="page-listing__list">
+                                                                @foreach (var doctor in item.ListDoctor.Where(x => !x.PositionName.Equals("Bác sĩ điều trị")).OrderByDescending(x => x.PositionName))
+                                                                {
+                                                                    var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                                                    <li class="page-listing__list-item">
+                                                                        <div class="d-flex justify-content-start align-items-center">
+                                                                            <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                            <p class="text__stress">@doctor.PositionName:</p>
+                                                                            <a href="" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new { Department = doctor.Specicality,PositionName = doctor.PositionName,  Name = string.Format("{0}",doctor.Name),BoardCertifications = doctor.BoardCertifications,DescriptionHistory = doctor.DescriptionHistory,Img=img})"> @doctor.Name</a>
+                                                                        </div>
+                                                                    </li>
+                                                                }
+                                                                @if (item.ListDoctor.Where(x => x.PositionName.Equals("Bác sĩ điều trị")).Count() > 0)
+                                                                {
+                                                                    <li class="page-listing__list-item">
+                                                                        <div class="d-flex justify-content-start align-items-center">
+                                                                            <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                            <p class="text__stress">Bác sĩ điều trị:</p>
+                                                                        </div>
+                                                                        <ul class="page-listing__list page-listing__list--sub">
+                                                                            @foreach (var doctor in item.ListDoctor.Where(x => x.PositionName.Equals("Bác sĩ điều trị")))
+                                                                            {
+                                                                                var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                                        <a href="" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new { Department = doctor.Specicality,PositionName = doctor.PositionName,  Name = string.Format("{0}",doctor.Name),BoardCertifications = doctor.BoardCertifications,DescriptionHistory = doctor.DescriptionHistory,Img=img})">@doctor.Name</a>
+                                                                                    </div>
+                                                                                </li>
+                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    if (id % 2 == 0)
+                                    {
+                                        <div id="@item.OrderNumber" class="scrollRight">
+                                            <div class="tab__content-title item__title">
+                                                <p>@item.Name</p>
+                                            </div>
+                                            <div class="tab__content-detail">
+                                                <div class="row">
+                                                    <div class="col-sm-5 my-sm-0 my-3 order-sm-1 order-0">
+                                                        <img src="~/Content/uploads/Department/@item.Id/@item.ImageUrl" alt="" class="img-fluid">
+                                                    </div>
+                                                    <div class="col-sm-7 order-sm-0 order-1">
+                                                        @Html.Raw(item.Description)
+                                                    </div>
+                                                    @if (item.ListDoctor.Any())
+                                                    {
+                                                        <h5 class="col-12 page-listing__title mt-4 order-1">Nhân sự</h5>
+                                                        <div class="col-sm-5 my-sm-0 my-3 order-1">
+                                                            @if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng khoa")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng Khoa")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó Trưởng phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó Trưởng phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Trưởng phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó phòng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Phó phòng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                            else if (item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Tổ trưởng")) != null)
+                                                            {
+                                                                var imgManage = item.ListDoctor.FirstOrDefault(x => x.PositionName.Equals("Tổ trưởng")).Avatar;
+                                                                <img src="@(!string.IsNullOrEmpty(imgManage) ? "/Content/uploads/ImageDoctors/" + imgManage : "")" alt="" class="img-fluid d-block m-auto">
+                                                            }
+                                                        </div>
+                                                        <div class="col-sm-7 order-2">
+                                                            <ul class="page-listing__list">
+                                                                @foreach (var doctor in item.ListDoctor.Where(x => !x.PositionName.Equals("Bác sĩ điều trị")).OrderByDescending(x => x.PositionName))
+                                                                {
+                                                                    var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                                                    <li class="page-listing__list-item">
+                                                                        <div class="d-flex justify-content-start align-items-center">
+                                                                            <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                            <p class="text__stress">@doctor.PositionName:</p>
+                                                                            <a href="" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new { Department = doctor.Specicality,PositionName = doctor.PositionName,  Name = string.Format("{0}",doctor.Name),BoardCertifications = doctor.BoardCertifications,DescriptionHistory = doctor.DescriptionHistory,Img=img})"> @doctor.Name</a>
+                                                                        </div>
+                                                                    </li>
+                                                                }
+                                                                @if (item.ListDoctor.Where(x => x.PositionName.Equals("Bác sĩ điều trị")).Count() > 0)
+                                                                {
+                                                                    <li class="page-listing__list-item">
+                                                                        <div class="d-flex justify-content-start align-items-center">
+                                                                            <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                            <p class="text__stress">Bác sĩ điều trị:</p>
+                                                                        </div>
+                                                                        <ul class="page-listing__list page-listing__list--sub">
+                                                                            @foreach (var doctor in item.ListDoctor.Where(x => x.PositionName.Equals("Bác sĩ điều trị")))
+                                                                            {
+                                                                                var img = !string.IsNullOrEmpty(doctor.Avatar) ? "/Content/uploads/ImageDoctors/" + doctor.Avatar : "";
+                                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                                        <a href="" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new { Department = doctor.Specicality,PositionName = doctor.PositionName,  Name = string.Format("{0}",doctor.Name),BoardCertifications = doctor.BoardCertifications,DescriptionHistory = doctor.DescriptionHistory,Img=img})">@doctor.Name</a>
+                                                                                    </div>
+                                                                                </li>
+                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

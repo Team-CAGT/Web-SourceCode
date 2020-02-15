@@ -1,0 +1,214 @@
+﻿@model MVCForum.Website.ViewModels.DoctorViewModel
+@using MVCForum.Domain.DomainModel
+@{
+    ViewBag.Title = "Thay đổi hồ sơ Bác sĩ";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+<link href="~/Content/assets/css/loading.css" rel="stylesheet" />
+
+<div class="main-content">
+
+
+
+
+
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-left">Sửa thông tin bác sĩ</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="box-layout">
+        <ol class="breadcrumb">
+            <li><a href="/Home/Trangchu">Trang chủ</a></li>
+            <li><a href="#">Nhập thông tin bác sĩ</a></li>
+
+        </ol>
+        <section class="team-section go_pt ao_pb">
+            <div class="container">
+                <div class="row">
+                    <form id="UpdateDoctor" enctype="multipart/form-data" data-abide novalidate>
+                        <div class="col-xs-12 col-sm-12 col-md-8 result">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="thumb">
+                                        <div class="form-group">
+                                            <input id="f" type="file" name="Files" onchange="file_change(this)" style="display: none" />
+                                            <img style="display: none" />
+                                            @if (!string.IsNullOrEmpty(Model.Avatar))
+                                            {
+                                                <img id="img" src="@AppHelpers.DoctorImage(Model.Avatar,"",800,1200)" style="display:block; width: 100%; height: 100%;">
+                                            }
+                                            else
+                                            {
+                                                <img id="img" src="/Content/assets/images/avt.jpg" style="display:block; width: 100%; height: 100%;">
+                                            }
+
+                                            <input class="bttn" type="button" value="Chọn ảnh" onclick="document.getElementById('f').click()" />
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="content">
+
+                                        @Html.HiddenFor(x => x.Id)
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <h3 class="name">Tên bác sĩ</h3>
+                                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Tên bác sĩ" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            @*@Html.Partial("FrontEnd/_Phongban")*@
+                                            <select class="select-input form-control" name="DepartmentManage_Id" id="departmentManage">
+                                                <option value="" disabled selected="selected">Chọn Khoa/ Phòng</option>
+                                                @foreach (var item in ViewBag.ListDepartment)
+                                                {
+                                                    if (item.ParentDepartment == null)
+                                                    {
+                                                        if (item.Id == Model.DepartmentManage)
+                                                        {
+                                                            <option value="@item.Id" selected>@item.Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <h5 class="occupation">Chuyên khoa</h5>
+                                            <select class="select-input form-control" name="DepartmentId" id="deparment">
+                                                <option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>
+                                                @foreach (var item in ViewBag.ListDepartment)
+                                                {
+                                                    if (item.ParentDepartment != null)
+                                                    {
+                                                        if (item.Id == Model.DepartmentId)
+                                                        {
+                                                            <option value="@item.Id" selected="selected">@item.Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+
+                                            <h5 class="occupation">Chuyên khoa</h5>
+                                            @Html.TextBoxFor(x => x.Specicality, new { @class = "form-control", placeholder = "Chuyên khoa" })
+                                        </div>
+                                        <div class="form-group">
+                                            <h5 class="occupation">Học vị</h5>
+                                            @Html.TextBoxFor(x => x.BoardCertifications, new { @class = "form-control", placeholder = "Học hàm/ học vị" })
+                                        </div>
+                                        <div class="form-group">
+                                            <h5 class="occupation">Chức vụ</h5>
+                                            @Html.TextBoxFor(x => x.PositionName, new { @class = "form-control", placeholder = "Chức vụ" })
+                                        </div>
+                                        <div class="form-group">
+                                            <h5 class="occupation">Quá trình công tác</h5>
+                                            @Html.TextAreaFor(x => x.DescriptionHistory, new { @class = "form-control", @rows = 7 })
+                                            @*<textarea class="form-control" rows="7"></textarea>*@
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.CheckBoxFor(x => x.IsDelete) Xóa
+                                        </div>
+                                        <button type="button" onclick="AjaxSubmitEditDoctorForm()" class="btn btn-primary" id="butEditDoctor">
+                                            Lưu &nbsp;
+                                            <i class="fa fa-bookmark" style="font-size:18px"></i>
+                                        </button>
+                                        <div class="loading-spinner hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        @Html.Action("SearchDoctorForm", "Doctor")
+                        @Html.Action("Images", "Topic")
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+    <!--Main Content end-->
+</div>
+<script src="~/Content/assets/plugins/jquery-2.1.4.min.js"></script>
+<script>
+    function AjaxSubmitEditDoctorForm() {
+        $("#butEditDoctor").attr("disabled", "disabled");
+        $(".loading-spinner").removeClass("hidden");
+        var formData = new FormData($('#UpdateDoctor')[0]);
+        console.log('formData', formData);
+        $.ajax({
+            url: '/Doctor/EditDoctor',
+            type: 'POST',
+            data: formData, // serializes the form's elements.
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                if (response != null) {
+                    if (!response.Result) {
+                        //$("#Register-dangky").attr("disabled", "");
+                        alert(response.Message);
+                        $('#butEditDoctor').removeAttr("disabled");
+                        //swal("Sửa Profile Bác sĩ", response.Message, "warning");
+                        $(".loading-spinner").addClass("hidden");
+                    } else {
+                        alert(response.Message);
+                        //swal("Sửa Profile Bác sĩ ", response.Message, "success");
+                        $(".loading-spinner").addClass("hidden");
+                        setTimeout(function () {
+
+
+                            window.location.href = document.location.origin;
+
+                            //End
+                        }, 5000);
+
+                    }
+                }
+            },
+            fail: function () {
+
+            }
+        });
+    };
+var department = @Html.Raw(MVCForum.Utilities.JsonHelper.SerializeObject((ViewBag.ListDepartment as List<Department>).Where(x => x.ParentDepartment != null).Select(x => new { Id = x.Id, Name = x.Name, ParentDepartment = x.ParentDepartment.Id }).ToList()));
+    $("#departmentManage").on("change", function () {
+        var id = this.value;
+        $("#deparment").html('<option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>');
+        $.each(department, function (key, value) {
+            if (id == value.ParentDepartment) {
+                $('#deparment')
+                    .append($("<option></option>")
+                        .attr("value", value.Id)
+                        .text(value.Name));
+            }
+        });
+    });
+</script>

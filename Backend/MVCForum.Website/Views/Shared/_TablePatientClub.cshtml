@@ -1,0 +1,50 @@
+﻿@using MVCForum.Website.ViewModels
+@model ActiveTopicsViewModel
+@{
+    Layout = null;
+}
+
+<div class="table__list">
+    <div class="table__header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Hoạt động mới nhất</h3>
+            </div>
+            <div class="col-md-2 d-md-block d-none">
+                <p>Lượt xem</p>
+            </div>
+            <div class="col-md-2 d-md-block d-none">
+                <p>Ngày đăng</p>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Topics.Any())
+    {
+        foreach (var item in Model.Topics.OrderByDescending(x => x.Topic.CreateDate))
+        {
+            <div class="table__item">
+                <div class="row">
+                    <div class="col-md-8">
+                        <a href="@Url.Action("Article","Topic", new { slug = item.Topic.Slug})">@item.Topic.Name</a>
+                    </div>
+                    <div class="col-md-2">
+                        <p><span class="d-md-none d-block">Luợt xem: </span> @item.Topic.Views</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><span class="d-md-none d-block">Ngày đăng: </span> @DatesUI.GetPrettyDate(item.Topic.CreateDate.ToString())</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center justify-content-center">Chưa có hoạt động nào</p>
+            </div>
+        </div>
+    }
+</div>
+

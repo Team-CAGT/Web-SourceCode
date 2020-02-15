@@ -1,0 +1,49 @@
+﻿@using MVCForum.Domain.DomainModel
+@model MVCForum.Website.Areas.Admin.ViewModels.ListDepartmentsViewModel
+@{
+    var mainDepartments = Model.Departments.Where(x => x.ParentDepartment == null).ToList();
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>All Departments</h5>
+    </div>
+    <div class="panel-content">
+        <div id="container">
+            <ul>
+                @foreach (var de in mainDepartments)
+                {
+                    <li class="maincategory">
+                        <a href="@Url.Action("UpdateDepartment", new { id = de.Id })">
+                            @Html.Raw(de.Name)
+                        </a>
+                        @GetSubDepartments(de)
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@helper GetSubDepartments(Department de)
+{
+    var subDepartments = Model.Departments.Where(x => x.ParentDepartment != null && x.ParentDepartment.Id == de.Id).ToList();
+    if (subDepartments.Any())
+    {
+        <ul>
+            @foreach (var subDepartment in subDepartments)
+            {
+                <li>
+                    <a href="@Url.Action("UpdateDepartment", new { id = subDepartment.Id })">
+                        @Html.Raw(subDepartment.Name)
+                    </a>
+                    @GetSubDepartments(subDepartment)
+                </li>
+            }
+        </ul>
+    }
+}
+

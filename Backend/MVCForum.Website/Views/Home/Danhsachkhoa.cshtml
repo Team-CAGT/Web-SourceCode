@@ -1,0 +1,522 @@
+﻿
+@{
+    ViewBag.Title = "Danhsachkhoa";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+
+<!--Main Content start-->
+<div class="main-content">
+
+
+
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-left">Khoa Lâm sàng</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="box-layout">
+        <ol class="breadcrumb">
+            <li><a href="#">Trang chủ</a></li>
+            <li class="active">Danh sách khoa</li>
+        </ol>
+        <div class="container">
+            <!-- <div class="row">
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Khoa nội</h2>
+              </div>
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Khoa ngoại</h2>
+              </div>
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Khối sản</h2>
+              </div>
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Khối nhi</h2>
+              </div>
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Chuyên khoa</h2>
+              </div>
+              <div class="col-md-12">
+                <h2 class="des-title m-b-0">Khoa tiếp nhận</h2>
+              </div>
+            </div> -->
+            <div class="hospitalTypes">
+                <ul class="hospitalTypes__list">
+                    <!-- <li class="filter hospitalTypes__list-item" data-filter="all">
+                      Tất cả
+                    </li> -->
+                    <li class="filter hospitalTypes__list-item" data-filter=".type1">Khối nội</li>
+                    <li class="filter hospitalTypes__list-item" data-filter=".type2">Khối ngoại</li>
+                    <li class="filter hospitalTypes__list-item" data-filter=".type3">Khối sản</li>
+                    <li class="filter hospitalTypes__list-item" data-filter=".type4">Khối nhi</li>
+                    <li class="filter hospitalTypes__list-item" data-filter=".type5">Chuyên khoa</li>
+                    <li class="filter hospitalTypes__list-item" data-filter=".type6">Khoa tiếp nhận</li>
+                </ul>
+                <div id="hospitalTypes-Content" class="hospitalTypes__content row">
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-tim-mach-can-thiep-dsa/" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\tim.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-lifeline-heart icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Tim Mạch Can Thiệp DSA</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-noi-tieu-hoa" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\noitiettieuhoa.jpg" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <svg width="50" height="50" class="icon_svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-stomach"></use>
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nội Tiêu Hóa</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-hoi-suc-tich-cuc-chong-đoc" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\hoisuctichcuc.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medical-laboratory icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Hồi Sức Tích Cực – Chống Độc</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-lao-hoc" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\laohoc.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <svg width="50" height="50" class="icon_svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-laohoc"></use>
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Lão Học</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-noi-ho-hap-co-xuong-khop" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\hohapcoxuongkhop.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-organs-lungs icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nội Hô Hấp - Cơ Xương Khớp</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-noi-tiet-than-nieu" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\noitietnieu-than.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-plus-kidneys icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nội Tiết - Thận</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-noi-than-kinh-huyet-hoc" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\thankinh-hh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-male icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nội Thần Kinh - Huyết Học</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type1 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-noi-tim-mach" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\noitimmach.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-heart icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nội Tim Mạch</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-phau-thuat-tim-1" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\phauthuattim.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-speech-hearbeat icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Phẩu Thuật Tim</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-phau-thuat-gay-me-hoi-suc" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\gaymehoisuc.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-syringe icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Phẫu thuật – Gây mê hồi sức</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/ngoai-chan-thuong-chinh-hinh" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\chinhhing.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-stick-man icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Chấn Thương – Chỉnh Hình</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-tong-hop" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\tonghop.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medicine-folder icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Tổng Hợp</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-ngoai-tieu-hoa" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\surgery-general.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medical-laboratory icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Ngoại Tiêu Hóa</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-ngoai-than-tiet-nieu" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\ngoaitietnieu-than.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <svg width="50" height="50" class="icon_svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-ngoaitietlieu"></use>
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Ngoại Thận – Tiết Niệu</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-ngoai-long-nguc-mach-mau" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\longngucmachmau.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medical-chemicals icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Ngoại Lồng Ngực – Mạch Máu</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-ngoai-than-kinh" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\ngoaithankinh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medical-laboratory icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Ngoại Thần Kinh</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-san-benh" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\sanphu.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-person icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Sản Bệnh</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-san-phu-khoa" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\sanbenh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <svg width="50" height="50" class="icon_svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-phukhoa"></use>
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Phụ Khoa </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-san-thuong" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\santhuong.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <svg width="50" height="50" class="icon_svg">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-santhuong"></use>
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Sản Thường</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-sanh-1" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\sanh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-person icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Sanh</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-sanh-1" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\khamsan.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-hospital-doctor icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Tổ Khám Sản</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type4 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-benh-ly-so-sinh" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\benhlysosinh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-baby icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Bệnh Lý Sơ Sinh</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type4 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-nhi" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\nhi.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-baby icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Nhi</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type5 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-tai-mui-hong" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\taimuihong.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-ear icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Tai Mũi Họng</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type5 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-rang-ham-mat" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\ranghammat.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-dentist-24-hours icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Răng Hàm Mặt</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type5 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-mat" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\mat.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-medical-calendar-eye icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Mắt</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type6 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-cap-cuu" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\capcuu.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-transport-van icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Cấp Cứu</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mix type6 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="service-post service-post--page">
+                            <a href="/article/khoa-kham-2" class="absolute-all"></a>
+                            <div class="thumb">
+                                <img src="\Content\assets\images\department\khambenh.png" alt="">
+                            </div>
+                            <div class="service-post__info">
+                                <div class="icon-box">
+                                    <i class="icon-hospital-doctor icon"></i>
+                                </div>
+                                <div class="content">
+                                    <h5 class="service-post__name">Khoa Khám Bệnh</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>

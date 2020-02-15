@@ -1,0 +1,195 @@
+﻿@model MVCForum.Website.ViewModels.ContactViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+
+}
+
+@section ScriptsHeader{
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpbZLUYjVKhRg6pYRpFjQTY-5Ek504EbM&callback=initMap"></script>
+}
+
+
+<section class="tutorial pt-0 pb-3">
+    <div class="container-fluid contact__info">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Thông Tin Liên Hệ</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container contact__info mt-4">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item  breadcrumb-custom-item"><a href="#">Liên hệ - Hỏi đáp</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Liên hệ</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="container-fluid p-0 contact__info">
+                <div class="contact__items">
+                    <div class="container">
+                        <div class="row scrollLeft">
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="contact__item">
+                                    <div class="contact__item-icon">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="contact__item-text">
+                                        <h4>Điện Thoại</h4>
+                                        <p>(028) 3722 3556</p>
+                                        <p>(Đường dây nóng) 096 614 1010</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="contact__item">
+                                    <div class="contact__item-icon">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="contact__item-text">
+                                        <h4>Địa Chỉ</h4>
+                                        <p>64 Lê Văn Chí, Khu phố 1, P. Linh Trung, Quận Thủ Đức, TP.HCM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="contact__item">
+                                    <div class="contact__item-icon">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="contact__item-text">
+                                        <h4>Email</h4>
+                                        <p>bv.dkkvtd@tphcm.gov.vn</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="contact__item">
+                                    <div class="contact__item-icon">
+                                        <i class="fa fa-fax" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="contact__item-text">
+                                        <h4>Fax</h4>
+                                        <p>(028) 3722 2522</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact__form mt-5">
+                    <div class="container">
+                        <div class="row">
+                            @*<div class="col-lg-6 col-md-12 scrollLeft">
+                                    <div class="contact__item-title">
+                                        <p>Thông tin liên hệ</p>
+                                    </div>
+                                    <form id="contactForm" enctype="multipart/form-data" data-abide novalidate>
+                                        @Html.AntiForgeryToken()
+                                        <div class="contact__form-left">
+                                            <div class="qa-creation__content">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(x => x.FullName, new { @class = "form-control input__custom", placeholder = "Họ & tên" })
+                                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input__custom", type = "number", placeholder = "Số điện thoại" })
+                                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control input__custom", type="email" ,placeholder = "Email" })
+                                                    @Html.TextAreaFor(x => x.Message, new { @class = "form-control input__custom mb-3", @rows = "5", placeholder = "Nội dung liên hệ" })
+                                                    <button id="btnSendMessage" onclick="AjaxSubmitContactForm()" type="button" class="btn btn__main pull-right">Gửi</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>*@
+                            <div class="col-lg-4 col-md-12 scrollLeft">
+                                <div class="contact__item-title">
+                                    <p>Liên hệ</p>
+                                </div>
+                                <div class="contact__form-left">
+                                    <!-- <div class="qa-creation__content">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                               placeholder="Họ và tên">
+                                                        <input type="number" class="form-control input__custom" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                               placeholder="Số điện thoại">
+                                                        <input type="email" class="form-control input__custom" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                               placeholder="Email">
+                                                        <textarea class="form-control input__custom mb-3" id="exampleFormControlTextarea1" rows="5"
+                                    placeholder="Nội dung liên hệ"></textarea>
+                                                        <button class="btn btn__main pull-right contact__submit">Gửi</button>
+                                                    </div>
+                                                </div> -->
+
+                                    <div>
+                                        Khi có nhu cầu, hãy liên hệ với chúng tôi
+                                        <a href="@Url.Action("Hoidap","Questions")" class="text__stress text__stress--green">tại đây</a>
+                                    </div>
+
+                                    <div class="fb-page mt-3" data-href="https://www.facebook.com/bvdkkhuvucthuduc/" data-tabs="timeline" data-width="370" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/bvdkkhuvucthuduc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bvdkkhuvucthuduc/">Bệnh Viện Đa Khoa Khu Vực Thủ Đức</a></blockquote></div>
+
+                                </div>
+                            </div>
+                            <div class="offset-lg-1 col-lg-7 col-md-12 scrollRight">
+                                <div class="contact__item-title">
+                                    <p>Hướng dẫn đường đi</p>
+                                </div>
+                                <div class="contact__form-right">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function AjaxSubmitContactForm() {
+        $("#btnSendMessage").attr("disabled", "disabled");
+        $(".loading-spinner").removeClass("hidden");
+        var formData = new FormData($('#contactForm')[0]);
+        console.log('formData', formData);
+        $.ajax({
+            url: '/Questions/CreateContact',
+            type: 'POST',
+            data: formData, // serializes the form's elements.
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                if (response != null) {
+                    if (!response.Result) {
+                        $('#btnSendMessage').removeAttr("disabled");
+                        swal("Liên hệ", response.Message, "error");
+                        $(".loading-spinner").addClass("hidden");
+                    } else {
+
+                        swal("Liên hệ ", response.Message, "success");
+                        $(".loading-spinner").addClass("hidden");
+                        setTimeout(function () {
+
+                            window.location.href = document.location.origin;
+
+                            //End
+                        }, 3000);
+
+                    }
+                }
+            },
+            fail: function () {
+
+            }
+        });
+    }
+</script>

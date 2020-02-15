@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+
+}
+
+<section class="education pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Đào Tạo</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Tuyển dụng - Đào tạo</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Đào tạo</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pr-0">
+                        <div class="tab__nav nav flex-lg-column nav-pills float-panel" data-top="0" data-scroll="200" id="intro-tab"
+                             role="tablist" aria-orientation="vertical">
+                            <a href="#history" class="tab__nav-item nav-link active">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Đào tạo
+                            </a>
+                            <a href="#overview" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Nghiên cứu khoa học
+                            </a>
+                            <div class="tab__indicator">
+                                <div class="tab__indicator-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+
+                        <div class="scrollLeft">
+                            <div class="tab__content-title item__title">
+                                <p>Đào tạo</p>
+                            </div>
+
+                            @Html.Action("EducationPartial", "Home")
+
+
+                            @*<div class="medicine-news__items category-news__items mt-3">
+                                    <div class="row scrollLeft">
+                                        <div class="col-sm-4">
+                                            <div class="medicine-news__item category-news__item">
+                                                <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                    <img class="img-fluid" src="/Content/assets/img/education/education.jpg" alt="">
+                                                </a>
+                                                <div class="medicine-news__item-text category-news__item-text">
+                                                    <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                        <a href="#">Thông báo chiêu sinh tháng 12/2018</a>
+                                                    </div>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    <span>Thứ ba, 27/11/2018</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="medicine-news__item category-news__item">
+                                                <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                    <img class="img-fluid" src="/Content/assets/img/education/education.jpg" alt="">
+                                                </a>
+                                                <div class="medicine-news__item-text category-news__item-text">
+                                                    <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                        <a href="#">Thông báo chiêu sinh tháng 12/2018</a>
+                                                    </div>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    <span>Thứ ba, 27/11/2018</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="medicine-news__item category-news__item">
+                                                <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                    <img class="img-fluid" src="/Content/assets/img/education/education.jpg" alt="">
+                                                </a>
+                                                <div class="medicine-news__item-text category-news__item-text">
+                                                    <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                        <a href="#">Thông báo chiêu sinh tháng 12/2018</a>
+                                                    </div>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    <span>Thứ ba, 27/11/2018</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                            @*<a href="@Url.Action("EducationList","Home")" class="btn btn__main float-right">Xem thêm</a>*@
+                        </div>
+
+                        <div class="scrollLeft mt-5">
+                            <div class="tab__content-title item__title">
+                                <p>Nghiên cứu khoa học</p>
+                            </div>
+
+                            @Html.Action("ScientificResearch", "Home")
+
+
+
+                            @*<div class="medicine-news__items category-news__items mt-3">
+                                <div class="row scrollLeft">
+                                    <div class="col-sm-4">
+                                        <div class="medicine-news__item category-news__item">
+                                            <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                <img class="img-fluid" src="/Content/assets/img/education/detai.PNG" alt="">
+                                            </a>
+                                            <div class="medicine-news__item-text category-news__item-text">
+                                                <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                    <a href="#">Hội nghị Khoa học kỹ thuật 2019</a>
+                                                </div>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                <span>Thứ ba, 27/11/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="medicine-news__item category-news__item">
+                                            <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                <img class="img-fluid" src="/Content/assets/img/education/education.jpg" alt="">
+                                            </a>
+                                            <div class="medicine-news__item-text category-news__item-text">
+                                                <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                    <a href="#">Đề tài 1</a>
+                                                </div>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                <span>Thứ hai, 25/10/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="medicine-news__item category-news__item">
+                                            <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                                                <img class="img-fluid" src="/Content/assets/img/education/education.jpg" alt="">
+                                            </a>
+                                            <div class="medicine-news__item-text category-news__item-text">
+                                                <div class="medicine-news__item-text-title category-news__item-text-title">
+                                                    <a href="#">Đề tài 1</a>
+                                                </div>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                <span>Thứ ba, 20/09/2018</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                            @*<a href="@Url.Action("EducationList","Home")" class="btn btn__main float-right">Xem thêm</a>*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

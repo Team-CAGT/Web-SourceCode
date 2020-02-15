@@ -1,0 +1,165 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Domain.DomainModel
+@model PagedList<MVCForum.Domain.DomainModel.Doctor>
+@{
+    ViewBag.Title = "Quản lý danh sách Bác Sĩ";
+}
+@Html.Partial("_DoctorNavButtons")
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("ManageDoctor", "Common", FormMethod.Get))
+        {
+            <div class="input-group membersadminsearch">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="select-input form-control" name="departmentManage_Slug" id="departmentManage">
+                            <option value="" selected="selected">Chọn Khoa/ Phòng</option>
+                            @foreach (var item in ViewBag.ListDepartment)
+                            {
+                                if (item.ParentDepartment == null)
+                                {
+                                    if (item.Slug == ViewBag.DepartmentManage_Slug)
+                                    {
+                                        <option value="@item.Slug" selected="selected">@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Slug">@item.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="select-input form-control" name="departmentSlug" id="deparment">
+                            <option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>
+                            @if (!string.IsNullOrEmpty(ViewBag.DepartmentManage_Slug))
+                            {
+                                foreach (var item in ViewBag.ListDepartment)
+                                {
+                                    if (item.ParentDepartment != null && item.ParentDepartment.Slug == ViewBag.DepartmentManage_Slug)
+                                    {
+                                        if (item.Slug == ViewBag.DepartmentSlug)
+                                        {
+                                            <option value="@item.Slug" selected="selected"> @item.Name </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Slug"> @item.Name </option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Tên Bác Sĩ" value="@ViewBag.Doctor" name="doctor" />
+                    </div>
+                    <div class="col-md-1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+                @*@Html.TextBoxFor(x => Model.Search, new { @class = "form-control" })*@
+            </div>
+            @Html.HiddenFor(x => x.PageIndex)
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Tên bác sĩ</th>
+                    <th>Chức vụ</th>
+                    <th>Hình ảnh</th>
+                    <th>Học vị</th>
+                    <th>Chuyên khoa</th>
+                    <th>Khoa/ Phòng</th>
+                   
+                    <th>Edit</th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th>Delete</th>
+                    }
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@Html.DisplayFor(modelItem => user.Name)</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.PositionName)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(user.Avatar))
+                            {
+                                <img class="image-center" src="@AppHelpers.DoctorImage(user.Avatar, 50,70)"/>
+                            }
+                           
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.BoardCertifications)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.Specicality)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => user.Department)
+                        </td>
+                      
+                        <td>
+                            <a href="@Url.Action("UpdateDoctor","Common", new { area = "Admin" ,slug=user.Slug})" class="btn-mvc">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                <a href="@Url.Action("DeleteDoctor", new { user.Id})" class="btn-mvc">
+                                    <span class="glyphicon glyphicon-remove confirmDelete" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        }
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @if (Model.TotalPages > 1)
+        {
+            @Html.Pager(Convert.ToInt32(Model.PageIndex), 8, Model.TotalCount, new { departmentManage_Slug = ViewBag.DepartmentManage_Slug, departmentSlug = ViewBag.DepartmentSlug, search = ViewBag.Doctor }, "ManageDoctor", "Common")
+        }
+
+    </div>
+</div>
+<script>
+    var elems = document.getElementsByClassName('confirmDelete');
+    var confirmIt = function (e) {
+        if (!confirm('Bạn có chắc chắn muốn xóa?')) e.preventDefault();
+    };
+    for (var i = 0, l = elems.length; i < l; i++) {
+        elems[i].addEventListener('click', confirmIt, false);
+    };
+var department = @Html.Raw(MVCForum.Utilities.JsonHelper.SerializeObject((ViewBag.ListDepartment as List<Department>).Where(x => x.ParentDepartment != null).Select(x => new { Slug = x.Slug, Name = x.Name, ParentDepartment = x.ParentDepartment.Slug }).ToList()));
+    $("#departmentManage").on("change", function () {
+        var id = this.value;
+        $("#deparment").html('<option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>');
+        $.each(department, function (key, value) {
+            if (id == value.ParentDepartment) {
+                $('#deparment')
+                    .append($("<option></option>")
+                        .attr("value", value.Slug)
+                        .text(value.Name));
+            }
+        });
+    });
+</script>

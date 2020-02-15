@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+<section class="page404 pt-0">
+    <div class="container">
+        <div class="page404__container">
+            <div class="col-md-3 col-8">
+                <img class="img-fluid" src="Content/assets/img/404/doctor.png" alt="">
+            </div>
+          
+            <h1>404</h1>
+        
+            <h3>Rất tiếc, trang bạn tìm không tồn tại!</h3>
+            <h5>Quay lại trang chủ sau <span id="countdown-404">5</span> giây</h5>
+            <p>Hoặc</p>
+            <a href="@Url.Action("Trangchu","Home")" class="btn btn__sub">Trở về trang chủ</a>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+
+    setTimeout(function () {
+
+      
+        window.location.href = document.location.origin;
+
+        //End
+    }, 5000);
+
+</script>

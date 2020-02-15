@@ -1,0 +1,46 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.DeleteMedicalPackageViewModel
+@{
+    ViewBag.Title = "Xóa Gói Khám Bệnh";
+}
+
+@Html.Partial("_MedicalPackageNavButtons")
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @if (Model.SubMedicalPackages.Any())
+        {
+            @*<h2>Unable To Delete</h2>
+                <p>This department has sub departments, please re-assign them to new parent departments first</p>
+
+                <h4>Sub Departments</h4>*@
+
+            <h2>Không thể xóa gói khám này!</h2>
+            <p>Còn tồn tại gói khám thuộc gói khám này. Vui lòng xóa các gói khám bên dưới trước!</p>
+
+            <h4>Danh sách gói khám</h4>
+            <ul>
+                @foreach (var sub in Model.SubMedicalPackages)
+                {
+                    <li><strong>@sub.Name</strong></li>
+                }
+            </ul>
+
+            <a href="@Url.Action("ManageMedicalPackage")" class="btn-mvc btn-mvc-large">Back</a>
+        }
+        else
+        {
+            using (Html.BeginForm("DeleteMedicalPackage", "Common", FormMethod.Post))
+            {
+                <h2>Xác nhận xóa?</h2>
+                @Html.HiddenFor(x => x.Id)
+                <div class="submit-holder">
+                    <input type="submit" class="btn-mvc btn-mvc-large" value="Yes" />
+                </div>
+            }
+        }
+    </div>
+</div>
+

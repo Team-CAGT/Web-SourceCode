@@ -1,0 +1,43 @@
+﻿@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model ActiveTopicsViewModel
+@if (Model.Topics.Any())
+{
+    <section class="grateful">
+        <div class="container">
+
+            <div class="section__title">
+                <h2 class="section__title-text">Góc Tri Ân</h2>
+                <div class="section__title-icon"></div>
+            </div>
+
+            <div class="grateful__items row drop-2">
+                @foreach (var topic in Model.Topics.OrderByDescending(x => x.Topic.CreateDate))
+                {
+
+                    <div class="grateful__item">
+                        <div class="grateful__item-info">
+                            <div class="grateful__item-info-img">
+                                <img src="~/Content/assets/img/grateful/test.jpg" alt="">
+                            </div>
+                            <div class="grateful__item-info-text">
+                                <p>@topic.Topic.Name</p>
+                                <i>@topic.Topic.MetaSeo</i>
+                            </div>
+                        </div>
+                        <div class="grateful__item-content">
+                            <p>
+                                @topic.Topic.Description
+                            </p>
+                            <a href="/article/@topic.Topic.Slug">Xem chi tiết</a>
+                        </div>
+                    </div>
+                }
+
+
+           
+            </div>
+        </div>
+    </section>
+
+}

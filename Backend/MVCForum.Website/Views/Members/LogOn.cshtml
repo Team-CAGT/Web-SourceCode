@@ -1,0 +1,98 @@
+﻿@using MVCForum.Website.Application.ExtensionMethods
+@model MVCForum.Website.ViewModels.LogOnViewModel
+@{
+    //Layout = "~/Views/Shared/_LayoutFullWidth.cshtml";
+    Layout = "~/Views/Shared/Frontend/_LayoutBenhvien.cshtml";
+    ViewBag.Title = Html.LanguageString("LogOn.LogOn");
+}
+
+@section ScriptsHeader{
+    <link href="~/Content/assets/css/datcauhoi.css" rel="stylesheet" />
+   
+}
+@if (Html.Settings().DisableStandardRegistration != true)
+{
+<div class="main-content">
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-center">ĐĂNG NHẬP</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="box-layout">
+    <ol class="breadcrumb">
+        <li><a href="#">Trang chủ</a></li>
+        <li class="active">Đăng nhập</li>
+    </ol>
+
+    <section>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-8">
+
+                    <div data-mh="sameHeight-homepage">
+                        <h2 class="des-title"> ĐĂNG NHẬP</h2>
+@using (Html.BeginForm("LogOn", "Members", FormMethod.Post, new { @class = "form-login" }))
+{ @Html.ValidationSummary(false)
+    @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="log-on">
+                                <h4 class="pls">Xin vui lòng đăng nhập tài khoản.</h4>
+                                <div class="right-on">
+                                
+                                        <div class="form-group">
+                                            <label for="exampleInputname">Tên đăng nhâp</label>
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Tên đăng nhập" })
+                                            @Html.ValidationMessageFor(m => m.UserName)
+                                            @*<input type="name" class="form-control" id="exampleInputEmail1" placeholder="Tên đăng nhập">*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword">Mật khẩu</label>
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                                            @Html.ValidationMessageFor(m => m.Password)
+                                            @*<input type="password" class="form-control" id="exampleInputPassword" placeholder="Mật khẩu">*@
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                @using (Html.BeginLabelFor(m => m.RememberMe, new { @class = "checkbox" }))
+                                                 {
+                                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                                }
+                                                @Html.ValidationMessageFor(m => m.RememberMe)
+                                             
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pri">Đăng nhập</button>
+                                        @*<a href="@Url.Action("ForgotPassword")"><span class="blue"><br>Quên mật khẩu</span></a>*@
+
+                                </div>
+                            </div>
+                        </div>
+}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="imgs">
+                        <img class="ig" src="/Content/assets/images/login.png">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+}
+
+
+
+
+
+
+<!--Main Content end-->

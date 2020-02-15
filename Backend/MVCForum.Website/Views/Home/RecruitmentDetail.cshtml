@@ -1,0 +1,86 @@
+﻿@model MVCForum.Domain.DomainModel.Entities.Recruitment
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+
+}
+
+
+<section class="recruitment pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Thông Tin Tuyển Dụng</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container page-container">
+
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Tuyendung","Home")">Tuyển dụng</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">@Model.Name</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="medicine-news__items category-news__items">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12 mt-2">
+
+                            <article class="news__article">
+                                <header>
+                                    <h1>@Model.Name</h1>
+
+                                </header>
+                                @if (Model.IsActive)
+                                {
+                                    <div class="news__article-content">
+                                        <p>
+                                            @Html.Raw(Model.Description)
+                                        </p>
+                                    </div>
+                                    <hr>
+
+                                    <div class="news__article-recruitment">
+                                        <p>Để biết thêm chi tiết, vui lòng tải tất cả tập tin đính kèm:
+                                        @if (!string.IsNullOrEmpty(Model.FileUrl))
+                                        {
+                                            var i = 0;
+                                            foreach (var file in Model.FileUrl.Split(';'))
+                                            {
+                                                i++;
+                                                <br/>
+                                                <a class="news__article-recruitment-file" href="@file">tập tin thứ @i</a>
+                                             
+                                               
+                                            }
+                                        }
+                                        </p>
+                                        <a href="@Url.Action("ApplyCV","Home", new{ id = Model.Id })" class="btn btn__main">Ứng tuyển tại đây</a>
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="news__article-content">
+                                        <p>
+                                           Hiện tại đã hết hạn nộp hồ sơ
+                                        </p>
+                                    </div>
+                                }
+
+                            </article>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

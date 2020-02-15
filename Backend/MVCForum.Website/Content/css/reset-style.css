@@ -1,0 +1,549 @@
+/**
+=============================================================
+[Responsive Reset Stylesheet]
+
+@Author: icute_theme
+Version:      2.0
+Created:      01.10.2017
+Primary use:  Reset Design With Ready Class
+
+@Support: icutetheme@gmail.com
+=============================================================
+
+
+====================[Table of contents]======================
+
+* reset background-color css
+* reset text-color css
+* reset font-size css
+* reset space css
+
+=============================================================
+**/
+
+
+
+/****
+-----------------------------------------------------------------------
+    reset background-color css
+-----------------------------------------------------------------------
+****/
+
+.bgcolor-black {
+    background-color: #1c1c1c !important;
+}
+.bgcolor-white-light {
+    background-color: #f7f7f7 !important;
+}
+.bgcolor-gray {
+    background-color: #989898 !important;
+}
+.bgcolor-gray-white {
+    background-color: #a7a7a7 !important;
+}
+.bgcolor-fff {
+	color: #fff !important;
+}
+.bgcolor-f1 {
+	color: #f1f1f1 !important;
+}
+.bgcolor-f2 {
+	color: #f2f2f2 !important;
+}
+.bgcolor-f3 {
+	color: #f3f3f3 !important;
+}
+.bgcolor-f4 {
+	color: #f4f4f4 !important;
+}
+.bgcolor-f5 {
+	color: #f5f5f5 !important;
+}
+.bgcolor-f6 {
+	color: #f6f6f6 !important;
+}
+.bgcolor-f7 {
+	color: #f7f7f7 !important;
+}
+.bgcolor-f8 {
+	color: #f8f8f8 !important;
+}
+.bgcolor-f9 {
+	color: #f9f9f9 !important;
+}
+.bgcolor-fa {
+	color: #fafafa !important;
+}
+.bgcolor-fb {
+	color: #fbfbfb !important;
+}
+.bgcolor-fc {
+	color: #fcfcfc !important;
+}
+.bgcolor-fd {
+	color: #fdfdfd !important;
+}
+.bgcolor-fe {
+	color: #fefefe !important;
+}
+.bgcolor-000 {
+	color: #000 !important;
+}
+.bgcolor-111 {
+	color: #111 !important;
+}
+.bgcolor-222 {
+	color: #222 !important;
+}
+.bgcolor-333 {
+	color: #333 !important;
+}
+.bgcolor-444 {
+	color: #444 !important;
+}
+.bgcolor-555 {
+	color: #555 !important;
+}
+.bgcolor-666 {
+	color: #666 !important;
+}
+.bgcolor-777 {
+	color: #777 !important;
+}
+.bgcolor-888 {
+	color: #888 !important;
+}
+.bgcolor-999 {
+	color: #999 !important;
+}
+.bgcolor-12 {
+	color: #121212 !important;
+}
+.bgcolor-25 {
+	color: #252525 !important;
+}
+.bgcolor-35 {
+	color: #353535 !important;
+}
+.bgcolor-45 {
+	color: #454545 !important;
+}
+.bgcolor-55 {
+	color: #555555 !important;
+}
+.bgcolor-65 {
+	color: #656565 !important;
+}
+.bgcolor-75 {
+	color: #757575 !important;
+}
+.bgcolor-85 {
+	color: #858585 !important;
+}
+.bgcolor-95 {
+	color: #959595 !important;
+}
+.bgcolor-eee {
+	color: #eee !important;
+}
+.bgcolor-e1 {
+	color: #e1e1e1 !important;
+}
+.bgcolor-e2 {
+	color: #e2e2e2 !important;
+}
+.bgcolor-e3 {
+	color: #e3e3e3 !important;
+}
+.bgcolor-e4 {
+	color: #e4e4e4 !important;
+}
+.bgcolor-e5 {
+	color: #e5e5e5 !important;
+}
+.bgcolor-e6 {
+	color: #e6e6e6 !important;
+}
+.bgcolor-e7 {
+	color: #e7e7e7 !important;
+}
+.bgcolor-e8 {
+	color: #e8e8e8 !important;
+}
+.bgcolor-e9 {
+	color: #e9e9e9 !important;
+}
+.bgcolor-ddd {
+	color: #ddd !important;
+}
+.bgcolor-d1 {
+	color: #d1d1d1 !important;
+}
+.bgcolor-d2 {
+	color: #d2d2d2 !important;
+}
+.bgcolor-d3 {
+	color: #d3d3d3 !important;
+}
+.bgcolor-d4 {
+	color: #d4d4d4 !important;
+}
+.bgcolor-d5 {
+	color: #d5d5d5 !important;
+}
+.bgcolor-d6 {
+	color: #d6d6d6 !important;
+}
+.bgcolor-d7 {
+	color: #d7d7d7 !important;
+}
+.bgcolor-d8 {
+	color: #d8d8d8 !important;
+}
+.bgcolor-d9 {
+	color: #d9d9d9 !important;
+}
+.bgcolor-aaa {
+	color: #aaa !important;
+}
+.bgcolor-a1 {
+	color: #a1a1a1 !important;
+}
+.bgcolor-a2 {
+	color: #a2a2a2 !important;
+}
+.bgcolor-a3 {
+	color: #a3a3a3 !important;
+}
+.bgcolor-a4 {
+	color: #a4a4a4 !important;
+}
+.bgcolor-a5 {
+	color: #a5a5a5 !important;
+}
+.bgcolor-ae {
+	color: #aeaeae !important;
+}
+
+
+
+/****
+-----------------------------------------------------------------------
+    reset text-color css
+-----------------------------------------------------------------------
+****/
+
+.color-black {
+    color: #1c1c1c !important;
+}
+.color-45 {
+    color: #454545 !important;
+}
+.color-white {
+    color: #fff !important;
+}
+.color-gray {
+    color: #989898 !important;
+}
+.color-gray-white {
+    color: #a7a7a7 !important;
+}
+.color-fff {
+	color: #fff !important;
+}
+.color-f1 {
+	color: #f1f1f1 !important;
+}
+.color-f2 {
+	color: #f2f2f2 !important;
+}
+.color-f3 {
+	color: #f3f3f3 !important;
+}
+.color-f4 {
+	color: #f4f4f4 !important;
+}
+.color-f5 {
+	color: #f5f5f5 !important;
+}
+.color-f6 {
+	color: #f6f6f6 !important;
+}
+.color-f7 {
+	color: #f7f7f7 !important;
+}
+.color-f8 {
+	color: #f8f8f8 !important;
+}
+.color-f9 {
+	color: #f9f9f9 !important;
+}
+.color-fa {
+	color: #fafafa !important;
+}
+.color-fb {
+	color: #fbfbfb !important;
+}
+.color-fc {
+	color: #fcfcfc !important;
+}
+.color-fd {
+	color: #fdfdfd !important;
+}
+.color-fe {
+	color: #fefefe !important;
+}
+.color-000 {
+	color: #000 !important;
+}
+.color-111 {
+	color: #111 !important;
+}
+.color-222 {
+	color: #222 !important;
+}
+.color-333 {
+	color: #333 !important;
+}
+.color-444 {
+	color: #444 !important;
+}
+.color-555 {
+	color: #555 !important;
+}
+.color-666 {
+	color: #666 !important;
+}
+.color-777 {
+	color: #777 !important;
+}
+.color-888 {
+	color: #888 !important;
+}
+.color-999 {
+	color: #999 !important;
+}
+.color-12 {
+	color: #121212 !important;
+}
+.color-25 {
+	color: #252525 !important;
+}
+.color-35 {
+	color: #353535 !important;
+}
+.color-45 {
+	color: #454545 !important;
+}
+.color-55 {
+	color: #555555 !important;
+}
+.color-65 {
+	color: #656565 !important;
+}
+.color-75 {
+	color: #757575 !important;
+}
+.color-85 {
+	color: #858585 !important;
+}
+.color-95 {
+	color: #959595 !important;
+}
+.color-eee {
+	color: #eee !important;
+}
+.color-e1 {
+	color: #e1e1e1 !important;
+}
+.color-e2 {
+	color: #e2e2e2 !important;
+}
+.color-e3 {
+	color: #e3e3e3 !important;
+}
+.color-e4 {
+	color: #e4e4e4 !important;
+}
+.color-e5 {
+	color: #e5e5e5 !important;
+}
+.color-e6 {
+	color: #e6e6e6 !important;
+}
+.color-e7 {
+	color: #e7e7e7 !important;
+}
+.color-e8 {
+	color: #e8e8e8 !important;
+}
+.color-e9 {
+	color: #e9e9e9 !important;
+}
+.color-ddd {
+	color: #ddd !important;
+}
+.color-d1 {
+	color: #d1d1d1 !important;
+}
+.color-d2 {
+	color: #d2d2d2 !important;
+}
+.color-d3 {
+	color: #d3d3d3 !important;
+}
+.color-d4 {
+	color: #d4d4d4 !important;
+}
+.color-d5 {
+	color: #d5d5d5 !important;
+}
+.color-d6 {
+	color: #d6d6d6 !important;
+}
+.color-d7 {
+	color: #d7d7d7 !important;
+}
+.color-d8 {
+	color: #d8d8d8 !important;
+}
+.color-d9 {
+	color: #d9d9d9 !important;
+}
+.color-aaa {
+	color: #aaa !important;
+}
+.color-a1 {
+	color: #a1a1a1 !important;
+}
+.color-a2 {
+	color: #a2a2a2 !important;
+}
+.color-a3 {
+	color: #a3a3a3 !important;
+}
+.color-a4 {
+	color: #a4a4a4 !important;
+}
+.color-a5 {
+	color: #a5a5a5 !important;
+}
+.color-ae {
+	color: #aeaeae !important;
+}
+
+
+
+/****
+-----------------------------------------------------------------------
+    reset font-size css
+-----------------------------------------------------------------------
+****/
+
+.fz-3 {
+    font-size: 3px !important;
+}
+.fz-4 {
+    font-size: 4px !important;
+}
+.fz-5 {
+    font-size: 5px !important;
+}
+.fz-6 {
+    font-size: 6px !important;
+}
+.fz-7 {
+    font-size: 7px !important;
+}
+.fz-8 {
+    font-size: 8px !important;
+}
+.fz-9 {
+    font-size: 9px !important;
+}
+.fz-10 {
+    font-size: 10px !important;
+}
+.fz-11 {
+    font-size: 11px !important;
+}
+.fz-12 {
+    font-size: 12px !important;
+}
+.fz-13 {
+    font-size: 13px !important;
+}
+.fz-14 {
+    font-size: 14px !important;
+}
+.fz-15 {
+    font-size: 15px !important;
+}
+.fz-16 {
+    font-size: 16px !important;
+}
+.fz-18 {
+    font-size: 18px !important;
+}
+.fz-20 {
+    font-size: 20px !important;
+}
+.fz-22 {
+    font-size: 22px !important;
+}
+.fz-24 {
+    font-size: 24px !important;
+}
+.fz-26 {
+    font-size: 26px !important;
+}
+.fz-28 {
+    font-size: 28px !important;
+}
+.fz-30 {
+    font-size: 30px !important;
+}
+.fz-32 {
+    font-size: 32px !important;
+}
+.fz-34 {
+    font-size: 34px !important;
+}
+.fz-36 {
+    font-size: 36px !important;
+}
+.fz-40 {
+    font-size: 40px !important;
+}
+.fz-42 {
+    font-size: 42px !important;
+}
+.fz-46 {
+    font-size: 46px !important;
+}
+.fz-48 {
+    font-size: 48px !important;
+}
+.fz-50 {
+    font-size: 50px !important;
+}
+.fz-58 {
+    font-size: 58px !important;
+}
+.fz-64 {
+    font-size: 64px !important;
+}
+.fz-72 {
+    font-size: 72px !important;
+}
+
+
+
+
+/****
+-----------------------------------------------------------------------
+    reset space css
+-----------------------------------------------------------------------
+****/
+
+.oo_pt{padding-top:0 !important}.oe_pt{padding-top:5px !important}.ao_pt{padding-top:10px !important}.ae_pt{padding-top:15px !important}.bo_pt{padding-top:20px !important}.co_pt{padding-top:30px !important}.do_pt{padding-top:40px !important}.eo_pt{padding-top:50px !important}.fo_pt{padding-top:60px !important}.go_pt{padding-top:70px !important}.ho_pt{padding-top:80px !important}.io_pt{padding-top:90px !important}.aoo_pt{padding-top:100px !important}.aeo_pt{padding-top:150px !important}.boo_pt{padding-top:200px !important}.oo_pr{padding-right:0 !important}.oe_pr{padding-right:5px !important}.ao_pr{padding-right:10px !important}.ae_pr{padding-right:15px !important}.bo_pr{padding-right:20px !important}.co_pr{padding-right:30px !important}.do_pr{padding-right:40px !important}.eo_pr{padding-right:50px !important}.oo_pb{padding-bottom:0 !important}.oe_pb{padding-bottom:5px !important}.ao_pb{padding-bottom:10px !important}.ae_pb{padding-bottom:15px !important}.bo_pb{padding-bottom:20px !important}.co_pb{padding-bottom:30px !important}.do_pb{padding-bottom:40px !important}.eo_pb{padding-bottom:50px !important}.fo_pb{padding-bottom:60px !important}.go_pb{padding-bottom:70px !important}.ho_pb{padding-bottom:80px !important}.io_pb{padding-bottom:90px !important}.aoo_pb{padding-bottom:100px !important}.aeo_pb{padding-bottom:150px !important}.boo_pb{padding-bottom:200px !important}.oo_pl{padding-left:0 !important}.oe_pl{padding-left:5px !important}.oe_pl{padding-left:5px !important}.ao_pl{padding-left:10px !important}.ae_pl{padding-left:15px !important}.bo_pl{padding-left:20px !important}.co_pl{padding-left:30px !important}.do_pl{padding-left:40px !important}.eo_pl{padding-left:50px !important}.oo_mt{margin-top:0 !important}.oe_mt{margin-top:5px !important}.ao_mt{margin-top:10px !important}.ae_mt{margin-top:15px !important}.bo_mt{margin-top:20px !important}.co_mt{margin-top:30px !important}.do_mt{margin-top:40px !important}.eo_mt{margin-top:50px !important}.fo_mt{margin-top:60px !important}.go_mt{margin-top:70px !important}.ho_mt{margin-top:80px !important}.io_mt{margin-top:90px !important}.aoo_mt{margin-top:100px !important}.aeo_mt{margin-top:150px !important}.boo_mt{margin-top:200px !important}.au_ml{margin-left:auto !important}.oo_mr{margin-right:0 !important}.oe_mr{margin-right:5px !important}.ao_mr{margin-right:10px !important}.ae_mr{margin-right:15px !important}.bo_mr{margin-right:20px !important}.co_mr{margin-right:30px !important}.do_mr{margin-right:40px !important}.eo_mr{margin-right:50px !important}.oo_mb{margin-bottom:0 !important}.oe_mb{margin-bottom:5px !important}.ao_mb{margin-bottom:10px !important}.ae_mb{margin-bottom:15px !important}.bo_mb{margin-bottom:20px !important}.co_mb{margin-bottom:30px !important}.do_mb{margin-bottom:40px !important}.eo_mb{margin-bottom:50px !important}.fo_mb{margin-bottom:60px !important}.go_mb{margin-bottom:70px !important}.ho_mb{margin-bottom:80px !important}.io_mb{margin-bottom:90px !important}.aoo_mb{margin-bottom:100px !important}.aeo_mb{margin-bottom:150px !important}.boo_mb{margin-bottom:200px !important}.au_ml{margin-left:auto !important}.oo_ml{margin-left:0 !important}.oe_ml{margin-left:5px !important}.ao_ml{margin-left:10px !important}.ae_ml{margin-left:15px !important}.bo_ml{margin-left:20px !important}.co_ml{margin-left:30px !important}.do_ml{margin-left:40px !important}.eo_ml{margin-left:50px !important}

@@ -1,0 +1,49 @@
+﻿@using MVCForum.Domain.DomainModel.Entities
+@model MVCForum.Website.Areas.Admin.ViewModels.ListMedicalPackagesViewModel
+@{
+    var mainMedicalPackages = Model.MedicalPackages.Where(x => x.Parent == null).ToList();
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>Quản Lý Gói Khám Bệnh</h5>
+    </div>
+    <div class="panel-content">
+        <div id="container">
+            <ul>
+                @foreach (var item in mainMedicalPackages)
+                {
+                    <li class="maincategory">
+                        <a href="@Url.Action("UpdateMedicalPackage", new { id = item.Id })">
+                            @Html.Raw(item.Name)
+                        </a>
+                        @GetSub(item)
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@helper GetSub(MedicalPackage item)
+{
+    var subs = Model.MedicalPackages.Where(x => x.Parent != null && x.Parent.Id == item.Id).ToList();
+    if (subs.Any())
+    {
+        <ul>
+            @foreach (var sub in subs)
+            {
+                <li>
+                    <a href="@Url.Action("UpdateMedicalPackage", new { id = sub.Id })">
+                        @Html.Raw(sub.Name)
+                    </a>
+                    @GetSub(sub)
+                </li>
+            }
+        </ul>
+    }
+}
+

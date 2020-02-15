@@ -1,0 +1,29 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.EducationViewModel
+@{
+    ViewBag.Title = "Sửa thông tin Đào tạo";
+    ViewBag.ImageUploadType = "forumimageinsert";
+}
+
+@Html.Partial("_EducationNavButtons")
+
+<div class="panel">
+    <div class="panel-heading">
+        <h5>@ViewBag.Title</h5>
+    </div>
+    <div class="panel-content">
+        @using (Html.BeginForm("UpdateEducation", "Common", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(false)
+            @Html.HiddenFor(model => model.Id)
+            @Html.AntiForgeryToken()
+
+            @Html.Partial("_EducationFields", Model)
+
+            <div class="submit-holder">
+                <input type="submit" class="btn-mvc-green btn-mvc-large" value="Update" />
+                <a href="@Url.Action("DeleteEducation", new { id = Model.Id })" class="btn-mvc btn-mvc-large" role="button">Delete</a>
+            </div>
+        }
+
+    </div>
+</div>

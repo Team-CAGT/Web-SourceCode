@@ -1,0 +1,116 @@
+﻿@using MVCForum.Domain.DomainModel
+@using MVCForum.Utilities
+@using MVCForum.Website.Application
+@using MVCForum.Website.ViewModels
+@model TopicViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    ViewBag.Title = Html.Raw(AppHelpers.CreatePageTitle(Model.Topic, Html.LanguageString("Topic.TitleFallBack")));
+    ViewBag.MetaDesc = StringUtils.ReturnAmountWordsFromString(string.Concat(StringUtils.StripHtmlFromString(Model.StarterPost.Post.PostContent), "..."), 20);
+
+    if (Request.QueryString.AllKeys.Any())
+    {
+        ViewBag.Canonical = Html.Raw(string.Format("<link rel=\"canonical\" href=\"{0}\"/>", Model.Topic.NiceUrl));
+    }
+
+    // Email subscription
+    var subScribe = string.Empty;
+    var unSubscribe = string.Empty;
+    const string displayNone = "style='display:none;'";
+    if (Model.IsSubscribed)
+    {
+        subScribe = displayNone;
+    }
+    else
+    {
+        unSubscribe = displayNone;
+    }
+    var loggedOnUserId = Html.CurrentMember() != null ? Html.CurrentMember().Id : Guid.Empty;
+    // Set a ViewBag for the category
+    //TempData[AppConstants.DefaultCategoryViewBagName] = Model.Topic.Category.Id;
+    var qs = Request.QueryString[AppConstants.PostOrderBy] ?? string.Empty;
+}
+@section SocialMeta {
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:url" content="@HttpContext.Current.Request.Url.AbsoluteUri" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="@ViewBag.Title" />
+    <meta name="twitter:description" content="@ViewBag.MetaDesc" />
+}
+@section Header
+{
+    <script>
+        var topicId = '@(Model.Topic.Id)';
+    </script>
+}
+
+
+
+<!--Main Content start-->
+<div class="main-content">
+
+
+
+    <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 page-title-content">
+                    <h2 class="title line-bottom line-left">Lịch khám chữa bệnh</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="box-layout">
+        <ol class="breadcrumb">
+            <li><a href="#">Trang chủ</a></li>
+            <li class="active">Lịch khám chữa bệnh</li>
+        </ol>
+        <div class="container">
+            <div class="row">
+                <div class="widgetright">
+                    @if (Html.CurrentMember() != null && Html.Settings().EnableEmailSubscriptions)
+                    {
+                        if (((Model.StarterPost.Post.User.Id == loggedOnUserId
+                      || Model.Permissions[SiteConstants.Instance.PermissionEditPosts].IsTicked))
+                      || Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+                        {
+
+                            <a class="" href="@Url.Action("EditPostTopic", "Topic", new { id = Model.StarterPost.Post.Id })">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+
+                        }
+                        //  if ((Model.StarterPost.Post.User.Id == loggedOnUserId && !Model.Topic.Status.Equals("D")) || Model.Permissions[SiteConstants.Instance.PermissionDeletePosts].IsTicked)
+                        if ((Model.StarterPost.Post.User.Id == loggedOnUserId) || Html.CurrentMember().Roles.Any(x => x.RoleName.Contains(AppConstants.AdminRoleName)))
+
+                        {
+                            <a class="" onclick="return confirm('@(Html.LanguageString("Post.DeleteConfirmation"))')" href="@Url.Action("DeletePost", "Post", new { id = Model.StarterPost.Post.Id })">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+
+                        }
+                        <a @Html.Raw(subScribe) href="#" class="emailsubscription" data-id="@Model.Topic.Id" data-type="topic">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            @Html.LanguageString("Topic.Subscribe")
+                        </a>
+                                <a @Html.Raw(unSubscribe) href="#" class="emailunsubscription" data-id="@Model.Topic.Id" data-type="topic">
+                                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    @Html.LanguageString("Topic.UnSubscribe")
+                                </a>
+                    }
+                </div>
+
+                <div class="col-md-12">
+                    <h2 class="des-title text-center">
+                       @Html.Raw(Model.Topic.Name)
+                    </h2>
+                    <p class="date">Tuần Lễ từ ngày <b> @DatesUI.MondayOfWeek(DateTime.Now).ToString("dd/MM/yyyy")</b> đến ngày <b>@DatesUI.SaturdayOfWeek(DateTime.Now).ToString("dd/MM/yyyy")</b></p>
+                    <p>@Html.Raw(AppHelpers.ConvertPostContent(Model.StarterPost.Post.PostContent))</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

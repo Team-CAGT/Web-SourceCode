@@ -1,0 +1,312 @@
+/**
+=============================================================
+[Responsive Stylesheet]
+
+Template:     eMedical
+Version:      2.0
+Created:      10.30.2016
+Primary use:  Health & Medical Responsive HTML Template
+
+@Author: icute_theme
+=============================================================
+**/
+
+@media only screen and (max-width: 1199px){
+	.header-top-widget .header-widget .iconbox-widget {
+		margin-right: 30px;
+	}
+	.service-thumb img {
+		display: none;
+	}
+	.welcome-content .welcome-feature {
+		padding: 25px 20px 25px 30px;
+	}
+	.appointment-form.style-one {
+		margin-top: 0;
+	}
+	.gallery-carousel .owl-stage-outer {
+	    overflow: hidden;
+	}
+	.gallery-section .gallery-wrapper .gallery-post .thumb img {
+	    width: 100%;
+	}
+	.do_v_mt {
+		margin-top: 40px !important;
+	}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.mainmenu-container {
+		margin-top: 30px;
+	}
+}
+
+@media only screen and (max-width: 1023px){
+	
+	.fixed-top-header{
+		position:relative;	
+	}
+	
+	.mega-header .header-top .search-form .form{
+		padding:0px;	
+	}
+	
+	.mega-header .header-top .large{
+		width:60%;	
+	}
+	
+	.mega-header .header-top .medium{
+		width:40%;	
+	}
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.header-main .appoint-btn a {
+	  font-size: 13px;
+	  font-weight: 600;
+	  padding: 0 16px;
+	}
+}
+
+@media only screen and (max-width: 991px){
+	.sm-width-full {
+	    width: 100%;
+	}
+	.col-sm-center {
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 400px;
+	}
+	.mega-header .logo,
+	.header-top-infos {
+		float:none !important;
+		display: inline-block;
+		text-align:center;
+		width:100% !important;
+	}
+	.header-top-infos ul {
+		float: none;
+	}
+	.header-top-infos > ul > li {
+		display: inline-block;
+		float: none !important;
+	}
+	.header-top-widget .header-widget {
+	    float: none;
+	    text-align: center;
+	    margin-top: 15px;
+	}
+	.header-top-widget .header-widget .iconbox-widget {
+		text-align: left;
+	}
+	.mega-menu .menuzord-menu li .indicator {
+	    display: none;
+	}
+	.appointment-form.style-one {
+		margin-top: 40px;
+	}
+	.appointment-form form input {
+		height: 54px;
+	}
+	.appointment-form .form-group select {
+		padding: 16px 12px;
+	}
+	.funfact-post {
+	    margin: 0 20px 40px;
+	}
+	.blog-post {
+	    margin-bottom: 50px;
+	}
+	.sidebar-widget {
+	    margin-left: auto;
+	    margin-right: auto;
+	    max-width: 600px;
+	}
+	.team-member-details .content {
+		margin-top: 30px;
+	}
+	.do_w_mt {
+		margin-top: 40px !important;
+	}
+}
+
+@media only screen and (max-width: 768px){
+	.menuzord .showhide {
+		height: 58px;
+		padding-top: 17px;
+	}
+	.menuzord .showhide em {
+		background-color: #fff;
+	}
+	.mega-menu .menuzord-menu {
+	    background-color: #fff;
+	}
+	.mega-menu .menuzord-menu > li > a {
+		color: #777;
+		font-size: 13px;
+		line-height: 13px;
+	}
+	.mega-menu .menuzord-menu > li:hover a {
+		color: #fff;
+	}
+	.mega-menu .menuzord-menu ul.dropdown li:first-child {
+	    border-bottom: none;
+	    border-top: none;
+	}
+	.mega-menu .menuzord-responsive .menuzord-menu ul.dropdown li a {
+	    border-bottom: none;
+	}
+	.mega-menu .menuzord-menu li .indicator {
+		display: block;
+		margin-left: 0;
+		position: absolute;
+	}
+	.mega-menu .menuzord-menu li .indicator:after {
+		color: #888;
+		font-size: 18px;
+		line-height: 20px;
+		position: absolute;
+		right: 22px;
+		top: 10px;
+	}
+	.mega-menu .menuzord-menu li.active .indicator:after,
+	.mega-menu .menuzord-menu li:hover .indicator:after {
+		color: #fff;
+	}
+}
+
+@media only screen and (max-width: 767px){
+	.xs-fz-30 {
+		font-size: 30px !important;
+	}
+	.mega-header{
+		overflow:hidden;	
+	}
+	.mega-header .logo {
+		margin-bottom: 20px;
+	}
+	.fixed-top-header{
+		position:relative !important;	
+	}	
+	.mega-header .logo{
+		float:none;
+		width:100%;	
+	}
+	.mega-header .header-main .appoint-inner{
+		position:absolute;
+		left:0px;
+		top:0px;
+	}	
+	.mega-header .header-main .appoint-inner .text-right{
+		text-align:left;
+		z-index:6;
+		max-width:240px;	
+	}
+	.header-main .appoint-btn {
+		padding-top: 0;
+	}
+	.header-main .appoint-inner{
+	    text-align:left !important;
+	}	
+	.tp-caption {
+		display: none !important;
+	}
+	.funfact-post {
+	    margin-left: auto;
+	    margin-right: auto;
+	    max-width: 400px;
+	}
+	.footer-section .footer-widget {
+	    margin-bottom: 30px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    max-width: 500px;
+	}
+	.footer-widget .widget-news .widget-news-post {
+		display: block;
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 620px) {
+	.header-top-widget .header-widget .iconbox-widget {
+		margin-right: 15px;
+	}
+	.iconbox-widget .box-contenet {
+	    padding-left: 40px;
+	}
+	.inner-title .title {
+		font-size: 30px;
+		line-height: 32px;
+	}
+	.blog-post {
+	    margin-bottom: 30px;
+	}
+}
+
+@media only screen and (max-width: 479px){
+	.header-top-infos > ul > li {
+		border: none;
+		max-width: 100%;
+	}
+	.section-title .title {
+	    font-size: 30px;
+	    line-height: 32px;
+	}
+	.replybox-comment {
+	    margin-left: 20px;
+	}
+}
+
+@media only screen and (max-width: 380px){
+	.feature-box {
+		text-align: center;
+	}
+	.feature-box .icon-box {
+		margin-bottom: 20px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    position: relative;
+	}
+	.feature-box .content {
+		padding-left: 0;
+	}
+	.service-post {
+		text-align: center;
+	}
+	.service-post .icon-box {
+		left: auto;
+		margin-bottom: 0;
+	    margin-left: auto;
+	    margin-right: auto;
+	    position: relative;
+	}
+	.services-style3 .service-post .icon-box {
+	    margin-bottom: 25px;
+	}
+	.services-style3 .service-post .content,
+	.service-post .content {
+		padding: 20px 18px;
+	}
+	.replybox-comment {
+	    margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 368px){
+	
+	.header-top-widget .header-widget {
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 200px;
+		text-align: left;
+	}
+	.appointment-form .form-title {
+	    font-size: 16px;
+	    padding: 30px 12px;
+	}
+}

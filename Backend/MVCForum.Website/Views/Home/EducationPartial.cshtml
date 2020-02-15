@@ -1,0 +1,30 @@
+﻿@model MVCForum.Website.ViewModels.EducationPageViewModel
+
+@if (Model.Educations.Any())
+{
+    <div class="medicine-news__items category-news__items mt-3">
+        <div class="row scrollLeft">
+            @foreach (var item in Model.Educations.OrderByDescending(x => x.DateCreated))
+            {
+                <div class="col-sm-4">
+                    <div class="medicine-news__item category-news__item">
+                        <a href="#" class="medicine-news__item-img category-news__item-img category-news__item-img--small">
+                            <img class="img-fluid" src="/Content/uploads/Education/@item.ImageUrl" alt="">
+                        </a>
+                        <div class="medicine-news__item-text category-news__item-text">
+                            <div class="medicine-news__item-text-title category-news__item-text-title">
+                                <a href="#">@item.Name</a>
+                            </div>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span>@DatesUI.GetPrettyDate(item.DateCreated.ToString())</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    if (Model.Educations.Count > 0)
+    {
+        <a href="@Url.Action("EducationList","Home")" class="btn btn__main float-right">Xem thêm</a>
+    }
+}

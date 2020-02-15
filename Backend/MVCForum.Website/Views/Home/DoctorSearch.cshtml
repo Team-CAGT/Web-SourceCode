@@ -1,0 +1,161 @@
+﻿@using MVCForum.Domain.Constants
+@using MVCForum.Domain.DomainModel
+@model PagedList<MVCForum.Domain.DomainModel.Doctor>
+@{
+    ViewBag.Title = "DoctorSearch";
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+}
+
+<section class="doctor-searching pt-0  pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Tìm Bác Sĩ</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            @*<li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Đường dẫn 1</a></li>*@
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Tìm Bác Sĩ</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <form action="@Url.Action("DoctorSearch","Home")" method="get">
+                        <div class="col-12">
+                            <div class="doctor-searching__selection">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-5 col-12">
+                                        <div class="doctor-searching__selection-department">
+                                            <label for="">Chọn Khoa/Phòng</label>
+                                            <select class="custom-select mr-sm-2" name="departmentManage_Slug" id="departmentManage">
+                                                <option value="" selected="selected">Chọn Khoa/ Phòng</option>
+                                                @foreach (var item in ViewBag.ListDepartment)
+                                                {
+                                                    if (item.ParentDepartment == null)
+                                                    {
+                                                        if (item.Slug == ViewBag.DepartmentManage_Slug)
+                                                        {
+                                                            <option value="@item.Slug" selected="selected">@item.Name</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Slug">@item.Name</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-5 col-12">
+                                        <div class="doctor-searching__selection-department">
+                                            <label for="">Chọn Chuyên khoa/ Phòng</label>
+                                            <select class="custom-select mr-sm-2" name="departmentSlug" id="deparment">
+                                                <option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>
+                                                @*@if(string.IsNullOrEmpty(departmentSlug)*@
+                                                @foreach (var item in ViewBag.ListDepartment)
+                                                {
+                                                    if (item.ParentDepartment != null && item.ParentDepartment.Slug== ViewBag.DepartmentManage_Slug)
+                                                    {
+                                                        if (item.Slug == ViewBag.DepartmentSlug)
+                                                        {
+                                                            <option value="@item.Slug" selected="selected">@item.Name</option>
+                                                            
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.Slug">@item.Name</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="">Tên Bác Sĩ</label>
+                                        <input type="text" class="form-control" placeholder="Tên Bác Sĩ" name="search" value="@ViewBag.Doctor">
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn__main">Tìm bác sĩ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-12 mt-5 ">
+                        <div class="item__title">
+                            <p>Kết quả cần tìm</p>
+                        </div>
+                        <div class="doctor-searching__info my-3">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    var img = !string.IsNullOrEmpty(item.Avatar) ? "/Content/uploads/ImageDoctors/" + item.Avatar : "";
+                                    <div class="col-lg-3 col-sm-6 col-12">
+                                        <a href="#" class="doctor-searching__info-item" data-dismiss="modal" data-toggle="modal" data-target="#doctorDetailModal" data-code="@MVCForum.Utilities.JsonHelper.SerializeObject(new { Department = item.Specicality??"",PositionName = item.PositionName??"",Name = string.Format("{0}",item.Name),BoardCertifications = item.BoardCertifications??"",DescriptionHistory = item.DescriptionHistory??"",Img=img})">
+                                            @*<div class="doctor-searching__info-item-img">
+                                                <img class="img-fluid" src="@img" alt="">
+                                            </div>*@
+                                            <div class="doctor-searching__info-item-text">
+                                                <h5>@item.Department</h5>
+                                                <p>@item.Name</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                            @*<nav aria-label="Page navigation example">
+            <ul class="pagination pagination__custom float-right">
+                <li class="page-item page-item__custom-arrow">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item page-item__custom-number"><a class="page-link" href="#">1</a></li>
+                <li class="page-item  page-item__custom-number"><a class="page-link" href="#">2</a></li>
+                <li class="page-item  page-item__custom-number"><a class="page-link" href="#">3</a></li>
+                <li class="page-item page-item__custom-arrow">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>*@
+                            @if (Model.TotalPages > 1)
+                            {
+                            @Html.Pager(Convert.ToInt32(Model.PageIndex), 16, Model.TotalCount, new { departmentManage_Slug = ViewBag.DepartmentManage_Slug, departmentSlug = ViewBag.DepartmentSlug, search= ViewBag.Doctor },"DoctorSearch","Home")
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+<script>
+var department = @Html.Raw(MVCForum.Utilities.JsonHelper.SerializeObject((ViewBag.ListDepartment as List<Department>).Where(x => x.ParentDepartment != null).Select(x => new { Slug = x.Slug, Name = x.Name, ParentDepartment = x.ParentDepartment.Slug }).ToList()));
+    $("#departmentManage").on("change", function () {
+        var id = this.value;
+        $("#deparment").html('<option value="" selected="selected">Chọn Chuyên khoa/ Phòng</option>');
+        $.each(department, function (key, value) {
+            if (id == value.ParentDepartment) {
+                $('#deparment')
+                    .append($("<option></option>")
+                        .attr("value", value.Slug)
+                        .text(value.Name));
+            }
+        });
+    });
+</script>

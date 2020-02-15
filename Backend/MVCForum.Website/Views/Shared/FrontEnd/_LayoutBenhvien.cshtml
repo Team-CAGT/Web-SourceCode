@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bệnh Viện Đa Khoa Khu Vực Thủ Đức</title>
+    @*<link rel="shortcut icon" href="~/Content/assets/img/favicon.ico" type="image/x-icon">*@
+    <link rel="icon" href="~/Content/assets/img/favicon.ico" type="image/x-icon">
+   
+    <link rel="stylesheet" href="~/Content/assets/css/app.css?v=3.5">
+    <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Content/admin/daterangepicker.css" rel="stylesheet" />
+    <style>
+        .slick-loading .slick-list {
+            background: #fff url(/Content/admin/Images/ajax-loader.gif) center center no-repeat !important
+        }
+    </style>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2"></script>
+    <div class="loader__wrapper d-none">
+        <div class="loader">
+            <img src="~/Content/assets/img/logo-loading.gif" alt="">
+        </div>
+    </div>
+    @Html.Partial("_Header")
+
+    @RenderBody()
+    <div class="modal fade" id="loginSiteModal" tabindex="-1" role="dialog" aria-labelledby="loginSiteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header__custom">
+                    <div class="item__title w-100 text-center">
+                        <p class="login__title mb-2">ĐĂNG NHẬP DÀNH CHO NHÂN VIÊN</p>
+                    </div>
+                </div>
+                <form id="logonForm" enctype="multipart/form-data" class="form-container" data-abide>
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                        <div class="col-12 mx-auto">
+                            <div class="form-group js-form-validate">
+                                <label class="text__stress">Tên đăng nhập</label>
+                                <input type="text" name="UserName" class="form-control" />
+                            </div>
+                            <div class="form-group js-form-validate">
+                                <label class="text__stress">Mật khẩu</label>
+                                <input type="password" name="Password" class="form-control" />
+                                <div class="form__validate-box d-none"></div>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input">
+                                <label class="form-check-label" name="RememberMe">Nhớ mật khẩu</label>
+                            </div>
+                            @*<div class="d-flex justify-content-between align-items-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input">
+                                        <label class="form-check-label" name="RememberMe">Nhớ mật khẩu</label>
+                                    </div>
+                                    <div class="">
+                                        <a href="@Url.Action("TaoUser","Members")" style="color: #00b092">Đăng ký tài khoản</a>
+                                    </div>
+                                </div>*@
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="bntLogon" onclick="AjaxLogonForm()" type="button" class="btn btn__main form__submit">Đăng nhập</button>
+                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+    <div class="modal fade" id="doctorDetailModal" tabindex="-1" role="dialog" aria-labelledby="doctorDetailModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header__custom">
+                    <div class="item__title w-100">
+                        <p>Thông tin Bác Sĩ</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="doctor__info">
+                        <div class="row">
+                            <div class="doctor__info-img col-lg-4 col-12">
+                                <img class="img-fluid imgDoctor" src="~/Content/assets/img/doctor-searching/doctor.png" alt="">
+                            </div>
+                            <div class="col-lg-8 col-12">
+                                <div class="doctor__info-text">
+                                    <div class="doctor__info-text-name">
+                                        <h3 id="modalName">BS. NGUYỄN THÁI YÊN</h3>
+                                        @*<strong id="modalDepartment">Chuyên khoa: Tim mạch can thiệp</strong>*@
+                                    </div>
+                                    <div class="doctor__info-text-degree">
+                                        <ul>
+                                            <li id="modalBoardCertifications">
+                                                <h6>Học vị</h6>BS CK I
+                                            </li>
+                                            <li id="modalDepartmentli">
+                                                <h6>Chuyên khoa</h6>Tim mạch can thiệp
+                                            </li>
+                                            <li id="modalPositionName">
+                                                <h6>Chức vụ</h6>Phó trưởng khoa
+                                            </li>
+                                        </ul>
+
+                                        @*<h6 class="mt-3 historyWorking">Quá trình công tác</h6>
+                                            <ul class="descriptionHistory">
+                                                @*<li class="border-0">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i> 2002-2004: Học
+                                                        viên, Sơ bộ tiêu hóa
+                                                    </li>
+                                                    <li class="border-0">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i> 2002-2004: Học
+                                                        viên, Sơ bộ tiêu hóa
+                                                    </li>
+                                                    <li class="border-0">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i> 2002-2004: Học
+                                                        viên, Sơ bộ tiêu hóa
+                                                    </li>
+                                                    <li class="border-0">
+                                                        <i class="fa fa-circle" aria-hidden="true"></i> 2002-2004: Học
+                                                        viên, Sơ bộ tiêu hóa
+                                                    </li>
+                                            </ul>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn__main" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+
+    <script src="~/Content/assets/js/app.js?v=3.3"></script>
+@RenderSection("ScriptsHeader", false)
+    <script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/js/sweetalert2.min.js"></script>
+      
+<script>
+    var error = '';
+    var invalidCount = 0;
+
+    //var logonValidate = document.querySelectorAll('.js-form-validate');
+
+    //logonValidate.forEach(function (validateItem) {
+    //    var input = validateItem.querySelector('.logon__input');
+    //    var errMsg = validateItem.querySelector('.logon__validate-box');
+
+    //    input.addEventListener('keyup', function () {
+    //        if (input && input.value) {
+
+    //            errMsg.classList.add('d-none');
+
+
+    //        } else {
+    //            error = "Vui lòng điền đầy đủ thông tin!";
+
+    //            invalidCount++;
+    //            errMsg.classList.remove('d-none');
+    //        }
+    //        errMsg.textContent = error;
+    //        console.log("số input không hợp lệ: " + invalidCount);
+
+
+    //        if (invalidCount > 0) {
+    //            $("#bntLogon").attr("disabled", "disabled");
+    //        } else {
+    //            $('#bntLogon').removeAttr("disabled");
+    //        }
+    //        invalidCount = 0;
+
+    //    });
+
+
+    //});
+
+
+    function AjaxLogonForm() {
+        $("#bntLogon").attr("disabled", "disabled");
+        $(".loading-spinner").removeClass("hidden");
+        var formData = new FormData($('#logonForm')[0]);
+        console.log('formData', formData);
+        $.ajax({
+            url: '/Members/LogOn',
+            type: 'POST',
+            data: formData, // serializes the form's elements.
+            contentType: false,
+            processData: false,
+            success: function (response) {
+
+                if (response != null) {
+                    console.log(response);
+                    if (!response.Result) {
+                        $('#bntLogon').removeAttr("disabled");
+                        var finalErrMsg = document.querySelector('.form__validate-box');
+                        error = response.Message;
+                        invalidCount++;
+                        console.log(finalErrMsg);
+                        finalErrMsg.classList.remove('d-none');
+                        finalErrMsg.textContent = error;
+                    } else {
+                        console.log(response);
+                        window.location.href = "/admin";
+                    }
+                }
+            },
+            fail: function () {
+            }
+        });
+    }
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134626694-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-134626694-1');
+</script>
+</body>
+</html>

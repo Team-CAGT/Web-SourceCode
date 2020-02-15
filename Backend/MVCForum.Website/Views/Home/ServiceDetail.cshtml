@@ -1,0 +1,358 @@
+﻿@model List<MVCForum.Domain.DomainModel.Entities.MedicalPackage>
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    int i = 0;
+    int j = 0;
+}
+<section class="page-listing pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Dịch Vụ</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            @*<li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Đường dẫn 1</a></li>*@
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Dịch Vụ</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pr-0">
+                        <div class="tab__nav nav flex-lg-column nav-pills float-panel" data-top="0" data-scroll="200" id="intro-tab"
+                             role="tablist" aria-orientation="vertical">
+                            <a href="#service-1" class="tab__nav-item nav-link active">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Cấp cứu ngoại viện
+                            </a>
+                            <a href="#service-2" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Huấn luyện sơ cấp cứu
+                            </a>
+                            <a href="#service-3" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Hợp đồng phối hợp cấp cứu tại chỗ
+                            </a>
+                            @*<a href="#service-4" class="tab__nav-item nav-link">
+                                    <i class="fa fa-circle" aria-hidden="true"></i>Khám bệnh tại nhà
+                                </a>*@
+                            <a href="#service-4" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Đại lý bảo hiểm y tế
+                            </a>
+                            <a href="#service-5" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Các gói khám và tầm soát bệnh
+                            </a>
+                            <a href="#service-6" class="tab__nav-item nav-link">
+                                <i class="fa fa-circle" aria-hidden="true"></i>Hấp tiệt khuẩn bằng máy diệt khuẩn EO
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab__content" id="intro-tabContent">
+                            <div class="tab__content-item">
+
+                                <!-- Cấp cứu ngoại viện -->
+                                <div id="service-1" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Cấp cứu ngoại viện</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <img src="/Content/assets/img/service/service_1.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <p>
+                                                    Cấp cứu ngoại viện góp phần mang lại sự sống cho người bệnh, hỗ trợ người bệnh vượt qua nguy
+                                                    hiểm trong tình huống khẩn cấp.
+                                                </p>
+                                                <p>
+                                                    Bệnh viện chúng tôi sẵn sàng phục vụ 24/24 với đội ngũ nhân viên chuyên nghiệp được đào tạo
+                                                    chuyên sâu về sơ cấp cứu cùng đầy đủ phương tiện và trang thiết giúp nhanh chóng xử lý cấp
+                                                    cứu tại chỗ với thời gian nhanh nhất.
+                                                </p>
+                                                <p>
+                                                    Nếu bạn gặp những vấn đề khẩn cấp về tình trạng sức khỏe như tai nạn, bệnh cấp tính nghiêm
+                                                    trọng, bị thương, hãy gọi khoa Cấp cứu – Bệnh viện ĐKKKV Thủ Đức theo số <span class="text__stress">
+                                                        +(84)
+                                                        28 38966894
+                                                    </span> để
+                                                    được hỗ trợ dịch vụ hoặc đến ngay khoa Cấp cứu của bệnh viện để được xử lý kịp thời.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Huấn luyện sơ cấp cứu -->
+                                <div id="service-2" class="scrollRight">
+                                    <div class="tab__content-title item__title">
+                                        <p>Huấn luyện sơ cấp cứu</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5 order-sm-1 order-0">
+                                                <img src="/Content/assets/img/service/service_2.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7 order-sm-0 order-1">
+                                                <p>
+                                                    Huấn luyện sơ cấp cứu là khóa học cung cấp những kiến thức cơ bản về sơ cứu vết thương và
+                                                    hướng dẫn những thao tác thực hiện để có thể trợ giúp hay chữa trị lúc ban đầu cho nạn nhân
+                                                    trước khi có xe cứu thương, hoặc được nhân viên y tế chữa trị. Việc sơ cứu này nhằm mục đích
+                                                    ngăn không cho tình trạng xấu đi, thúc đẩy sự phục hồi, hoặc có thể cứu sống được nạn nhân.
+                                                </p>
+                                                <p>
+                                                    Bệnh viện chúng tôi đã và đang triển khai tốt loại hình dịch vụ này nhằm hỗ trợ và cung cấp
+                                                    kiến thức cơ bản cho mọi đối tượng, đặc biệt là các Công ty, Doanh nghiệp, các Cơ quan, Đơn
+                                                    vị để họ có thể xử lý ban đầu khi bị tai nạn lao động.
+                                                </p>
+                                                <p>
+                                                    Khi cần được hỗ trợ, hãy gọi số điện thoại <span class="text__stress">(028)37245959</span>
+                                                    để được nhân viên tư vấn.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hợp đồng phối hợp cấp cứu tại chỗ -->
+                                <div id="service-3" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Hợp đồng phối hợp cấp cứu tại chỗ</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <img src="/Content/assets/img/service/service_3.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <p>
+                                                    Loại hình dịch vụ này của Chúng tôi nhằm phối hợp hỗ trợ cho các Công ty, Doanh nghiệp, các
+                                                    Cơ quan, Đơn vị trong việc cấp cứu người bệnh khi họ có nhu cầu trong thời gian sớm nhất.
+                                                </p>
+                                                <p>
+                                                    <span class="text__stress">Đối tượng:</span> Tất cả các Công ty, Doanh nghiệp, các Cơ quan,
+                                                    Đơn vị đóng trong địa bàn và khu
+                                                    vực lân cận.
+                                                </p>
+                                                <p>
+                                                    <span class="text__stress">Hình thức hoạt động:</span> Có xe cứu thương, trang thiết bị và
+                                                    đội ngũ nhân viên phục vụ 24/24 các
+                                                    trường hợp vượt quá khả năng xử lý chuyên môn của đơn vị trong vòng 30 phút kể từ khi nhận
+                                                    được tin báo.
+                                                </p>
+                                                <p>Số điện thoại tư vấn: <span class="text__stress">(028)37245959</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Khám bệnh tại nhà -->
+                                @*<div id="service-4" class="scrollRight">
+                                        <div class="tab__content-title item__title">
+                                            <p>Khám bệnh tại nhà</p>
+                                        </div>
+                                        <div class="tab__content-detail">
+                                            <div class="row">
+                                                <div class="col-sm-5 order-sm-1 order-0">
+                                                    <img src="/Content/assets/img/service/service_4.jpg" alt="" class="img-fluid">
+                                                </div>
+                                                <div class="col-sm-7 order-sm-0 order-1">
+                                                    <p>
+                                                        Khám bệnh tại nhà là một loại hình dịch vụ nhằm đáp ứng nhu cầu khám chữa bệnh của một số
+                                                        đối tượng người bệnh đi lại khó khăn.
+                                                    </p>
+                                                    <p>Số điện thoại tư vấn: <span class="text__stress">(028)37245959</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                <!-- Đại lý bảo hiểm y tế  -->
+                                <div id="service-4" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p>Đại lý bảo hiểm y tế </p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <img src="/Content/assets/img/service/service_5.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <p>
+                                                    Hiện tại Bệnh viện của chúng tôi đã triển khai đại lý bán BHYT nhằm đáp ứng nhu cầu cũng như
+                                                    hỗ trợ tất cả đối tượng người dân có nhu cầu đăng ký khám chữa bệnh ban đầu tại Bệnh viện Đa
+                                                    khoa khu vực Thủ Đức.
+                                                </p>
+                                                <p>
+                                                    Chúng tôi với đội ngũ nhân viên nhiệt tình, năng động sẽ tư vấn, hỗ trợ người dân các thủ
+                                                    tục một cách đơn giản và nhanh nhất.
+                                                </p>
+                                                <p>Số điện thoại tư vấn: <span class="text__stress">(028)37245959</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Các gói khám và tầm soát bệnh -->
+                                <div id="service-5" class="scrollRight">
+                                    <div class="tab__content-title item__title">
+                                        <p>Các gói khám và tầm soát bệnh</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5 order-sm-1 order-0">
+                                                <img src="/Content/assets/img/service/service_6.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7 order-sm-0 order-1">
+                                                <p>
+                                                    Khám, tầm soát sức khoẻ định kỳ giúp chúng ta phát hiện sớm các vấn đề bất thường về sức
+                                                    khỏe trước khi có biểu hiện bệnh lý để điều chỉnh hợp lý về chế độ dinh dưỡng, phương pháp
+                                                    làm việc và nếp sống sinh hoạt, nhằm nâng cao năng suất lao động và cải thiện chất lượng cuộc
+                                                    sống.
+                                                </p>
+                                                <p>
+                                                    Để phục vụ nhu cầu khám tầm soát sức khỏe của cộng đồng, Bệnh viện chúng tôi đã triển khai
+                                                    tốt các dịch vụ khám, tư vấn, theo dõi và chăm sóc sức khỏe một cách nhanh chóng, hiệu quả và
+                                                    chuyên nghiệp nhất.
+                                                </p>
+                                                <p>Có các gói khám bao gồm:</p>
+                                                <ul class="page-listing__list">
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <li class="page-listing__list-item">
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                <a href="" data-dismiss="modal" data-toggle="modal" data-target="#showMedicalPackageImage-@i">@item.Name</a>
+                                                            </div>
+                                                        </li>
+                                                        i++;
+                                                    }
+
+                                                    @*<li class="page-listing__list-item">
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                <a href="">Gói khám chuyên sâu</a>
+                                                            </div>
+                                                        </li>
+                                                        <li class="page-listing__list-item">
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                <a href="">Gói thai sản</a>
+                                                            </div>
+                                                        </li>
+                                                        <li class="page-listing__list-item">
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                <a href="">Gói khám sức khỏe</a>
+                                                            </div>
+                                                            <ul class="page-listing__list page-listing__list--sub">
+                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                        <a href="">Khám sức khỏe theo thông tư 14</a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                        <a href="">Khám sức khỏe lái xe</a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                        <a href="">Khám sức khỏe an toàn thực phẩm (thẻ xanh, thẻ hồng)</a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                        <a href="">Khám sức khỏe định kỳ theo yêu cầu của đơn vị</a>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="page-listing__list-item page-listing__list--sub-item">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                                                        <a href="">Khám tuyển dụng, tuyển sinh…</a>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>*@
+                                                </ul>
+                                                <p>Số điện thoại tư vấn: <span class="text__stress">(028)37245959</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hấp tiệt khuẩn bằng máy tiệt khuẩn EO -->
+                                <div id="service-6" class="scrollLeft">
+                                    <div class="tab__content-title item__title">
+                                        <p> Hấp tiệt khuẩn bằng máy tiệt khuẩn EO</p>
+                                    </div>
+                                    <div class="tab__content-detail">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <img src="/Content/assets/img/service/service_7.jpg" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <p>
+                                                    Chúng tôi hiện có dịch vụ hấp tiệt khuẩn đối với các vật liệu không chịu nhiệt như: vải sợi,
+                                                    giấy, các nguyên vật liệu nhựa…
+                                                </p>
+                                                <p>
+                                                    Hiện tại chúng tôi đang hợp tác tốt với các cơ quan, đơn vị có nhu cầu hấp trang thiết bị y
+                                                    tế và đồ bảo hộ lao động làm trong khu vực vô khuẩn.
+                                                </p>
+                                                <p>Số điện thoại tư vấn: <span class="text__stress">0934122452</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@foreach (var item in Model)
+{
+    
+    <div class="modal fade" id="showMedicalPackageImage-@j" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>*@
+                <div class="modal-header modal-header__custom">
+                    <div class="item__title w-100 text-center">
+                        <p class="login__title mb-2">@item.Name</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid w-100" src="/Content/uploads/GoiKhamBenh/@item.Id/@item.FileUrl" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    j++;
+}

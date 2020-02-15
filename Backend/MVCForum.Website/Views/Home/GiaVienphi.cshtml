@@ -1,0 +1,148 @@
+﻿@model List<MVCForum.Domain.DomainModel.Entities.BangiaDichvu>
+@{
+    Layout = "~/Views/Shared/FrontEnd/_LayoutBenhvien.cshtml";
+    var urlVienphi = Model.FirstOrDefault(x => x.Type.Equals("VIENPHI")).FileUrl;
+    var urlDichvu = Model.FirstOrDefault(x => x.Type.Equals("DICHVU")).FileUrl;
+    var urlThuoc = Model.FirstOrDefault(x => x.Type.Equals("VATTUTHUOC")).FileUrl;
+}
+
+@*
+    <div class="main-content">
+
+
+
+        <section class="page-title" style="background-image: url('http://cdn1.medihub.vn/uploads/images/2017/07/16/hero-slide2.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 page-title-content">
+                        <h2 class="title line-bottom line-left">Giá Viện phí</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="box-layout">
+            <ol class="breadcrumb">
+                <li><a href="#">Trang chủ</a></li>
+                <li class="active">Giá viện phí</li>
+            </ol>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <ul class="nav nav-tabs" id="myTabs">
+                            <li class="active"><a href="#home" class="btn btn__main mt-4" data-toggle="tab">Bảng giá Viện phí</a></li>
+                            <li><a href="#rn" class="btn btn__main mt-4 ml-3" data-toggle="tab">Bảng giá Dịch vụ - Viện phí </a></li>
+                            <li><a href="#vt" class="btn btn__main mt-4 ml-3" data-toggle="tab">Bảng giá Bảo hiểm y tế</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home">
+
+                                <div class="js-fullWidth">
+                                    @Html.Action("GiaVienphiPartial", "Questions", new {url = urlVienphi})
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="rn" data-src="@urlDichvu#view=FitH">
+                                <iframe class="js-fullWidth" width="1000" height="480"></iframe>
+                            </div>
+                            <div class="tab-pane" id="vt" data-src="@urlThuoc#view=FitH">
+                                <iframe class="js-fullWidth" width="1000" height="480"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+<section class="tutorial pt-0 pb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner-sub col-12">
+                <div class="banner-sub__overlay"></div>
+                <div class="container">
+
+                    <div class="section__title section__title-page">
+                        <h2 class="section__title-text">Giá Viện phí</h2>
+                        <div class="section__title-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page-container">
+                <div>
+                    <nav aria-label="breadcrumb" class="breadcrumb-custom col-12">
+                        <ol class="breadcrumb breadcrumb-custom-ol">
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li class="breadcrumb-item breadcrumb-custom-item"><a href="#">Tin tức</a></li>
+                            <li class="breadcrumb-item active breadcrumb-custom-item" aria-current="page">Giá Viện phí</li>
+                        </ol>
+                    </nav>
+                </div>
+
+
+                @*<div class="drop-1">
+
+                    <div class="tutorial__title item__title mt-md-4">
+                        <p>Bảng giá viện phí</p>
+                    </div>
+                    <a href="~/Content/BANGGIAVIENPHI.xls" class="btn btn__main mt-4">Tải về bảng giá viện phí</a>
+                    <a href="~/Content/BANGGIADVVIENPHI.xls" class="btn btn__main mt-4 ml-3">Tải về bảng giá dịch vụ viện phí</a>
+                    <a href="~/Content/BANGGIABHYT.xls" class="btn btn__main mt-4  ml-3">Tải về bảng giá báo hiểm y tế</a>
+                </div>*@
+                <div class="drop-1">
+                    <div class="tutorial__title item__title mt-md-4">
+                        <p>Bảng giá Viện phí Bệnh Viện Đa Khoa Khu Vực Thủ Đức</p>
+                    </div>
+                    <ul class="nav nav-tabs border-0" id="myTabs" role="tablist">
+                        <li><a href="#price-1" class="btn btn__main mt-4 tab-link active" data-toggle="tab" aria-selected="True">Bảng giá Viện phí</a></li>
+                        <li><a href="#price-2" class="btn btn__main mt-4 ml-sm-3 ml-0 tab-link" data-toggle="tab" aria-selected="False">Bảng giá Dịch vụ - Viện phí </a></li>
+                        <li><a href="#price-3" class="btn btn__main mt-4 ml-sm-3 ml-0 tab-link" data-toggle="tab" aria-selected="False">Bảng giá Bảo hiểm y tế</a></li>
+                    </ul>
+
+                    <div class="mt-5">
+                        <div class="tab" id="price-1">
+                            
+                            <div class="w-100">
+                                @Html.Action("GiaVienphiPartial", "Questions", new { url = urlVienphi })
+
+                            </div>
+                        </div>
+                        <div class="tab d-none" id="price-2" data-src="@urlDichvu#view=FitH">
+                            @Html.Action("GiaVienphiPartial", "Questions", new { url = urlDichvu })
+                           @* <iframe class="w-100" height="480"></iframe>*@
+                        </div>
+                        <div class="tab d-none" id="price-3" data-src="@urlThuoc#view=FitH">
+                            @Html.Action("GiaVienphiPartial", "Questions", new { url = urlThuoc })
+                           @* <iframe class="w-100" height="480"></iframe>*@
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    document.querySelectorAll('.tab-link').forEach(function(tabBtn) {
+        tabBtn.addEventListener('click',
+            function() {
+                var tabId = tabBtn.getAttribute('href');
+                document.querySelectorAll('.tab').forEach(function(tab) {
+                    tab.classList.add('d-none');
+                });
+                document.querySelector(tabId).classList.remove('d-none');
+                document.querySelectorAll('.tab-link').forEach(function(tabBtnToHide) {
+                    tabBtnToHide.classList.remove('active');
+                });
+                tabBtn.classList.add('active');
+            });
+    });
+</script>

@@ -1,0 +1,76 @@
+﻿<h2 class="des-title m-b-0"> Tìm bác sĩ</h2>
+
+<div class="appointment-form">
+    <form action="/Doctor/SearchDoctor" >
+        <div class="row">
+
+            <div class="form-group col-md-12">
+                <label for="">Chọn Khoa/ Phòng</label>
+                <select class="select-input select2" name="specicality" id="specicality">
+                    <option value="" disabled selected="selected">Chọn Khoa/ Phòng</option>
+
+                    <option value="Khoa Tim Mạch Can Thiệp DSA">Khoa Tim Mạch Can Thiệp DSA</option>
+                    <option value="Khoa Nội Tiêu Hóa">Khoa Nội Tiêu Hóa</option>
+                    <option value="Khoa Hồi Sức Tích Cực – Chống Độc">Khoa Hồi Sức Tích Cực – Chống Độc</option>
+                    <option value="Khoa Lão Học">Khoa Lão Học</option>
+                    <option value="Khoa Nội Hô Hấp - Cơ Xương Khớp">Khoa Nội Hô Hấp - Cơ Xương Khớp</option>
+                    <option value="Khoa Nội Tiết - Thận">Khoa Nội Tiết - Thận</option>
+                    <option value="Khoa Nội Thần Kinh - Huyết Học">Khoa Nội Thần Kinh - Huyết Học</option>
+                    <option value="Khoa Nội Tim Mạch">Khoa Nội Tim Mạch</option>
+                    <option value="Khoa Phẩu Thuật Tim">Khoa Phẩu Thuật Tim</option>
+                    <option value="Khoa Phẫu thuật – Gây mê hồi sức">Khoa Phẫu thuật – Gây mê hồi sức</option>
+                    <option value="Khoa Chấn Thương – Chỉnh Hình">Khoa Chấn Thương – Chỉnh Hình</option>
+                    <option value="Khoa Tổng Hợp">Khoa Tổng Hợp</option>
+                    <option value="Khoa Ngoại Tiêu Hóa">Khoa Ngoại Tiêu Hóa</option>
+                    <option value="Khoa Ngoại Thận – Tiết Niệu">Khoa Ngoại Thận – Tiết Niệu</option>
+                    <option value="Khoa Ngoại Lồng Ngực Mạch Máu">Khoa Ngoại Lồng Ngực Mạch Máu</option>
+                    <option value="Ngoại Thần Kinh">Ngoại Thần Kinh</option>
+                    <option value="Khoa Sản Bệnh">Khoa Sản Bệnh</option>
+                    <option value="Khoa Phụ Khoa">Khoa Phụ Khoa</option>
+                    <option value="Khoa Sản Thường">Khoa Sản Thường</option>
+                    <option value="Khoa Sanh">Khoa Sanh</option>
+                    <option value="Tổ Khám Sản">Tổ Khám Sản</option>
+                    <option value="Khoa Bệnh Lý Sơ Sinh">Khoa Bệnh Lý Sơ Sinh</option>
+                    <option value="Khoa Nhi">Khoa Nhi</option>
+
+                    <option value="Khoa Tai Mũi Họng">Khoa Tai Mũi Họng</option>
+                    <option value="Khoa Răng Hàm Mặt">Khoa Răng Hàm Mặt</option>
+                    <option value="Khoa Mắt">Khoa Mắt</option>
+                    <option value="Khoa Cấp Cứu">Khoa Cấp Cứu</option>
+                    <option value="Khoa Khám Bệnh">Khoa Khám Bệnh</option>
+                    <option value="Khoa Sinh Hóa Huyết Học">Khoa Sinh Hóa Huyết Học</option>
+                    <option value="Khoa Chẩn Đoán Hình Ảnh">Khoa Chẩn Đoán Hình Ảnh</option>
+                    <option value="Khoa Vi Sinh">Khoa Vi Sinh</option>
+                    <option value="Khoa Dược">Khoa Dược</option>
+                    <option value="Khoa Nội Soi – Thăm Dò Chức Năng">Khoa Nội Soi – Thăm Dò Chức Năng</option>
+                    <option value="Khoa Dinh Dưỡng">Khoa Dinh Dưỡng</option>
+                    <option value="Khoa Kiểm soát nhiễm khuẩn">Khoa Kiểm soát nhiễm khuẩn</option>
+                    <option value="Phòng Kế Hoạch Tổng Hợp">Phòng Kế Hoạch Tổng Hợp</option>
+                    <option value="Phòng Hành Chính Quản Trị">Phòng Hành Chính Quản Trị</option>
+                    <option value="Phòng Vật Tư – Trang Thiết Bị Y Tế">Phòng Vật Tư – Trang Thiết Bị Y Tế</option>
+                    <option value="Phòng Công Nghệ Thông Tin">Phòng Công Nghệ Thông Tin</option>
+                    <option value="Phòng Tài Chính Kế Toán">Phòng Tài Chính Kế Toán</option>
+                    <option value="Phòng Điều Dưỡng">Phòng Điều Dưỡng</option>
+                    <option value="Khoa Y Học Cổ Truyền">Khoa Y Học Cổ Truyền</option>
+                    @*<option value="Surgery">Surgery &amp; Transplants</option>
+                    <option value="Emergancy">Emergancy / Critical Care</option>
+                    <option value="Gynaecological">Gynaecological Clinic</option>
+                    <option value="Accident">Accident Injuries</option>
+                    <option value="Outpatient">Outpatient Rehabilitation</option>*@
+                    <option value="Other">Khác</option>
+                </select>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="">Tên bác sĩ</label>
+                <input class="form-control" type="text"  name="name" id="name" placeholder="Tên bác sĩ">
+            </div>
+
+        </div>
+        <div class="text-center">
+
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
+
+        </div>
+
+    </form>
+</div>

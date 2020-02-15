@@ -1,0 +1,98 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.MedicalPackageViewModel
+@{
+    int i = 0;
+}
+<div class="form-group">
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Name)
+
+    @Html.HiddenFor(x => x.Id)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.OrderNumber)
+    @Html.TextBoxFor(model => model.OrderNumber, new { @class = "form-control", type = "number" })
+    @Html.ValidationMessageFor(model => model.OrderNumber)
+</div>
+
+@if (!string.IsNullOrEmpty(Model.FileUrl))
+{
+    <div class="form-group row" id="ImgLink">
+        <label class="col-xl-3 col-lg-3 col-form-label">
+            Hình ảnh :
+        </label>
+        <div class="col-xl-9 col-lg-9">
+            <a class="" id="modal-ImageUrl" href="#modal-container-ImageUrl" data-toggle="modal">
+                Xem hình
+            </a>
+            <i id="delete-ImgLink" class="fa fa-times-circle-o" style="font-size: 20px; color: #f04b43; cursor: pointer;"></i>
+        </div>
+    </div>
+    <div style="display: none" id="inputImgLink" class="form-group">
+        @Html.LabelFor(x => x.Files)
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+
+    <!-- Creates the bootstrap modal where the image will appear -->
+    <div class="modal fade" id="modal-container-ImageUrl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hình ảnh</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="max-width: 100%" src="~/Content/uploads/GoiKhamBenh/@Model.Id/@Model.FileUrl" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Files)
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+}
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Parent)
+    @Html.DropDownListFor(model => model.Parent, Model.AllMedicalPackages, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Parent)
+</div>
+
+
+
+<script>
+    //xoa field xem hinh anh
+    $("#delete-ImgLink").on("click", function () {
+        $("#inputImgLink").fadeIn();
+        $(this).remove();
+        $("#ImgLink").remove();
+    });
+
+</script>

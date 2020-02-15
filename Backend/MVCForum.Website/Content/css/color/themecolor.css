@@ -1,0 +1,325 @@
+/**
+=============================================================
+[ThemeColor Stylesheet]
+
+Color Code:   #2698D6
+Version:      1.0
+Created:      10.07.2016
+Primary use:  Health & Medical HTML Template
+
+@Author: icuttheme
+
+* This file contains the styling for the actual theme, this
+is the file you need to edit to change the look of the
+theme.
+============================================================= **/
+
+
+
+/*
+-----------------------------------------------------------------------
+    Text Color Css
+-----------------------------------------------------------------------
+*/
+
+.pagination-style > li > a,
+.pagination-style > li > span,
+.pagination-style > li > a:hover,
+.section-title .icon,
+.section-title .title span,
+.inner-title .title span,
+.btn-theme.btn-gray,
+.home-slider h2,
+.welcome-content .feature-list a,
+.iconbox-widget .icon i,
+.widget-links li:hover a,
+.widget-links li a:before,
+.widget-news .widget-news-post .content .meta-date,
+.social-icons li a:hover i,
+.service-post .content .btn-link,
+.service-post:hover .icon-box .icon,
+.feature-box .content .btn-link,
+.feature-box:hover .icon-box .icon,
+.team-post .thumb .overlay a i,
+.team-post .content .title,
+.team-style4 .team-post .content .sub-title,
+.team-member-details .content .name,
+.team-member-infos li span:first-child,
+.blog-post .meta-tag .icon,
+.blog-post .content .btn-link,
+.tag-category li a,
+.blog-social-share li:first-child,
+.blog-authore-box .authore-meta li:first-child a,
+.blog-authore-box .authore-meta li a:hover,
+.comment-box .content .reply-btn,
+.footer-widget .footer-widget-title .widget-title:after,
+.footer-widget .widget-links li a:before,
+.footer-widget .widget-contact p span,
+.footer-widget .widget-news .widget-news-post .content .meta-date,
+.copy-right a,
+.accordion-style .accordion-box .acc-title.active,
+.testimonial-post ul li .icon,
+.scroll-to-top:hover {
+    color: #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Text Color Css with !important
+-----------------------------------------------------------------------
+*/
+
+.color-theme {
+    color: #2698D6 !important;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Text Deep Color Css
+-----------------------------------------------------------------------
+*/
+
+.isotopeFilter a,
+.mega-header .header-top .user-links a:hover,
+.mega-header .header-top .user-links a.active,
+.page-title-content .title {
+    color:#2bb2e0;  
+}
+
+.color-theme2 {
+    color: #2bb2e0 !important;
+}
+
+/*
+-----------------------------------------------------------------------
+    Background Color Css
+-----------------------------------------------------------------------
+*/
+
+.ui-widget-header,
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	background: #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Background Color Css
+-----------------------------------------------------------------------
+*/
+
+.pagination-style > .active > a,
+.pagination-style > .active > a:focus,
+.pagination-style > .active > a:hover,
+.pagination-style > .active > span,
+.pagination-style > .active > span:focus,
+.pagination-style > .active > span:hover,
+.line-bottom:before,
+.line-center:before,
+.btn-theme,
+.btn-theme.btn-black:hover,
+.mega-header .header-main,
+.mega-menu .menuzord-menu ul.dropdown li:hover a,
+.mega-menu .menuzord-menu ul.dropdown li ul.dropdown li:hover a,
+.home-slider .slide-bg-theme,
+.home-slider .btn-theme,
+.home-slider .btn-theme.btn-black:hover,
+.appointment-form .form-title,
+.appointment-form form .btn,
+.widget .widget-title:after,
+.widget-search button,
+.widget-tags a:hover,
+.social-icons.icons-theme li a,
+.service-post .icon-box,
+.feature-box:hover,
+.feature-box .icon-box,
+.features-style2 .feature-box:hover,
+.team-post .thumb .overlay a:hover,
+.team-post .profile,
+.team-post .content .member-skill ul li a,
+.footer-widget .footer-widget-title .widget-title:after,
+.footer-widget .social-icons li a,
+.pricing-table .pricing-content .pricing-list-content .pricing-list,
+.scroll-to-top {
+    background-color: #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Background Color Css with !important
+-----------------------------------------------------------------------
+*/
+
+.bgcolor-theme,
+.tp-bullets.preview4 .bullet {
+	background: #2698D6 !important;
+}
+
+/*
+-----------------------------------------------------------------------
+    Background Deep Color Css
+-----------------------------------------------------------------------
+*/
+
+.isotopeFilter a:hover,
+.isotopeFilter a.current,
+.isotope-item .isotop-thumb .isotop-overlay .isotop-icons a:hover,
+.mega-header .header-top .form button:hover,
+.mega-menu .menuzord-menu > li:hover > a,
+.sp-megamenu .menuzord-menu > li.active > a,
+.mega-menu .menuzord-menu ul.dropdown,
+.mega-menu .menuzord-menu ul.dropdown li ul.dropdown li,
+.mega-menu .menuzord-menu ul.dropdown,
+.mega-menu .menuzord-menu ul.dropdown li:hover ul.dropdown li a,
+.header-main .appoint-btn a,
+.pricing-table .pricing-content .pricing-list-content .pricing-list:nth-child(2n+2) {
+    background-color: #2bb2e0;
+}
+
+/*
+-----------------------------------------------------------------------
+    Background Extra Deep Color Css
+-----------------------------------------------------------------------
+*/
+
+.header-main .appoint-btn a:hover {
+    background: #22a6d3; 
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Background rgba Color Css
+-----------------------------------------------------------------------
+*/
+
+
+
+.gallery-wrapper .gallery-post .thumb:hover .overlay,
+.team-post .thumb .overlay {
+    background-color: rgba(81, 184, 241, 0.5);
+}
+.blog-post .thumb .overlay {
+    background-color: rgba(81, 184, 241, 0.7);
+}
+.layer-overlay:before,
+.blog-post .thumb .blog-post-date {
+    background-color: rgba(81, 184, 241, 0.8);
+}
+.theme-overlay:before,
+.isotope-item .isotop-thumb .isotop-overlay .isotop-icons a {
+    background-color: rgba(81, 184, 241, 0.85);
+}
+.welcome-content .welcome-feature::before {
+    background-color: rgba(81, 184, 241, 0.95);
+}
+.theme-overlay.overlay-theme:before {
+    background-color: rgba(81, 184, 241, 0.96);
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Background Deep rgba Color Css
+-----------------------------------------------------------------------
+*/
+
+.page-title-content .bread-crumb {
+    background-color: rgba(43, 178, 224, 0.75);
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Border Color Css
+-----------------------------------------------------------------------
+*/
+
+.pagination-style > .active > a,
+.pagination-style > .active > a:focus,
+.pagination-style > .active > a:hover,
+.pagination-style > .active > span,
+.pagination-style > .active > span:focus,
+.pagination-style > .active > span:hover,
+.btn-theme,
+.btn-theme.btn-black:hover,
+.owl-carousel .owl-controls .owl-dots .owl-dot span,
+.home-slider .btn-theme,
+.home-slider .btn-theme.btn-black:hover,
+.ui-widget-header,
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight,
+.widget-search button,
+.social-icons li a:hover,
+.social-icons.icons-theme li a,
+.service-post .icon-box,
+.feature-box .icon-box,
+.team-post .thumb .overlay a:hover,
+.footer-widget .social-icons li a,
+.testimonial-post:hover,
+.testimonial-post:hover .thumb img {
+    border-color: #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Border Color Css with !important
+-----------------------------------------------------------------------
+*/
+
+.tp-bullets.preview4 .bullet:hover,
+.tp-bullets.preview4 .bullet.selected {
+	border-color:#2698D6 !important;	
+}
+
+.home-slider .tp-bullets.preview4 .bullet {
+    border-color: rgba(81, 184, 241, 1) !important;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Border Bottom Color Css
+-----------------------------------------------------------------------
+*/
+
+.header-top-widget.headerwidget-style2 .header-widget .iconbox-widget .box-contenet .title,
+.service-post:after,
+.accordion-style .accordion-box .acc-title.active {
+	border-bottom-color: #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    Box Shadow Color Css
+-----------------------------------------------------------------------
+*/
+
+.scroll-to-top:hover {
+    box-shadow: 0 0 5px 0 #2698D6;
+}
+
+
+/*
+-----------------------------------------------------------------------
+    responsive color css
+-----------------------------------------------------------------------
+*/
+
+@media only screen and (max-width: 768px) {
+    .mega-menu .menuzord-menu ul.dropdown,
+    .menuzord-responsive .menuzord-menu ul.dropdown li ul.dropdown {
+        background: #2698D6;
+    }
+    .mega-menu .menuzord-menu > li.active > a  {
+        background: #61a107;
+    }
+}

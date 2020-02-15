@@ -1,0 +1,158 @@
+﻿@using MVCForum.Domain.DomainModel
+@model MVCForum.Website.ViewModels.DoctorViewModel
+@{
+    int i = 0;
+}
+<div class="form-group">
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Tên bác sĩ" })
+    @Html.ValidationMessageFor(model => model.Name)
+
+    @Html.HiddenFor(x => x.Id)
+</div>
+<div class="form-group">
+
+    <label>Chuyên khoa</label>
+    @Html.TextBoxFor(x => x.Specicality, new { @class = "form-control", placeholder = "Chuyên khoa" })
+</div>
+<div class="form-group">
+    <label>Học vị</label>
+    @Html.TextBoxFor(x => x.BoardCertifications, new { @class = "form-control", placeholder = "Học hàm/ học vị" })
+</div>
+<div class="form-group">
+    <label>Chức vụ</label>
+    @Html.TextBoxFor(x => x.PositionName, new { @class = "form-control", placeholder = "Chức vụ" })
+</div>
+<div class="form-group">
+    <label>Chọn Khoa</label>
+    <div class="form-group">
+        @*@Html.Partial("FrontEnd/_Phongban")*@
+        <select class="select-input form-control" name="DepartmentManage" id="departmentManage">
+            <option value="" disabled selected="selected">Chọn Khoa</option>
+            @foreach (var item in ViewBag.ListDepartment)
+            {
+                if (item.ParentDepartment == null)
+                {
+                    if (item.Id == Model.DepartmentManage)
+                    {
+                        <option value="@item.Id" selected>@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label>Chọn Phòng</label>
+    <select class="select-input form-control" name="DepartmentId" id="deparment">
+        <option value="" selected="selected">Chọn Phòng</option>
+        @if (!string.IsNullOrEmpty(Model.Department))
+        {
+            foreach (var item in ViewBag.ListDepartment)
+            {
+                if (item.ParentDepartment != null)
+                {
+                    if (item.Id == Model.DepartmentId)
+                    {
+                        <option value="@item.Id" selected="selected">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+            }
+        }
+    </select>
+</div>
+@if (!string.IsNullOrEmpty(Model.Avatar))
+{
+    <div class="form-group row" id="ImgLink">
+        <label class="col-xl-3 col-lg-3 col-form-label">
+            Hình ảnh :
+        </label>
+        <div class="col-xl-9 col-lg-9">
+            <a class="" id="modal-ImageUrl" href="#modal-container-ImageUrl" data-toggle="modal">
+                Xem hình
+            </a>
+            <i id="delete-ImgLink" class="fa fa-times-circle-o" style="font-size: 20px; color: #f04b43; cursor: pointer;"></i>
+        </div>
+    </div>
+    <div style="display: none" id="inputImgLink" class="form-group">
+        @Html.LabelFor(x => x.Files)
+        <label>Ảnh đại diện</label>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+
+    <!-- Creates the bootstrap modal where the image will appear -->
+    <div class="modal fade" id="modal-container-ImageUrl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hình ảnh</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="max-width: 100%" src="~/Content/uploads/ImageDoctors/@Model.Avatar" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <label>Ảnh đại diện</label>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+}
+<div class="form-group">
+    <label>Quá trình công tác</label>
+    @Html.TextAreaFor(x => x.DescriptionHistory, new { @class = "form-control", @rows = 7 })
+</div>
+<script>
+    $("#delete-ImgLink").on("click", function () {
+        $("#inputImgLink").fadeIn();
+        $(this).remove();
+        $("#ImgLink").remove();
+    });
+    var department = @Html.Raw(MVCForum.Utilities.JsonHelper.SerializeObject((ViewBag.ListDepartment as List<Department>).Where(x=>x.ParentDepartment!=null).Select(x => new {Id=x.Id,Name=x.Name, ParentDepartment=x.ParentDepartment.Id}).ToList()));
+    $("#departmentManage").on("change", function () {
+        var id = this.value;
+        $("#deparment").html('<option value="" selected="selected">Chọn Phòng</option>');
+        $.each(department, function (key, value) {
+            if (id == value.ParentDepartment) {
+                $('#deparment')
+                    .append($("<option></option>")
+                        .attr("value", value.Id)
+                        .text(value.Name));
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,26 @@
+﻿@using MVCForum.Website.ViewModels
+@model HotTopicsViewModel
+<h2 class="des-title m-b-0 ">DỊCH VỤ</h2>
+
+<div class="video-gallery owl-column owl-col-2-stop owlnav-true owl-nav2 ">
+    @if (Model.Topics.Any())
+    {
+        foreach (var item in Model.Topics)
+        {
+            <div class="video-gallery-item">
+                <a class="" href="/article/@item.Topic.Slug" title="Awsome Title">
+                    <img alt="" src="@AppHelpers.TopicImage(item.Topic.LinkImage,item.Topic.User.Id,465,170)">
+                </a>
+            </div>
+        }
+
+    }
+
+    @*<div class="video-gallery-item">
+        <a class="" href="#" title="Awsome Title">
+            <img alt="" src="http://cdn1.medihub.vn/uploads/images/2017/07/27/Web-Banner-N-VN.jpg">
+        </a>
+    </div>*@
+
+
+</div>

@@ -1,0 +1,82 @@
+﻿@model MVCForum.Website.Areas.Admin.ViewModels.EducationViewModel
+
+
+
+<div class="form-group">
+    <label>Tiêu đề</label>
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Tiêu đề" })
+    @Html.ValidationMessageFor(model => model.Name)
+
+    @Html.HiddenFor(x => x.Id)
+</div>
+
+
+@if (!string.IsNullOrEmpty(Model.ImageUrl))
+{
+    <div class="form-group row" id="ImgLink">
+        <label class="col-xl-3 col-lg-3 col-form-label">
+            Hình ảnh :
+        </label>
+        <div class="col-xl-9 col-lg-9">
+            <a class="" id="modal-ImageUrl" href="#modal-container-ImageUrl" data-toggle="modal">
+                Xem hình
+            </a>
+            <i id="delete-ImgLink" class="fa fa-times-circle-o" style="font-size: 20px; color: #f04b43; cursor: pointer;"></i>
+        </div>
+    </div>
+    <div style="display: none" id="inputImgLink" class="form-group">
+        @Html.LabelFor(x => x.Files)
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+
+    <!-- Creates the bootstrap modal where the image will appear -->
+    <div class="modal fade" id="modal-container-ImageUrl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Hình ảnh</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="max-width: 100%" src="~/Content/uploads/Education/@Model.ImageUrl" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Files)
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    @Html.LanguageString("Post.Browse") <input type="file" name="files" id="files" value="">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly="">
+        </div>
+        @Html.ValidationMessageFor(x => x.Files)
+    </div>
+}
+
+<div class="form-group">
+    <label>Mô tả</label>
+    <div class="editor-field editorholder">
+        @Html.EditorFor(model => model.Description)
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+</div>
